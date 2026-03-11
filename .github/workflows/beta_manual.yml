@@ -30,7 +30,7 @@ on:
       build_type:
         description: "Build type"
         required: true
-        default: "beta"
+        default: "stable"
         type: choice
         options:
           - stable
@@ -790,3 +790,151 @@ jobs:
         with:
           name: AnymeX-macOS
           path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
+
+  # ─────────────────────────────────────────────
+  # Discord notification after all builds done
+  # ─────────────────────────────────────────────
+  notify-discord:
+    needs: [build, resolve-tag]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    steps:
+      - name: Fetch Artifact Info
+        id: fetch-artifacts
+        run: |
+          echo "Fetching artifacts for run ${{ github.run_id }}..."
+
+          ARTIFACTS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+
+          echo "$ARTIFACTS" > artifacts.json
+
+          get_artifact() {
+            local NAME="$1"
+            local ID=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .id' artifacts.json)
+            local SIZE=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .size_in_bytes' artifacts.json)
+            if [ -n "$ID" ] && [ "$ID" != "null" ]; then
+              SIZE_HR=$(awk -v size="$SIZE" 'BEGIN{
+                split("B KB MB GB", unit);
+                for (i=1; size>=1024 && i<4; i++) size/=1024;
+                printf "%.1f %s", size, unit[i]
+              }')
+              echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ID|$SIZE_HR"
+            else
+              echo ""
+            fi
+          }
+
+          echo "APK_ARM64=$(get_artifact "AnymeX-Android-arm64-v8a")"         >> $GITHUB_ENV
+          echo "APK_ARMEABI=$(get_artifact "AnymeX-Android-armeabi-v7a")"     >> $GITHUB_ENV
+          echo "APK_UNIVERSAL=$(get_artifact "AnymeX-Android-universal")"     >> $GITHUB_ENV
+          echo "APK_X86=$(get_artifact "AnymeX-Android-x86_64")"              >> $GITHUB_ENV
+          echo "IOS=$(get_artifact "AnymeX-iOS")"                             >> $GITHUB_ENV
+          echo "LINUX_ZIP=$(get_artifact "AnymeX-Linux-zip")"                 >> $GITHUB_ENV
+          echo "LINUX_APPIMAGE=$(get_artifact "AnymeX-Linux-AppImage")"       >> $GITHUB_ENV
+          echo "LINUX_RPM=$(get_artifact "AnymeX-Linux-rpm")"                 >> $GITHUB_ENV
+          echo "WIN_ZIP=$(get_artifact "AnymeX-Windows-zip")"                 >> $GITHUB_ENV
+          echo "WIN_INSTALLER=$(get_artifact "AnymeX-Windows-installer")"     >> $GITHUB_ENV
+          echo "MACOS=$(get_artifact "AnymeX-macOS")"                         >> $GITHUB_ENV
+
+      - name: Send Discord Notification
+        run: |
+          TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          PLATFORMS="${{ github.event.inputs.platforms }}"
+          PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
+          RUN_NUMBER="${{ github.run_number }}"
+
+          # Color: orange for beta, teal for stable
+          if [[ "$BUILD_TYPE" == "beta" ]]; then
+            COLOR=15771648
+          else
+            COLOR=1754309
+          fi
+
+          # PR display
+          if [ -z "$PR_NUMBERS" ]; then
+            PR_DISPLAY="None"
+          else
+            PR_DISPLAY="#$(echo "$PR_NUMBERS" | sed 's/,/, #/g')"
+          fi
+
+          # Helper: "URL|SIZE" → markdown line
+          make_line() {
+            local LABEL="$1"
+            local VALUE="$2"
+            if [ -n "$VALUE" ]; then
+              local URL=$(echo "$VALUE" | cut -d'|' -f1)
+              local SIZE=$(echo "$VALUE" | cut -d'|' -f2)
+              echo "**${LABEL}** | [Download](${URL}) | ${SIZE}"
+            fi
+          }
+
+          # Build per-platform field content
+          ANDROID_FIELD=""
+          [ -n "$APK_ARM64" ]     && ANDROID_FIELD+="$(make_line "arm64-v8a"   "$APK_ARM64")\n"
+          [ -n "$APK_ARMEABI" ]   && ANDROID_FIELD+="$(make_line "armeabi-v7a" "$APK_ARMEABI")\n"
+          [ -n "$APK_UNIVERSAL" ] && ANDROID_FIELD+="$(make_line "universal"   "$APK_UNIVERSAL")\n"
+          [ -n "$APK_X86" ]       && ANDROID_FIELD+="$(make_line "x86_64"      "$APK_X86")\n"
+
+          WINDOWS_FIELD=""
+          [ -n "$WIN_INSTALLER" ] && WINDOWS_FIELD+="$(make_line "Installer .exe" "$WIN_INSTALLER")\n"
+          [ -n "$WIN_ZIP" ]       && WINDOWS_FIELD+="$(make_line "Portable .zip"  "$WIN_ZIP")\n"
+
+          LINUX_FIELD=""
+          [ -n "$LINUX_APPIMAGE" ] && LINUX_FIELD+="$(make_line "AppImage" "$LINUX_APPIMAGE")\n"
+          [ -n "$LINUX_RPM" ]      && LINUX_FIELD+="$(make_line "RPM"      "$LINUX_RPM")\n"
+          [ -n "$LINUX_ZIP" ]      && LINUX_FIELD+="$(make_line "Zip"      "$LINUX_ZIP")\n"
+
+          IOS_FIELD=""
+          [ -n "$IOS" ]   && IOS_FIELD+="$(make_line "IPA" "$IOS")\n"
+
+          MACOS_FIELD=""
+          [ -n "$MACOS" ] && MACOS_FIELD+="$(make_line "DMG" "$MACOS")\n"
+
+          # Build fields array — only include platforms that actually built
+          FIELDS="[]"
+          add_field() {
+            local NAME="$1"
+            local VALUE="$(echo -e "$2" | sed '/^$/d')"
+            if [ -n "$VALUE" ]; then
+              FIELDS=$(echo "$FIELDS" | jq \
+                --arg name "$NAME" \
+                --arg value "$VALUE" \
+                '. + [{"name": $name, "value": $value, "inline": false}]')
+            fi
+          }
+
+          [ -n "$ANDROID_FIELD" ] && add_field "📱 Android" "$ANDROID_FIELD"
+          [ -n "$WINDOWS_FIELD" ] && add_field "🪟 Windows" "$WINDOWS_FIELD"
+          [ -n "$LINUX_FIELD" ]   && add_field "🐧 Linux"   "$LINUX_FIELD"
+          [ -n "$IOS_FIELD" ]     && add_field "🍎 iOS"     "$IOS_FIELD"
+          [ -n "$MACOS_FIELD" ]   && add_field "🖥️ macOS"  "$MACOS_FIELD"
+
+          DESCRIPTION="⚙️ Build #${RUN_NUMBER} | ${BUILD_TYPE}\n🔀 Merged PRs: ${PR_DISPLAY}\n🖥️ Platforms: ${PLATFORMS}"
+
+          PAYLOAD=$(jq -nc \
+            --arg tag "$TAG" \
+            --arg description "$DESCRIPTION" \
+            --argjson color "$COLOR" \
+            --argjson fields "$FIELDS" \
+            --arg footer "Artifacts expire in 90 days" \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
+              "embeds": [{
+                "title": ("🔨 New Build: " + $tag),
+                "description": $description,
+                "color": $color,
+                "fields": $fields,
+                "footer": { "text": $footer },
+                "timestamp": $timestamp
+              }]
+            }')
+
+          echo "Sending Discord notification..."
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
+          echo "✅ Discord notification sent"
