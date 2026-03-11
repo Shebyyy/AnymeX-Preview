@@ -1,262 +1,450 @@
-name: Build Android APKs (Manual Beta)
+name: Build AnymeX (No Release)
 
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'Version tag (e.g., v1.0.0+1-beta)'
+      platforms:
+        description: "Platforms to build (comma-separated or 'all')"
         required: true
-        type: string
+        default: "all"
+        type: choice
+        options:
+          - all
+          - android
+          - linux
+          - windows
+          - macos
+          - ios
+          - android,ios
+          - android,windows
+          - android,linux
+          - android,macos
+          - linux,windows
+          - linux,macos
+          - windows,macos
+          - ios,macos
+      pr_numbers:
+        description: "PR numbers to merge before building (comma-separated, e.g. 123,456,789). Leave empty to skip."
+        required: false
+        default: ""
+      build_type:
+        description: "Build type"
+        required: true
+        default: "stable"
+        type: choice
+        options:
+          - stable
+          - beta
+      tag_override:
+        description: "Version tag to use (e.g. v3.0.4-beta or v3.0.4). Required for beta builds."
+        required: false
+        default: ""
 
 env:
   FLUTTER_VERSION: "3.32.8"
+  ZSIGN_VERSION: "0.7"
 
 jobs:
-  build-android:
+
+  # ─────────────────────────────────────────────
+  # Resolve which platforms to actually build
+  # ─────────────────────────────────────────────
+  resolve-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Resolve platform matrix
+        id: set-matrix
+        shell: bash
+        run: |
+          INPUT="${{ github.event.inputs.platforms }}"
+          ALL='["android","linux","windows","macos","ios"]'
+
+          if [ "$INPUT" = "all" ]; then
+            PLATFORMS="$ALL"
+          else
+            IFS=',' read -ra PARTS <<< "$INPUT"
+            JSON="["
+            for i in "${!PARTS[@]}"; do
+              PART=$(echo "${PARTS[$i]}" | xargs)   # trim whitespace
+              if [ $i -gt 0 ]; then JSON+=","; fi
+              JSON+="\"$PART\""
+            done
+            JSON+="]"
+            PLATFORMS="$JSON"
+          fi
+
+          # Map platform → runner OS
+          MATRIX_INCLUDES=""
+          FIRST=true
+          for PLATFORM in $(echo "$PLATFORMS" | jq -r '.[]'); do
+            case "$PLATFORM" in
+              android) OS="ubuntu-latest" ;;
+              linux)   OS="ubuntu-latest" ;;
+              windows) OS="windows-latest" ;;
+              macos)   OS="macos-latest" ;;
+              ios)     OS="macos-latest" ;;
+              *)       echo "Unknown platform: $PLATFORM"; continue ;;
+            esac
+            if [ "$FIRST" = true ]; then FIRST=false; else MATRIX_INCLUDES+=","; fi
+            MATRIX_INCLUDES+="{\"platform\":\"$PLATFORM\",\"os\":\"$OS\"}"
+          done
+
+          MATRIX="{\"include\":[$MATRIX_INCLUDES]}"
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+          echo "Resolved matrix: $MATRIX"
+
+  # ─────────────────────────────────────────────
+  # Main build job
+  # ─────────────────────────────────────────────
+  build:
+    needs: resolve-matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.resolve-matrix.outputs.matrix) }}
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          path: beta-repo
+
+      # ── Clone main repo ──────────────────────
+      - name: Clone Main Repository
+        shell: bash
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "  Cloning Main Repository"
+          echo "════════════════════════════════════════════"
+          git clone https://github.com/RyanYuuki/AnymeX.git main-repo
+          echo "✅ Cloned RyanYuuki/AnymeX to main-repo/"
+
+      # ── Merge PRs ────────────────────────────
+      - name: Merge Pull Requests
+        shell: bash
+        run: |
+          PR_INPUT="${{ github.event.inputs.pr_numbers }}"
+
+          if [ -z "$PR_INPUT" ]; then
+            echo "ℹ️  No PR numbers provided — skipping merge step."
+            exit 0
+          fi
+
+          echo "════════════════════════════════════════════"
+          echo "  Merging Pull Requests: $PR_INPUT"
+          echo "════════════════════════════════════════════"
+
+          cd main-repo
+          git config user.email "ci-bot@github.com"
+          git config user.name "CI Bot"
+
+          IFS=',' read -ra PRS <<< "$PR_INPUT"
+          ERRORS=0
+
+          for PR in "${PRS[@]}"; do
+            PR=$(echo "$PR" | xargs)  # trim whitespace
+            echo ""
+            echo "────────────────────────────────────────────"
+            echo "  Processing PR #$PR"
+            echo "────────────────────────────────────────────"
+
+            # Fetch the PR head ref into a local temp branch
+            FETCH_RESULT=$(git fetch origin "refs/pull/$PR/head:pr/$PR" 2>&1)
+            if [ $? -ne 0 ]; then
+              echo "❌ Failed to fetch PR #$PR"
+              echo "   $FETCH_RESULT"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            echo "✅ Fetched PR #$PR"
+
+            # Attempt merge
+            MERGE_RESULT=$(git merge "pr/$PR" --no-ff -m "ci: merge PR #$PR for build" 2>&1)
+            if [ $? -ne 0 ]; then
+              echo "❌ Merge conflict in PR #$PR:"
+              echo "$MERGE_RESULT"
+              git merge --abort 2>/dev/null || true
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "✅ Merged PR #$PR successfully"
+            fi
+          done
+
+          echo ""
+          echo "════════════════════════════════════════════"
+          if [ $ERRORS -gt 0 ]; then
+            echo "❌ $ERRORS PR(s) failed to merge — aborting build"
+            echo "════════════════════════════════════════════"
+            exit 1
+          else
+            echo "✅ All PRs merged successfully"
+            echo "════════════════════════════════════════════"
+          fi
+
+      # ── Copy beta assets ─────────────────────
+      - name: Copy Beta Assets to Main Repo
+        shell: bash
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "  Copying Beta Assets"
+          echo "════════════════════════════════════════════"
+
+          cp -r beta-repo/logo/android/app/src/main/res/* main-repo/android/app/src/main/res/
+          echo "✅ Android icons copied"
+
+          cp -r beta-repo/logo/ios/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/ios/Runner/Assets.xcassets/AppIcon.appiconset/
+          echo "✅ iOS icons copied"
+
+          cp -r beta-repo/logo/macos/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/macos/Runner/Assets.xcassets/AppIcon.appiconset/
+          echo "✅ macOS icons copied"
+
+          cp beta-repo/logo/windows/runner/resources/app_icon.ico main-repo/windows/runner/resources/
+          cp beta-repo/logo/anymex.ico main-repo/
+          echo "✅ Windows icons copied"
+
+          mkdir -p main-repo/assets/images
+          cp beta-repo/assets/images/logo.png main-repo/assets/images/
+          cp beta-repo/assets/images/logo_transparent.png main-repo/assets/images/
+          echo "✅ Linux icons copied"
+
+          cp beta-repo/scripts/rename_app.sh main-repo/scripts/
+          chmod +x main-repo/scripts/rename_app.sh
+          echo "✅ Rename script copied"
+
+      # ── Detect build type ─────────────────────
+      - name: Set Build Type Environment Variable
+        shell: bash
+        run: |
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          if [[ "$BUILD_TYPE" == "beta" ]]; then
+            echo "IS_BETA_BUILD=true" >> $GITHUB_ENV
+            echo "🔵 Beta build — caching disabled"
+          else
+            echo "IS_BETA_BUILD=false" >> $GITHUB_ENV
+            echo "🟢 Stable build — caching enabled"
+          fi
+
+          # Determine effective tag
+          TAG_OVERRIDE="${{ github.event.inputs.tag_override }}"
+          if [ -n "$TAG_OVERRIDE" ]; then
+            echo "EFFECTIVE_TAG=$TAG_OVERRIDE" >> $GITHUB_ENV
+            echo "Using provided tag: $TAG_OVERRIDE"
+          else
+            echo "EFFECTIVE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+            echo "Using ref tag: ${{ github.ref_name }}"
+          fi
+
+      # ── Toolchain ─────────────────────────────
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-      
+
+      - name: Cache Rust
+        if: env.IS_BETA_BUILD != 'true'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            main-repo/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('main-repo/**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
       - uses: actions/setup-java@v3
+        if: matrix.platform == 'android'
         with:
           distribution: "adopt"
           java-version: "17"
-      
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: false
-      
-      - name: Apply Beta Configuration
+          cache: ${{ env.IS_BETA_BUILD != 'true' }}
+
+      - name: Fix line endings (Windows)
+        if: runner.os == 'Windows'
         shell: bash
         run: |
-          TAG="${{ inputs.tag }}"
+          cd main-repo
+          sed -i 's/\r$//' scripts/rename_app.sh
+
+      # ── Beta rename ───────────────────────────
+      - name: Auto rename for beta build
+        shell: bash
+        run: |
+          cd main-repo
+          TAG="${EFFECTIVE_TAG}"
 
           echo "════════════════════════════════════════════"
-          echo "  MANUAL BETA BUILD"
+          echo "  Build Type Detection"
           echo "════════════════════════════════════════════"
-          echo "Input tag: $TAG"
-          echo ""
+          echo "Tag: $TAG"
 
-          # Extract version part (remove v)
-          # v3.0.4-beta → 3.0.4-beta
-          # v3.0.4+1-beta → 3.0.4+1-beta
-          VERSION_PART=$(echo "$TAG" | sed 's/^v//')
+          if [[ "$TAG" == *"-beta" ]]; then
+            echo "🔵 Beta build detected"
 
-          echo "Display version: v$VERSION_PART"
+            VERSION_PART=$(echo "$TAG" | sed 's/^v//')
 
-          # For pubspec.yaml, we need only semver (before any +)
-          # 3.0.4+1-beta → 3.0.4
-          # 3.0.4-beta → 3.0.4
-          if [[ "$VERSION_PART" == *"+"* ]]; then
-            SEMVER=$(echo "$VERSION_PART" | cut -d'+' -f1 | cut -d'-' -f1)
+            if [[ "$VERSION_PART" == *"+"* ]]; then
+              SEMVER=$(echo "$VERSION_PART" | cut -d'+' -f1 | cut -d'-' -f1)
+            else
+              SEMVER=$(echo "$VERSION_PART" | cut -d'-' -f1)
+            fi
+
+            BUILD_NUMBER="${GITHUB_RUN_NUMBER}"
+            PUBSPEC_VERSION="${SEMVER}+${BUILD_NUMBER}"
+            DISPLAY_VERSION="v${VERSION_PART}"
+
+            echo "Pubspec version: $PUBSPEC_VERSION"
+            echo "Display version: $DISPLAY_VERSION"
+
+            if [ ! -f "scripts/rename_app.sh" ]; then
+              echo "❌ Error: scripts/rename_app.sh not found"
+              exit 1
+            fi
+
+            chmod +x scripts/rename_app.sh
+            if ./scripts/rename_app.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
+              echo "✅ Beta rename completed successfully"
+            else
+              echo "❌ Beta rename failed"
+              exit 1
+            fi
           else
-            SEMVER=$(echo "$VERSION_PART" | cut -d'-' -f1)
+            echo "🟢 Stable build — skipping rename"
           fi
 
-          echo "Semver: $SEMVER"
-
-          # GitHub build number
-          BUILD_NUMBER="${GITHUB_RUN_NUMBER}"
-
-          # pubspec.yaml version (valid Flutter format)
-          PUBSPEC_VERSION="${SEMVER}+${BUILD_NUMBER}"
-
-          # Display version is just tag without v (no build number)
-          DISPLAY_VERSION="v${VERSION_PART}"
-
-          echo "Pubspec version: $PUBSPEC_VERSION"
-          echo "Display version: $DISPLAY_VERSION"
-          echo ""
-
-          # Check if rename script exists
-          if [ ! -f "scripts/rename_app.sh" ]; then
-            echo "❌ Error: scripts/rename_app.sh not found"
-            exit 1
-          fi
-
-          # Make script executable and run
-          chmod +x scripts/rename_app.sh
-          echo "Running rename script..."
-          echo "════════════════════════════════════════════"
-
-          if ./scripts/rename_app.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
-            echo ""
-            echo "✅ Beta rename completed successfully"
-            echo "   Package: com.ryan.anymex → com.ryan.anymexbeta"
-            echo "   App Name: AnymeX → AnymeX β"
-            echo "   Pubspec Version: $PUBSPEC_VERSION"
-            echo "   Display Version: $DISPLAY_VERSION"
-          else
-            echo ""
-            echo "❌ Beta rename failed"
-            exit 1
-          fi
-
-          echo "════════════════════════════════════════════"
-
-      # =================================================================
-      # Disable Google Services for beta builds
-      # =================================================================
-      - name: Disable Google Services for Beta
+      # ── Configure Google Services ─────────────
+      - name: Configure Google Services for Beta
+        if: matrix.platform == 'android' && env.IS_BETA_BUILD == 'true'
         shell: bash
         run: |
-          echo "🔵 Disabling Google Services for Beta Build"
-          
-          # Remove google-services plugin from app/build.gradle
-          if [ -f "android/app/build.gradle" ]; then
-            echo "Modifying android/app/build.gradle..."
-            sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
-            echo "✅ Removed google-services plugin from app/build.gradle"
-          fi
-          
-          # Remove google-services classpath from build.gradle
-          if [ -f "android/build.gradle" ]; then
-            echo "Modifying android/build.gradle..."
-            sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
-            echo "✅ Removed google-services classpath from build.gradle"
-          fi
-          
-          # Verify changes
-          echo ""
-          echo "Verification - checking for remaining google-services references:"
-          grep -n "google-services" android/app/build.gradle android/build.gradle || echo "✅ No google-services references found"
+          cd main-repo
+          echo "🔵 Disabling Google Services for beta"
+          sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
+          sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
+          echo "✅ Google Services disabled"
 
-      - name: Verify Beta Configuration
+      # ── Verify beta config ────────────────────
+      - name: Verify beta configuration
+        if: env.IS_BETA_BUILD == 'true'
         shell: bash
         run: |
+          cd main-repo
           echo "════════════════════════════════════════════"
           echo "  Verifying Beta Configuration"
           echo "════════════════════════════════════════════"
 
           ERRORS=0
 
-          # ==========================================
-          # DART CODE
-          # ==========================================
-          echo ""
-          echo "🎯 DART"
-          echo "────────────────────────────────────────────"
-
-          if grep -q 'title: "AnymeX β"' lib/main.dart 2>/dev/null; then
-            echo "✅ MaterialApp title in lib/main.dart"
-          else
-            echo "❌ MaterialApp title NOT updated in lib/main.dart"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          # ==========================================
-          # ANDROID
-          # ==========================================
-          echo ""
-          echo "📱 ANDROID"
-          echo "────────────────────────────────────────────"
-
-          if grep -q "com.ryan.anymexbeta" android/app/build.gradle* 2>/dev/null; then
-            echo "✅ Package name in build.gradle"
-          else
-            echo "❌ Package name NOT updated in build.gradle"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          if grep -q 'package="com.ryan.anymexbeta"' android/app/src/main/AndroidManifest.xml 2>/dev/null; then
-            echo "✅ Package in AndroidManifest.xml"
-          else
-            echo "❌ Package NOT updated in AndroidManifest.xml"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          if grep -q 'android:label="AnymeX β"' android/app/src/main/AndroidManifest.xml 2>/dev/null; then
-            echo "✅ App name in AndroidManifest.xml"
-          else
-            echo "❌ App name NOT updated in AndroidManifest.xml"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          if [ -d "android/app/src/main/kotlin/com/ryan/anymexbeta" ]; then
-            echo "✅ Kotlin package directory moved"
-          else
-            echo "❌ Kotlin package directory NOT found"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          if [ -d "android/app/src/main/kotlin/com/ryan/anymexbeta" ]; then
-            if grep -q "package com.ryan.anymexbeta" android/app/src/main/kotlin/com/ryan/anymexbeta/*.kt 2>/dev/null; then
-              echo "✅ Kotlin files package declaration"
+          check() {
+            local DESC="$1"; shift
+            if "$@" 2>/dev/null; then
+              echo "✅ $DESC"
             else
-              echo "❌ Kotlin package declaration NOT updated"
+              echo "❌ $DESC"
               ERRORS=$((ERRORS + 1))
             fi
-          fi
+          }
 
-          # ==========================================
-          # Flutter pubspec.yaml
-          # ==========================================
-          echo ""
-          echo "🎯 FLUTTER"
-          echo "────────────────────────────────────────────"
+          # Dart
+          echo ""; echo "🎯 DART"
+          check "MaterialApp title" grep -q 'title: "AnymeX β"' lib/main.dart
 
-          TAG="${{ inputs.tag }}"
+          # Android
+          echo ""; echo "📱 ANDROID"
+          check "Package name in build.gradle"   grep -q "com.ryan.anymexbeta" android/app/build.gradle
+          check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexbeta"' android/app/src/main/AndroidManifest.xml
+          check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX β"' android/app/src/main/AndroidManifest.xml
+          check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexbeta"
+
+          # iOS
+          echo ""; echo "🍎 iOS"
+          check "Bundle ID in project.pbxproj" grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexbeta" ios/Runner.xcodeproj/project.pbxproj
+          check "App name in Info.plist"        grep -q "<string>AnymeX β</string>" ios/Runner/Info.plist
+
+          # macOS
+          echo ""; echo "🖥️  macOS"
+          [ -f "macos/Runner/Configs/AppInfo.xcconfig" ] && {
+            check "Bundle ID in AppInfo.xcconfig"  grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexbeta" macos/Runner/Configs/AppInfo.xcconfig
+            check "Product name in AppInfo.xcconfig" grep -q "PRODUCT_NAME = anymex_beta" macos/Runner/Configs/AppInfo.xcconfig
+          } || echo "⚠️  AppInfo.xcconfig not found (skipping)"
+
+          # Linux
+          echo ""; echo "🐧 LINUX"
+          [ -f "linux/my_application.cc" ] && check "App name in my_application.cc" grep -q '"AnymeX β"' linux/my_application.cc || echo "⚠️  my_application.cc not found (skipping)"
+          [ -f "linux/CMakeLists.txt" ]    && check "App ID in CMakeLists.txt"      grep -q 'set(APPLICATION_ID "com.ryan.anymexbeta")' linux/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+
+          # Windows
+          echo ""; echo "🪟 WINDOWS"
+          [ -f "windows/runner/Runner.rc" ] && {
+            check "Binary name in Runner.rc"   grep -q '"anymex_beta"' windows/runner/Runner.rc
+            check "Product name in Runner.rc"  grep -q 'VALUE "ProductName", "AnymeX β"' windows/runner/Runner.rc
+          } || echo "⚠️  Runner.rc not found (skipping)"
+          [ -f "windows/CMakeLists.txt" ] && check "Binary name in CMakeLists.txt" grep -q 'set(BINARY_NAME "anymex_beta")' windows/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+
+          # Flutter version
+          echo ""; echo "🎯 FLUTTER"
+          TAG="${EFFECTIVE_TAG}"
           VERSION_PART=$(echo "$TAG" | sed 's/^v//')
           if [[ "$VERSION_PART" == *"+"* ]]; then
             SEMVER=$(echo "$VERSION_PART" | cut -d'+' -f1 | cut -d'-' -f1)
           else
             SEMVER=$(echo "$VERSION_PART" | cut -d'-' -f1)
           fi
-          BUILD_NUMBER="${GITHUB_RUN_NUMBER}"
-          VERSION="${SEMVER}+${BUILD_NUMBER}"
+          VERSION="${SEMVER}+${GITHUB_RUN_NUMBER}"
+          check "Version in pubspec.yaml: $VERSION" grep -q "version: $VERSION" pubspec.yaml
 
-          if grep -q "version: $VERSION" pubspec.yaml 2>/dev/null; then
-            echo "✅ Version updated in pubspec.yaml: $VERSION"
-          else
-            echo "❌ Version NOT updated in pubspec.yaml"
-            echo "   Expected: version: $VERSION"
-            echo "   Found:"
-            grep "^version:" pubspec.yaml 2>/dev/null || echo "   No version line found"
-            ERRORS=$((ERRORS + 1))
-          fi
-
-          # ==========================================
-          # Summary
-          # ==========================================
           echo ""
           echo "════════════════════════════════════════════"
           if [ $ERRORS -eq 0 ]; then
-            echo "✅ ANDROID VERIFIED SUCCESSFULLY"
-            echo "════════════════════════════════════════════"
+            echo "✅ ALL CHECKS PASSED"
             exit 0
           else
-            echo "❌ VERIFICATION FAILED: $ERRORS error(s) found"
-            echo "════════════════════════════════════════════"
+            echo "❌ FAILED: $ERRORS error(s)"
             exit 1
           fi
-      
+          echo "════════════════════════════════════════════"
+
+      # ── Platform-specific caches & setups ─────
+      - name: Cache Gradle
+        if: matrix.platform == 'android' && env.IS_BETA_BUILD != 'true'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('main-repo/**/*.gradle*', 'main-repo/**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
       - name: Cache CMake
+        if: matrix.platform == 'android'
         uses: actions/cache@v3
         with:
           path: ~/cmake
           key: cmake-3.18.1-linux-x64
-      
+
       - name: Setup Android
+        if: matrix.platform == 'android'
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
+          cd main-repo
           if [ ! -d "$HOME/cmake/cmake-3.18.1-Linux-x86_64" ]; then
             mkdir -p $HOME/cmake && cd $HOME/cmake
             wget -q https://github.com/Kitware/CMake/releases/download/v3.18.1/cmake-3.18.1-Linux-x86_64.tar.gz
             tar -xzf cmake-3.18.1-Linux-x86_64.tar.gz
           fi
-          cd $GITHUB_WORKSPACE
-          CMAKE_DIR="$HOME/cmake/cmake-3.18.1-Linux-x86_64"
-          echo "cmake.dir=$CMAKE_DIR" >> android/local.properties
+          cd $GITHUB_WORKSPACE/main-repo
+          echo "cmake.dir=$HOME/cmake/cmake-3.18.1-Linux-x86_64" >> android/local.properties
           mkdir -p android/app
           echo "$KEYSTORE_BASE64" | base64 -d > android/app/anymex.jks
           cat > android/key.properties << EOF
@@ -265,7 +453,35 @@ jobs:
           keyAlias=$KEY_ALIAS
           storeFile=anymex.jks
           EOF
-      
+
+      - name: Setup Linux
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ninja-build cmake clang mpv libgtk-3-dev libblkid-dev liblzma-dev pkg-config libmpv-dev webkit2gtk-4.1 fuse rpm
+          wget -qO appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod +x appimagetool && sudo mv appimagetool /usr/local/bin/
+
+      - name: Setup Windows (Install Inno)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $isccPath = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (Test-Path $isccPath) { Write-Host "Inno Setup already installed"; exit 0 }
+          $installer = "$env:TEMP\innosetup.exe"
+          Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile $installer -UseBasicParsing
+          Start-Process -FilePath $installer -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART","/SP-" -Wait -NoNewWindow
+          if (-not (Test-Path $isccPath)) { Write-Error "Inno Setup install failed"; exit 1 }
+
+      - name: Add Inno Setup to PATH
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $innoPath = "${env:ProgramFiles(x86)}\Inno Setup 6"
+          if (-not (Test-Path $innoPath)) { Write-Error "Inno Setup dir not found"; exit 1 }
+          echo "$innoPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      # ── Setup .env ────────────────────────────
       - name: Setup Environment
         shell: bash
         env:
@@ -277,7 +493,11 @@ jobs:
           MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
           CALLBACK_SCHEME: ${{ secrets.CALLBACK_SCHEME }}
           GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+          GIT_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
+          GIT_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
+          GIT_CALLBACK_SCHEME: ${{ secrets.GIT_CALLBACK_SCHEME }}
         run: |
+          cd main-repo
           cat > .env << EOF
           AL_CLIENT_ID=$AL_CLIENT_ID
           AL_CLIENT_SECRET=$AL_CLIENT_SECRET
@@ -287,48 +507,257 @@ jobs:
           MAL_CLIENT_SECRET=$MAL_CLIENT_SECRET
           CALLBACK_SCHEME=$CALLBACK_SCHEME
           GOOGLE_BOOKS_API_KEY=$GOOGLE_BOOKS_API_KEY
+          GIT_CLIENT_ID=$GIT_CLIENT_ID
+          GIT_CLIENT_SECRET=$GIT_CLIENT_SECRET
+          GIT_CALLBACK_SCHEME=$GIT_CALLBACK_SCHEME
           EOF
-      
-      - name: Clean Flutter
-        run: flutter clean
-      
-      - name: Build Android APKs
+
+      - name: Clean Flutter for Beta Build
+        if: env.IS_BETA_BUILD == 'true'
         run: |
+          cd main-repo
+          flutter clean
+
+      # ════════════════════════════════════════════
+      # BUILDS — each APK as individual artifact
+      # ════════════════════════════════════════════
+
+      - name: Build Android
+        if: matrix.platform == 'android'
+        run: |
+          cd main-repo
           flutter pub get
           flutter build apk --split-per-abi
           flutter build apk --release
-          
-      - name: Rename APKs
-        run: |
           cd build/app/outputs/flutter-apk
           mv app-armeabi-v7a-release.apk AnymeX-Android-armeabi-v7a.apk
-          mv app-arm64-v8a-release.apk AnymeX-Android-arm64-v8a.apk
-          mv app-x86_64-release.apk AnymeX-Android-x86_64.apk
-          mv app-release.apk AnymeX-Android-universal.apk
-      
-      # =================================================================
-      # Upload each APK as a separate artifact
-      # =================================================================
-      - name: Upload APK (arm64-v8a)
-        uses: actions/upload-artifact@v4
+          mv app-arm64-v8a-release.apk   AnymeX-Android-arm64-v8a.apk
+          mv app-x86_64-release.apk      AnymeX-Android-x86_64.apk
+          mv app-release.apk             AnymeX-Android-universal.apk
+
+      - name: Build iOS
+        if: matrix.platform == 'ios'
+        env:
+          P12_BASE64: ${{ secrets.P12_CERTIFICATE }}
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+        run: |
+          cd main-repo
+          flutter pub get
+          flutter build ios --release --no-codesign
+          mkdir -p build/ios/iphoneos/Payload
+          ln -s ../Runner.app build/ios/iphoneos/Payload/Runner.app
+          if [ -n "$P12_BASE64" ] && [ -n "$PROVISIONING_PROFILE_BASE64" ] && [ -n "$P12_PASSWORD" ]; then
+            echo "$P12_BASE64" | base64 --decode > certificate.p12
+            echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > profile.mobileprovision
+            curl -sL -o zsign.zip "https://github.com/zhlynn/zsign/releases/download/v${{ env.ZSIGN_VERSION }}/zsign-v${{ env.ZSIGN_VERSION }}-macos-x64.zip"
+            unzip -q zsign.zip
+            chmod +x zsign 2>/dev/null || true
+            ZSIGN_EXEC=$(ls zsign* 2>/dev/null | head -n 1)
+            $ZSIGN_EXEC -f -k ./certificate.p12 -p "$P12_PASSWORD" -m ./profile.mobileprovision ./build/ios/iphoneos/Payload/Runner.app
+          else
+            echo "⚠️ No signing secrets — building unsigned .ipa"
+          fi
+          cd build/ios/iphoneos
+          zip -qr ./AnymeX-iOS.ipa Payload
+
+      - name: Build Linux
+        if: matrix.platform == 'linux'
+        run: |
+          cd main-repo
+          flutter pub get
+          flutter build linux --release
+          rm -rf AppDir && mkdir -p AppDir/usr/{bin,share/icons/hicolor/256x256/apps}
+          cp -r build/linux/x64/release/bundle/* AppDir/usr/bin/
+          cp assets/images/logo.png AppDir/usr/share/icons/hicolor/256x256/apps/anymex.png
+          cp assets/images/logo.png AppDir/anymex.png
+
+          APP_NAME="AnymeX"
+          if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
+            APP_NAME="AnymeX β"
+          fi
+
+          cat > AppDir/anymex.desktop << EOF
+          [Desktop Entry]
+          Name=${APP_NAME}
+          Exec=usr/bin/anymex
+          Icon=anymex
+          Type=Application
+          Categories=Utility;
+          EOF
+          cat > AppDir/AppRun << 'EOF'
+          #!/bin/sh
+          SELF=$(readlink -f "$0")
+          HERE=${SELF%/*}
+          export PATH="${HERE}/usr/bin/:${PATH}"
+          export LD_LIBRARY_PATH="${HERE}/usr/lib/:${LD_LIBRARY_PATH}"
+          exec "${HERE}/usr/bin/anymex" "$@"
+          EOF
+          chmod +x AppDir/AppRun
+
+          /usr/local/bin/appimagetool AppDir build/linux/x64/release/AnymeX-Linux.AppImage
+
+          mkdir -p rpm_build/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp -r build/linux/x64/release/bundle rpm_build/SOURCES/anymex-1.0.0
+          tar czf rpm_build/SOURCES/anymex-1.0.0.tar.gz -C rpm_build/SOURCES anymex-1.0.0
+          mkdir -p rpm_build/SOURCES/usr/share/icons/hicolor/256x256/apps
+          cp assets/images/logo.png rpm_build/SOURCES/usr/share/icons/hicolor/256x256/apps/anymex.png
+          cat > rpm_build/SPECS/anymex.spec << 'EOF'
+          Name: anymex
+          Version: 1.0.0
+          Release: 1%{?dist}
+          Summary: AnymeX Flutter app
+          License: MIT
+          Source0: %{name}-%{version}.tar.gz
+          BuildArch: x86_64
+          %description
+          AnymeX is a Flutter-based opensource app for tracking anime, mangas and novels.
+          %prep
+          %setup -q
+          %install
+          mkdir -p %{buildroot}/usr/bin
+          mkdir -p %{buildroot}/usr/share/applications
+          mkdir -p %{buildroot}/usr/share/icons/hicolor/256x256/apps
+          cp -r * %{buildroot}/usr/bin/
+          cp -r %{_sourcedir}/usr/share/* %{buildroot}/usr/share/
+          cat > %{buildroot}/usr/share/applications/anymex.desktop << 'EOL'
+          [Desktop Entry]
+          Name=AnymeX
+          Exec=/usr/bin/anymex
+          Icon=anymex
+          Type=Application
+          Categories=Utility;
+          EOL
+          %files
+          /usr/bin/*
+          /usr/share/applications/anymex.desktop
+          /usr/share/icons/hicolor/256x256/apps/anymex.png
+          EOF
+          rpmbuild --define "_topdir $(pwd)/rpm_build" -ba rpm_build/SPECS/anymex.spec
+          mv rpm_build/RPMS/x86_64/*.rpm build/linux/x64/release/AnymeX-Linux.rpm
+          cd build/linux/x64/release/bundle && zip -qr ../AnymeX-Linux.zip ./*
+
+      - name: Build Windows
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          cd main-repo
+          flutter pub get
+          dart run inno_bundle:build --release 2>&1 | Select-String -Pattern "Compile aborted" -NotMatch
+          $issFile = "build\windows\x64\installer\Release\inno-script.iss"
+          if (-not (Test-Path $issFile)) { Write-Error "ISS file not found"; exit 1 }
+
+          if ("${{ github.event.inputs.build_type }}" -eq "beta") {
+            $content = Get-Content $issFile -Raw
+            $content = $content -replace 'AnymeX\.exe', 'anymex_beta.exe'
+            $content = $content -replace '"AnymeX"', '"AnymeX β"'
+            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX β'
+            Set-Content $issFile -Value $content -NoNewline
+          }
+
+          $content = Get-Content $issFile -Raw
+          $content = $content -replace '.*Icelandic\.isl.*\r?\n', ''
+          Set-Content $issFile -Value $content -NoNewline
+
+          & iscc $issFile
+          if ($LASTEXITCODE -ne 0) { Write-Error "ISCC failed"; exit 1 }
+
+          cd build/windows/x64/runner/Release
+          Compress-Archive -Path * -DestinationPath AnymeX-Windows.zip
+
+      - name: Build macOS
+        if: matrix.platform == 'macos'
+        run: |
+          cd main-repo
+          flutter pub get
+          flutter build macos --release
+
+          APP_PATH=$(find build/macos/Build/Products/Release -maxdepth 1 -name "*.app" | head -n 1)
+          if [ -z "$APP_PATH" ]; then echo "❌ No .app found!"; exit 1; fi
+
+          APP_NAME=$(basename "$APP_PATH" .app)
+          DMG_VOL_NAME="$APP_NAME"
+          if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
+            DMG_VOL_NAME="AnymeX β"
+          fi
+
+          mkdir -p temp_dir build/macos/Release
+          cp -R "$APP_PATH" temp_dir/
+          ln -s /Applications temp_dir/Applications
+
+          hdiutil create -volname "$DMG_VOL_NAME" \
+            -srcfolder temp_dir \
+            -ov -format UDZO \
+            "build/macos/Release/${APP_NAME}.dmg"
+          rm -rf temp_dir
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      # ════════════════════════════════════════════
+      # UPLOAD ARTIFACTS — all individual
+      # ════════════════════════════════════════════
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
         with:
-          name: android-arm64-v8a
-          path: build/app/outputs/flutter-apk/AnymeX-Android-arm64-v8a.apk
-      
-      - name: Upload APK (armeabi-v7a)
-        uses: actions/upload-artifact@v4
+          name: AnymeX-Android-armeabi-v7a
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-armeabi-v7a.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
         with:
-          name: android-armeabi-v7a
-          path: build/app/outputs/flutter-apk/AnymeX-Android-armeabi-v7a.apk
-      
-      - name: Upload APK (x86_64)
-        uses: actions/upload-artifact@v4
+          name: AnymeX-Android-arm64-v8a
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-arm64-v8a.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
         with:
-          name: android-x86_64
-          path: build/app/outputs/flutter-apk/AnymeX-Android-x86_64.apk
-      
-      - name: Upload APK (universal)
-        uses: actions/upload-artifact@v4
+          name: AnymeX-Android-x86_64
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-x86_64.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
         with:
-          name: android-universal
-          path: build/app/outputs/flutter-apk/AnymeX-Android-universal.apk
+          name: AnymeX-Android-universal
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-universal.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'ios'
+        with:
+          name: AnymeX-iOS
+          path: main-repo/build/ios/iphoneos/AnymeX-iOS.ipa
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-zip
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.zip
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-AppImage
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.AppImage
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-rpm
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.rpm
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'windows'
+        with:
+          name: AnymeX-Windows-zip
+          path: main-repo/build/windows/x64/runner/Release/AnymeX-Windows.zip
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'windows'
+        with:
+          name: AnymeX-Windows-installer
+          path: main-repo/build/windows/x64/installer/Release/AnymeX-x86_64-*-Installer.exe
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'macos'
+        with:
+          name: AnymeX-macOS
+          path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
