@@ -872,50 +872,48 @@ jobs:
             done
           fi
 
-          # Helper: "URL|SIZE" → markdown line (real newline via printf)
+          # Helper: "URL|SIZE" → markdown line
           make_line() {
             local LABEL="$1"
             local VALUE="$2"
             if [ -n "$VALUE" ]; then
               local URL=$(echo "$VALUE" | cut -d'|' -f1)
               local SIZE=$(echo "$VALUE" | cut -d'|' -f2)
-              printf '**%s** | [Download](%s) | %s\n' "$LABEL" "$URL" "$SIZE"
+              echo "**${LABEL}** | [Download](${URL}) | ${SIZE}"
             fi
           }
 
-          # Build per-platform field content using real newlines
+          # Build per-platform field content
           ANDROID_FIELD=""
-          [ -n "$APK_ARM64" ]     && ANDROID_FIELD+="$(make_line "arm64-v8a"   "$APK_ARM64")"
-          [ -n "$APK_ARMEABI" ]   && ANDROID_FIELD+="$(make_line "armeabi-v7a" "$APK_ARMEABI")"
-          [ -n "$APK_UNIVERSAL" ] && ANDROID_FIELD+="$(make_line "universal"   "$APK_UNIVERSAL")"
-          [ -n "$APK_X86" ]       && ANDROID_FIELD+="$(make_line "x86_64"      "$APK_X86")"
+          [ -n "$APK_ARM64" ]     && ANDROID_FIELD+="$(make_line "arm64-v8a"   "$APK_ARM64")\n"
+          [ -n "$APK_ARMEABI" ]   && ANDROID_FIELD+="$(make_line "armeabi-v7a" "$APK_ARMEABI")\n"
+          [ -n "$APK_UNIVERSAL" ] && ANDROID_FIELD+="$(make_line "universal"   "$APK_UNIVERSAL")\n"
+          [ -n "$APK_X86" ]       && ANDROID_FIELD+="$(make_line "x86_64"      "$APK_X86")\n"
 
           WINDOWS_FIELD=""
-          [ -n "$WIN_INSTALLER" ] && WINDOWS_FIELD+="$(make_line "Installer .exe" "$WIN_INSTALLER")"
-          [ -n "$WIN_ZIP" ]       && WINDOWS_FIELD+="$(make_line "Portable .zip"  "$WIN_ZIP")"
+          [ -n "$WIN_INSTALLER" ] && WINDOWS_FIELD+="$(make_line "Installer .exe" "$WIN_INSTALLER")\n"
+          [ -n "$WIN_ZIP" ]       && WINDOWS_FIELD+="$(make_line "Portable .zip"  "$WIN_ZIP")\n"
 
           LINUX_FIELD=""
-          [ -n "$LINUX_APPIMAGE" ] && LINUX_FIELD+="$(make_line "AppImage" "$LINUX_APPIMAGE")"
-          [ -n "$LINUX_RPM" ]      && LINUX_FIELD+="$(make_line "RPM"      "$LINUX_RPM")"
-          [ -n "$LINUX_ZIP" ]      && LINUX_FIELD+="$(make_line "Zip"      "$LINUX_ZIP")"
+          [ -n "$LINUX_APPIMAGE" ] && LINUX_FIELD+="$(make_line "AppImage" "$LINUX_APPIMAGE")\n"
+          [ -n "$LINUX_RPM" ]      && LINUX_FIELD+="$(make_line "RPM"      "$LINUX_RPM")\n"
+          [ -n "$LINUX_ZIP" ]      && LINUX_FIELD+="$(make_line "Zip"      "$LINUX_ZIP")\n"
 
           IOS_FIELD=""
-          [ -n "$IOS" ]   && IOS_FIELD+="$(make_line "IPA" "$IOS")"
+          [ -n "$IOS" ]   && IOS_FIELD+="$(make_line "IPA" "$IOS")\n"
 
           MACOS_FIELD=""
-          [ -n "$MACOS" ] && MACOS_FIELD+="$(make_line "DMG" "$MACOS")"
+          [ -n "$MACOS" ] && MACOS_FIELD+="$(make_line "DMG" "$MACOS")\n"
 
           # Build fields array — only include platforms that actually built
-          # Use printf to pass real newlines into jq via a temp file
           FIELDS="[]"
           add_field() {
             local NAME="$1"
-            local VALUE="$2"
-            local TRIMMED=$(printf '%s' "$VALUE" | sed '/^[[:space:]]*$/d')
-            if [ -n "$TRIMMED" ]; then
-              FIELDS=$(printf '%s' "$FIELDS" | jq \
+            local VALUE="$(echo -e "$2" | sed '/^$/d')"
+            if [ -n "$VALUE" ]; then
+              FIELDS=$(echo "$FIELDS" | jq \
                 --arg name "$NAME" \
-                --rawfile value <(printf '%s' "$TRIMMED") \
+                --arg value "$VALUE" \
                 '. + [{"name": $name, "value": $value, "inline": false}]')
             fi
           }
@@ -938,7 +936,7 @@ jobs:
             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
             '{
               "embeds": [{
-                "title": ("🔨 Test Build: " + $tag),
+                "title": ("🔨 New Build: " + $tag),
                 "description": $description,
                 "color": $color,
                 "fields": .,
