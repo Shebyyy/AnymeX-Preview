@@ -6,7 +6,7 @@ on:
       platforms:
         description: "Platforms to build (comma-separated or 'all')"
         required: true
-        default: "all"
+        default: "android,linux,ios"
         type: choice
         options:
           - all
@@ -15,6 +15,7 @@ on:
           - windows
           - macos
           - ios
+          - android,linux,ios
           - android,ios
           - android,windows
           - android,linux
