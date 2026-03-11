@@ -30,13 +30,13 @@ on:
       build_type:
         description: "Build type"
         required: true
-        default: "stable"
+        default: "beta"
         type: choice
         options:
           - stable
           - beta
       tag_override:
-        description: "Version tag to use (e.g. v3.0.4-beta or v3.0.4). Required for beta builds."
+        description: "Version tag (e.g. v3.0.4-beta or v3.0.4). Leave empty to auto-use latest release tag from this repo."
         required: false
         default: ""
 
@@ -45,6 +45,40 @@ env:
   ZSIGN_VERSION: "0.7"
 
 jobs:
+
+  # ─────────────────────────────────────────────
+  # Resolve version tag
+  # ─────────────────────────────────────────────
+  resolve-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      effective_tag: ${{ steps.get-tag.outputs.effective_tag }}
+    steps:
+      - name: Resolve effective tag
+        id: get-tag
+        shell: bash
+        run: |
+          TAG_OVERRIDE="${{ github.event.inputs.tag_override }}"
+
+          if [ -n "$TAG_OVERRIDE" ]; then
+            echo "📌 Using provided tag: $TAG_OVERRIDE"
+            echo "effective_tag=$TAG_OVERRIDE" >> $GITHUB_OUTPUT
+          else
+            echo "🔍 No tag provided — fetching latest release from ${{ github.repository }}..."
+            LATEST=$(curl -s \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/latest" \
+              | jq -r '.tag_name')
+
+            if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
+              echo "❌ Could not fetch latest release tag — please provide tag_override manually"
+              exit 1
+            fi
+
+            echo "✅ Latest release tag: $LATEST"
+            echo "effective_tag=$LATEST" >> $GITHUB_OUTPUT
+          fi
 
   # ─────────────────────────────────────────────
   # Resolve which platforms to actually build
@@ -99,7 +133,7 @@ jobs:
   # Main build job
   # ─────────────────────────────────────────────
   build:
-    needs: resolve-matrix
+    needs: [resolve-matrix, resolve-tag]
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.resolve-matrix.outputs.matrix) }}
@@ -228,14 +262,9 @@ jobs:
           fi
 
           # Determine effective tag
-          TAG_OVERRIDE="${{ github.event.inputs.tag_override }}"
-          if [ -n "$TAG_OVERRIDE" ]; then
-            echo "EFFECTIVE_TAG=$TAG_OVERRIDE" >> $GITHUB_ENV
-            echo "Using provided tag: $TAG_OVERRIDE"
-          else
-            echo "EFFECTIVE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
-            echo "Using ref tag: ${{ github.ref_name }}"
-          fi
+          EFFECTIVE_TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          echo "EFFECTIVE_TAG=$EFFECTIVE_TAG" >> $GITHUB_ENV
+          echo "✅ Using tag: $EFFECTIVE_TAG"
 
       # ── Toolchain ─────────────────────────────
       - name: Install Rust
