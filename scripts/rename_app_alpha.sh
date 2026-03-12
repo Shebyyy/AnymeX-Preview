@@ -38,7 +38,7 @@ OLD_DIR="com/ryan/anymex"
 NEW_DIR="com/ryan/anymexbeta"
 
 OLD_APP_NAME="AnymeX"
-NEW_APP_NAME="AnymeX β"
+NEW_APP_NAME="AnymeX α"
 
 ANDROID_SRC="android/app/src/main/kotlin"
 MANIFEST_FILE="android/app/src/main/AndroidManifest.xml"
@@ -234,7 +234,7 @@ DART_MAIN_FILE="lib/main.dart"
 
 if [ -f "$DART_MAIN_FILE" ]; then
   # Update the MaterialApp title. This handles both single and double quotes and optional whitespace.
-  sed "${SED_INPLACE[@]}" -E "s|title:[[:space:]]*['\"]AnymeX['\"]|title: \"AnymeX β\"|g" "$DART_MAIN_FILE"
+  sed "${SED_INPLACE[@]}" -E "s|title:[[:space:]]*['\"]AnymeX['\"]|title: \"AnymeX α\"|g" "$DART_MAIN_FILE"
   log_success "Updated MaterialApp title in $DART_MAIN_FILE"
 else
   log_warn "Main Dart file not found at $DART_MAIN_FILE. Skipping Dart title update."
