@@ -936,7 +936,7 @@ jobs:
             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
             '{
               "embeds": [{
-                "title": ("🔨 New Build: " + $tag),
+                "title": ("🔨 Test Build: " + $tag),
                 "description": $description,
                 "color": $color,
                 "fields": .,
