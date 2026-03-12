@@ -245,8 +245,8 @@ jobs:
           cp beta-repo/assets/images/logo_transparent.png main-repo/assets/images/
           echo "✅ Linux icons copied"
 
-          cp beta-repo/scripts/rename_app.sh main-repo/scripts/
-          chmod +x main-repo/scripts/rename_app.sh
+          cp beta-repo/scripts/rename_app_alpha.sh main-repo/scripts/
+          chmod +x main-repo/scripts/rename_app_alpha.sh
           echo "✅ Rename script copied"
 
       # ── Detect build type ─────────────────────
@@ -302,7 +302,7 @@ jobs:
         shell: bash
         run: |
           cd main-repo
-          sed -i 's/\r$//' scripts/rename_app.sh
+          sed -i 's/\r$//' scripts/rename_app_alpha.sh
 
       # ── Beta rename ───────────────────────────
       - name: Auto rename for beta build
@@ -334,13 +334,13 @@ jobs:
             echo "Pubspec version: $PUBSPEC_VERSION"
             echo "Display version: $DISPLAY_VERSION"
 
-            if [ ! -f "scripts/rename_app.sh" ]; then
-              echo "❌ Error: scripts/rename_app.sh not found"
+            if [ ! -f "scripts/rename_app_alpha.sh" ]; then
+              echo "❌ Error: scripts/rename_app_alpha.sh not found"
               exit 1
             fi
 
-            chmod +x scripts/rename_app.sh
-            if ./scripts/rename_app.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
+            chmod +x scripts/rename_app_alpha.sh
+            if ./scripts/rename_app_alpha.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
               echo "✅ Beta rename completed successfully"
             else
               echo "❌ Beta rename failed"
@@ -385,19 +385,19 @@ jobs:
 
           # Dart
           echo ""; echo "🎯 DART"
-          check "MaterialApp title" grep -q 'title: "AnymeX β"' lib/main.dart
+          check "MaterialApp title" grep -q 'title: "AnymeX α"' lib/main.dart
 
           # Android
           echo ""; echo "📱 ANDROID"
           check "Package name in build.gradle"   grep -q "com.ryan.anymexbeta" android/app/build.gradle
           check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexbeta"' android/app/src/main/AndroidManifest.xml
-          check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX β"' android/app/src/main/AndroidManifest.xml
+          check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX α"' android/app/src/main/AndroidManifest.xml
           check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexbeta"
 
           # iOS
           echo ""; echo "🍎 iOS"
           check "Bundle ID in project.pbxproj" grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexbeta" ios/Runner.xcodeproj/project.pbxproj
-          check "App name in Info.plist"        grep -q "<string>AnymeX β</string>" ios/Runner/Info.plist
+          check "App name in Info.plist"        grep -q "<string>AnymeX α</string>" ios/Runner/Info.plist
 
           # macOS
           echo ""; echo "🖥️  macOS"
@@ -408,14 +408,14 @@ jobs:
 
           # Linux
           echo ""; echo "🐧 LINUX"
-          [ -f "linux/my_application.cc" ] && check "App name in my_application.cc" grep -q '"AnymeX β"' linux/my_application.cc || echo "⚠️  my_application.cc not found (skipping)"
+          [ -f "linux/my_application.cc" ] && check "App name in my_application.cc" grep -q '"AnymeX α"' linux/my_application.cc || echo "⚠️  my_application.cc not found (skipping)"
           [ -f "linux/CMakeLists.txt" ]    && check "App ID in CMakeLists.txt"      grep -q 'set(APPLICATION_ID "com.ryan.anymexbeta")' linux/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
 
           # Windows
           echo ""; echo "🪟 WINDOWS"
           [ -f "windows/runner/Runner.rc" ] && {
             check "Binary name in Runner.rc"   grep -q '"anymex_beta"' windows/runner/Runner.rc
-            check "Product name in Runner.rc"  grep -q 'VALUE "ProductName", "AnymeX β"' windows/runner/Runner.rc
+            check "Product name in Runner.rc"  grep -q 'VALUE "ProductName", "AnymeX α"' windows/runner/Runner.rc
           } || echo "⚠️  Runner.rc not found (skipping)"
           [ -f "windows/CMakeLists.txt" ] && check "Binary name in CMakeLists.txt" grep -q 'set(BINARY_NAME "anymex_beta")' windows/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
 
@@ -604,7 +604,7 @@ jobs:
 
           APP_NAME="AnymeX"
           if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
-            APP_NAME="AnymeX β"
+            APP_NAME="AnymeX α"
           fi
 
           cat > AppDir/anymex.desktop << EOF
@@ -680,8 +680,8 @@ jobs:
           if ("${{ github.event.inputs.build_type }}" -eq "beta") {
             $content = Get-Content $issFile -Raw
             $content = $content -replace 'AnymeX\.exe', 'anymex_beta.exe'
-            $content = $content -replace '"AnymeX"', '"AnymeX β"'
-            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX β'
+            $content = $content -replace '"AnymeX"', '"AnymeX α"'
+            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX α'
             Set-Content $issFile -Value $content -NoNewline
           }
 
@@ -708,7 +708,7 @@ jobs:
           APP_NAME=$(basename "$APP_PATH" .app)
           DMG_VOL_NAME="$APP_NAME"
           if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
-            DMG_VOL_NAME="AnymeX β"
+            DMG_VOL_NAME="AnymeX α"
           fi
 
           mkdir -p temp_dir build/macos/Release
