@@ -31,13 +31,13 @@ on:
       build_type:
         description: "Build type"
         required: true
-        default: "beta"
+        default: "alpha"
         type: choice
         options:
           - stable
-          - beta
+          - alpha
       tag_override:
-        description: "Version tag (e.g. v3.0.4-beta or v3.0.4). Leave empty to auto-use latest release tag from this repo."
+        description: "Version tag (e.g. v3.0.4-alpha or v3.0.4). Leave empty to auto-use latest release tag from this repo."
         required: false
         default: ""
 
@@ -63,23 +63,30 @@ jobs:
 
           if [ -n "$TAG_OVERRIDE" ]; then
             echo "📌 Using provided tag: $TAG_OVERRIDE"
-            echo "effective_tag=$TAG_OVERRIDE" >> $GITHUB_OUTPUT
+            RAW_TAG="$TAG_OVERRIDE"
           else
             echo "🔍 No tag provided — fetching latest release from ${{ github.repository }}..."
-            LATEST=$(curl -s \
+            RAW_TAG=$(curl -s \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/${{ github.repository }}/releases/latest" \
               | jq -r '.tag_name')
 
-            if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
+            if [ -z "$RAW_TAG" ] || [ "$RAW_TAG" = "null" ]; then
               echo "❌ Could not fetch latest release tag — please provide tag_override manually"
               exit 1
             fi
 
-            echo "✅ Latest release tag: $LATEST"
-            echo "effective_tag=$LATEST" >> $GITHUB_OUTPUT
+            echo "✅ Latest release tag: $RAW_TAG"
           fi
+
+          # Replace -beta suffix with -alpha (e.g. v3.0.7+5-beta → v3.0.7+5-alpha)
+          EFFECTIVE_TAG="${RAW_TAG/-beta/-alpha}"
+          if [ "$EFFECTIVE_TAG" != "$RAW_TAG" ]; then
+            echo "🔄 Replaced -beta with -alpha: $RAW_TAG → $EFFECTIVE_TAG"
+          fi
+
+          echo "effective_tag=$EFFECTIVE_TAG" >> $GITHUB_OUTPUT
 
   # ─────────────────────────────────────────────
   # Resolve which platforms to actually build
@@ -144,7 +151,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: beta-repo
+          path: alpha-repo
 
       # ── Clone main repo ──────────────────────
       - name: Clone Main Repository
@@ -219,33 +226,33 @@ jobs:
             echo "════════════════════════════════════════════"
           fi
 
-      # ── Copy beta assets ─────────────────────
-      - name: Copy Beta Assets to Main Repo
+      # ── Copy alpha assets ─────────────────────
+      - name: Copy Alpha Assets to Main Repo
         shell: bash
         run: |
           echo "════════════════════════════════════════════"
-          echo "  Copying Beta Assets"
+          echo "  Copying Alpha Assets"
           echo "════════════════════════════════════════════"
 
-          cp -r beta-repo/logo/android/app/src/main/res/* main-repo/android/app/src/main/res/
+          cp -r alpha-repo/logo/android/app/src/main/res/* main-repo/android/app/src/main/res/
           echo "✅ Android icons copied"
 
-          cp -r beta-repo/logo/ios/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/ios/Runner/Assets.xcassets/AppIcon.appiconset/
+          cp -r alpha-repo/logo/ios/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/ios/Runner/Assets.xcassets/AppIcon.appiconset/
           echo "✅ iOS icons copied"
 
-          cp -r beta-repo/logo/macos/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/macos/Runner/Assets.xcassets/AppIcon.appiconset/
+          cp -r alpha-repo/logo/macos/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/macos/Runner/Assets.xcassets/AppIcon.appiconset/
           echo "✅ macOS icons copied"
 
-          cp beta-repo/logo/windows/runner/resources/app_icon.ico main-repo/windows/runner/resources/
-          cp beta-repo/logo/anymex.ico main-repo/
+          cp alpha-repo/logo/windows/runner/resources/app_icon.ico main-repo/windows/runner/resources/
+          cp alpha-repo/logo/anymex.ico main-repo/
           echo "✅ Windows icons copied"
 
           mkdir -p main-repo/assets/images
-          cp beta-repo/assets/images/logo.png main-repo/assets/images/
-          cp beta-repo/assets/images/logo_transparent.png main-repo/assets/images/
+          cp alpha-repo/assets/images/logo.png main-repo/assets/images/
+          cp alpha-repo/assets/images/logo_transparent.png main-repo/assets/images/
           echo "✅ Linux icons copied"
 
-          cp beta-repo/scripts/rename_app_alpha.sh main-repo/scripts/
+          cp alpha-repo/scripts/rename_app_alpha.sh main-repo/scripts/
           chmod +x main-repo/scripts/rename_app_alpha.sh
           echo "✅ Rename script copied"
 
@@ -254,11 +261,11 @@ jobs:
         shell: bash
         run: |
           BUILD_TYPE="${{ github.event.inputs.build_type }}"
-          if [[ "$BUILD_TYPE" == "beta" ]]; then
-            echo "IS_BETA_BUILD=true" >> $GITHUB_ENV
-            echo "🔵 Beta build — caching disabled"
+          if [[ "$BUILD_TYPE" == "alpha" ]]; then
+            echo "IS_ALPHA_BUILD=true" >> $GITHUB_ENV
+            echo "🔵 Alpha build — caching disabled"
           else
-            echo "IS_BETA_BUILD=false" >> $GITHUB_ENV
+            echo "IS_ALPHA_BUILD=false" >> $GITHUB_ENV
             echo "🟢 Stable build — caching enabled"
           fi
 
@@ -274,7 +281,7 @@ jobs:
           toolchain: stable
 
       - name: Cache Rust
-        if: env.IS_BETA_BUILD != 'true'
+        if: env.IS_ALPHA_BUILD != 'true'
         uses: actions/cache@v3
         with:
           path: |
@@ -295,7 +302,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: ${{ env.IS_BETA_BUILD != 'true' }}
+          cache: ${{ env.IS_ALPHA_BUILD != 'true' }}
 
       - name: Fix line endings (Windows)
         if: runner.os == 'Windows'
@@ -304,8 +311,8 @@ jobs:
           cd main-repo
           sed -i 's/\r$//' scripts/rename_app_alpha.sh
 
-      # ── Beta rename ───────────────────────────
-      - name: Auto rename for beta build
+      # ── Alpha rename ───────────────────────────
+      - name: Auto rename for alpha build
         shell: bash
         run: |
           cd main-repo
@@ -316,8 +323,8 @@ jobs:
           echo "════════════════════════════════════════════"
           echo "Tag: $TAG"
 
-          if [[ "$TAG" == *"-beta" ]]; then
-            echo "🔵 Beta build detected"
+          if [[ "$TAG" == *"-alpha" ]]; then
+            echo "🔵 Alpha build detected"
 
             VERSION_PART=$(echo "$TAG" | sed 's/^v//')
 
@@ -341,9 +348,9 @@ jobs:
 
             chmod +x scripts/rename_app_alpha.sh
             if ./scripts/rename_app_alpha.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
-              echo "✅ Beta rename completed successfully"
+              echo "✅ Alpha rename completed successfully"
             else
-              echo "❌ Beta rename failed"
+              echo "❌ Alpha rename failed"
               exit 1
             fi
           else
@@ -351,24 +358,24 @@ jobs:
           fi
 
       # ── Configure Google Services ─────────────
-      - name: Configure Google Services for Beta
-        if: matrix.platform == 'android' && env.IS_BETA_BUILD == 'true'
+      - name: Configure Google Services for Alpha
+        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD == 'true'
         shell: bash
         run: |
           cd main-repo
-          echo "🔵 Disabling Google Services for beta"
+          echo "🔵 Disabling Google Services for alpha"
           sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
           sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
           echo "✅ Google Services disabled"
 
-      # ── Verify beta config ────────────────────
-      - name: Verify beta configuration
-        if: env.IS_BETA_BUILD == 'true'
+      # ── Verify alpha config ────────────────────
+      - name: Verify alpha configuration
+        if: env.IS_ALPHA_BUILD == 'true'
         shell: bash
         run: |
           cd main-repo
           echo "════════════════════════════════════════════"
-          echo "  Verifying Beta Configuration"
+          echo "  Verifying Alpha Configuration"
           echo "════════════════════════════════════════════"
 
           ERRORS=0
@@ -389,35 +396,35 @@ jobs:
 
           # Android
           echo ""; echo "📱 ANDROID"
-          check "Package name in build.gradle"   grep -q "com.ryan.anymexbeta" android/app/build.gradle
-          check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexbeta"' android/app/src/main/AndroidManifest.xml
+          check "Package name in build.gradle"   grep -q "com.ryan.anymexalpha" android/app/build.gradle
+          check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexalpha"' android/app/src/main/AndroidManifest.xml
           check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX α"' android/app/src/main/AndroidManifest.xml
-          check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexbeta"
+          check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexalpha"
 
           # iOS
           echo ""; echo "🍎 iOS"
-          check "Bundle ID in project.pbxproj" grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexbeta" ios/Runner.xcodeproj/project.pbxproj
+          check "Bundle ID in project.pbxproj" grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexalpha" ios/Runner.xcodeproj/project.pbxproj
           check "App name in Info.plist"        grep -q "<string>AnymeX α</string>" ios/Runner/Info.plist
 
           # macOS
           echo ""; echo "🖥️  macOS"
           [ -f "macos/Runner/Configs/AppInfo.xcconfig" ] && {
-            check "Bundle ID in AppInfo.xcconfig"  grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexbeta" macos/Runner/Configs/AppInfo.xcconfig
-            check "Product name in AppInfo.xcconfig" grep -q "PRODUCT_NAME = anymex_beta" macos/Runner/Configs/AppInfo.xcconfig
+            check "Bundle ID in AppInfo.xcconfig"  grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexalpha" macos/Runner/Configs/AppInfo.xcconfig
+            check "Product name in AppInfo.xcconfig" grep -q "PRODUCT_NAME = anymex_alpha" macos/Runner/Configs/AppInfo.xcconfig
           } || echo "⚠️  AppInfo.xcconfig not found (skipping)"
 
           # Linux
           echo ""; echo "🐧 LINUX"
           [ -f "linux/my_application.cc" ] && check "App name in my_application.cc" grep -q '"AnymeX α"' linux/my_application.cc || echo "⚠️  my_application.cc not found (skipping)"
-          [ -f "linux/CMakeLists.txt" ]    && check "App ID in CMakeLists.txt"      grep -q 'set(APPLICATION_ID "com.ryan.anymexbeta")' linux/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+          [ -f "linux/CMakeLists.txt" ]    && check "App ID in CMakeLists.txt"      grep -q 'set(APPLICATION_ID "com.ryan.anymexalpha")' linux/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
 
           # Windows
           echo ""; echo "🪟 WINDOWS"
           [ -f "windows/runner/Runner.rc" ] && {
-            check "Binary name in Runner.rc"   grep -q '"anymex_beta"' windows/runner/Runner.rc
+            check "Binary name in Runner.rc"   grep -q '"anymex_alpha"' windows/runner/Runner.rc
             check "Product name in Runner.rc"  grep -q 'VALUE "ProductName", "AnymeX α"' windows/runner/Runner.rc
           } || echo "⚠️  Runner.rc not found (skipping)"
-          [ -f "windows/CMakeLists.txt" ] && check "Binary name in CMakeLists.txt" grep -q 'set(BINARY_NAME "anymex_beta")' windows/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+          [ -f "windows/CMakeLists.txt" ] && check "Binary name in CMakeLists.txt" grep -q 'set(BINARY_NAME "anymex_alpha")' windows/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
 
           # Flutter version
           echo ""; echo "🎯 FLUTTER"
@@ -444,7 +451,7 @@ jobs:
 
       # ── Platform-specific caches & setups ─────
       - name: Cache Gradle
-        if: matrix.platform == 'android' && env.IS_BETA_BUILD != 'true'
+        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD != 'true'
         uses: actions/cache@v3
         with:
           path: |
@@ -542,8 +549,8 @@ jobs:
           GIT_CALLBACK_SCHEME=$GIT_CALLBACK_SCHEME
           EOF
 
-      - name: Clean Flutter for Beta Build
-        if: env.IS_BETA_BUILD == 'true'
+      - name: Clean Flutter for Alpha Build
+        if: env.IS_ALPHA_BUILD == 'true'
         run: |
           cd main-repo
           flutter clean
@@ -603,7 +610,7 @@ jobs:
           cp assets/images/logo.png AppDir/anymex.png
 
           APP_NAME="AnymeX"
-          if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
+          if [[ "${{ github.event.inputs.build_type }}" == "alpha" ]]; then
             APP_NAME="AnymeX α"
           fi
 
@@ -677,9 +684,9 @@ jobs:
           $issFile = "build\windows\x64\installer\Release\inno-script.iss"
           if (-not (Test-Path $issFile)) { Write-Error "ISS file not found"; exit 1 }
 
-          if ("${{ github.event.inputs.build_type }}" -eq "beta") {
+          if ("${{ github.event.inputs.build_type }}" -eq "alpha") {
             $content = Get-Content $issFile -Raw
-            $content = $content -replace 'AnymeX\.exe', 'anymex_beta.exe'
+            $content = $content -replace 'AnymeX\.exe', 'anymex_alpha.exe'
             $content = $content -replace '"AnymeX"', '"AnymeX α"'
             $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX α'
             Set-Content $issFile -Value $content -NoNewline
@@ -707,7 +714,7 @@ jobs:
 
           APP_NAME=$(basename "$APP_PATH" .app)
           DMG_VOL_NAME="$APP_NAME"
-          if [[ "${{ github.event.inputs.build_type }}" == "beta" ]]; then
+          if [[ "${{ github.event.inputs.build_type }}" == "alpha" ]]; then
             DMG_VOL_NAME="AnymeX α"
           fi
 
@@ -848,9 +855,9 @@ jobs:
           PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
           RUN_NUMBER="${{ github.run_number }}"
 
-          # Color: orange for beta, teal for stable
-          if [[ "$BUILD_TYPE" == "beta" ]]; then
-            COLOR=15771648
+          # Color: purple for alpha, teal for stable
+          if [[ "$BUILD_TYPE" == "alpha" ]]; then
+            COLOR=10181046
           else
             COLOR=1754309
           fi
