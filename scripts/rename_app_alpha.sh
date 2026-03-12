@@ -32,10 +32,10 @@ fi
 # Configuration Variables
 ###############################################
 OLD_PKG="com.ryan.anymex"
-NEW_PKG="com.ryan.anymexbeta"
+NEW_PKG="com.ryan.anymexalpha"
 
 OLD_DIR="com/ryan/anymex"
-NEW_DIR="com/ryan/anymexbeta"
+NEW_DIR="com/ryan/anymexalpha"
 
 OLD_APP_NAME="AnymeX"
 NEW_APP_NAME="AnymeX α"
@@ -63,7 +63,7 @@ if [ -z "$1" ]; then
 fi
 
 NEW_VERSION="$1"      # For pubspec.yaml (e.g., 3.0.4+26)
-DISPLAY_VERSION="$2"  # For settings_about.dart (e.g., v3.0.4-beta or v3.0.4+1-beta)
+DISPLAY_VERSION="$2"  # For settings_about.dart (e.g., v3.0.4-alpha or v3.0.4+1-alpha)
 
 # If no display version provided, use pubspec version's semver
 if [ -z "$DISPLAY_VERSION" ]; then
@@ -72,7 +72,7 @@ if [ -z "$DISPLAY_VERSION" ]; then
 fi
 
 echo "════════════════════════════════════════════"
-echo "  Cross-Platform Beta Rename"
+echo "  Cross-Platform Alpha Rename"
 echo "════════════════════════════════════════════"
 echo "  Old Package: $OLD_PKG"
 echo "  New Package: $NEW_PKG"
@@ -84,10 +84,10 @@ echo "════════════════════════�
 echo ""
 
 ###############################################
-# Check if already beta
+# Check if already alpha
 ###############################################
 if [ -d "$ANDROID_SRC/$NEW_DIR" ]; then
-  log_warn "Already converted to beta. Skipping package rename."
+  log_warn "Already converted to alpha. Skipping package rename."
   SKIP_PACKAGE_RENAME=true
 else
   SKIP_PACKAGE_RENAME=false
@@ -162,7 +162,7 @@ log_info "macOS: Updating configuration..."
 
 if [ -f "$MACOS_CONFIG" ]; then
   if [ "$SKIP_PACKAGE_RENAME" = false ]; then
-    sed "${SED_INPLACE[@]}" "s|PRODUCT_NAME = anymex|PRODUCT_NAME = anymex_beta|g" "$MACOS_CONFIG"
+    sed "${SED_INPLACE[@]}" "s|PRODUCT_NAME = anymex|PRODUCT_NAME = anymex_alpha|g" "$MACOS_CONFIG"
     sed "${SED_INPLACE[@]}" "s|PRODUCT_BUNDLE_IDENTIFIER = $OLD_PKG|PRODUCT_BUNDLE_IDENTIFIER = $NEW_PKG|g" "$MACOS_CONFIG"
   fi
   log_success "Updated macOS xcconfig"
@@ -198,8 +198,8 @@ log_info "Windows: Updating configuration..."
 
 if [ -f "$WINDOWS_RC" ]; then
   # Update binary names
-  sed "${SED_INPLACE[@]}" "s|\"anymex\"|\"anymex_beta\"|g" "$WINDOWS_RC"
-  sed "${SED_INPLACE[@]}" "s|\"anymex\.exe\"|\"anymex_beta.exe\"|g" "$WINDOWS_RC"
+  sed "${SED_INPLACE[@]}" "s|\"anymex\"|\"anymex_alpha\"|g" "$WINDOWS_RC"
+  sed "${SED_INPLACE[@]}" "s|\"anymex\.exe\"|\"anymex_alpha.exe\"|g" "$WINDOWS_RC"
   
   # Update ProductName in VERSIONINFO section
   sed "${SED_INPLACE[@]}" 's|VALUE "ProductName", "[^"]*"|VALUE "ProductName", "'"$NEW_APP_NAME"'"|g' "$WINDOWS_RC"
@@ -211,7 +211,7 @@ if [ -f "$WINDOWS_RC" ]; then
 fi
 
 if [ -f "$WINDOWS_CMAKE" ]; then
-  sed "${SED_INPLACE[@]}" "s|set(BINARY_NAME \"anymex\")|set(BINARY_NAME \"anymex_beta\")|g" "$WINDOWS_CMAKE"
+  sed "${SED_INPLACE[@]}" "s|set(BINARY_NAME \"anymex\")|set(BINARY_NAME \"anymex_alpha\")|g" "$WINDOWS_CMAKE"
   log_success "Updated Windows CMakeLists.txt"
 fi
 
@@ -249,9 +249,9 @@ rm -rf .dart_tool/
 log_success "Build cache cleaned"
 
 ###############################################
-# BETA: Update version display in settings_about.dart
+# ALPHA: Update version display in settings_about.dart
 ###############################################
-log_info "Beta: Updating version display in settings_about.dart..."
+log_info "Alpha: Updating version display in settings_about.dart..."
 
 DART_ABOUT_FILE="lib/screens/settings/sub_settings/settings_about.dart"
 
@@ -274,10 +274,10 @@ if [ -f "$DART_UPDATER_FILE" ]; then
   # Extract build number from NEW_VERSION (e.g., "3.0.4+26" -> "26")
   BUILD_NUMBER=$(echo "$NEW_VERSION" | cut -d'+' -f2)
 
-  # Remove 'v' prefix from DISPLAY_VERSION (e.g., "v3.0.4+1-beta" -> "3.0.4+1-beta")
+  # Remove 'v' prefix from DISPLAY_VERSION (e.g., "v3.0.4+1-alpha" -> "3.0.4+1-alpha")
   VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
 
-  # Combine: "3.0.4+1-beta+26"
+  # Combine: "3.0.4+1-alpha+26"
   FULL_VERSION="${VERSION_WITHOUT_V}+${BUILD_NUMBER}"
 
   log_info "Full version with build number: $FULL_VERSION"
@@ -295,7 +295,7 @@ if [ -f "$DART_UPDATER_FILE" ]; then
   # Add build number stripping logic after the function signature
   sed "${SED_INPLACE[@]}" '/  bool _shouldUpdate(String currentVersion, String latestVersion) {/a\
     // Strip build number (last + segment) from current version\
-    // "3.0.7+1-beta+26" -> "3.0.7+1-beta"\
+    // "3.0.7+1-alpha+26" -> "3.0.7+1-alpha"\
     final plusCount = currentVersion.split('"'"'+'"'"').length - 1;\
     if (plusCount > 1) {\
       final lastPlusIndex = currentVersion.lastIndexOf('"'"'+'"'"');\
