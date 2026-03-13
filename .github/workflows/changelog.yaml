@@ -447,9 +447,9 @@ jobs:
 
           while IFS='|' read -r HASH MESSAGE; do
             [ -z "$HASH" ] && continue
-            # Remove leading/trailing whitespace
-            HASH=$(echo "$HASH" | xargs)
-            MESSAGE=$(echo "$MESSAGE" | xargs)
+            # Remove leading/trailing whitespace (xargs breaks on unmatched quotes)
+            HASH=$(echo "$HASH" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            MESSAGE=$(echo "$MESSAGE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             [ -z "$HASH" ] && continue
 
             AUTHOR_USERNAME=$(get_author_username "$HASH")
