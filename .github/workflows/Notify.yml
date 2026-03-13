@@ -316,7 +316,7 @@ jobs:
                 echo "<blockquote>$(cat chores_clean.txt)</blockquote>"
               fi
               echo ""
-              echo "❓<a href='https://github.com/${{ github.repository }}/blob/main/INSTALLATION.md'>Don't know which version to download? Click here!</a>"
+              echo "❓<a href='https://github.com/RyanYuuki/AnymeX/blob/main/INSTALLATION.md'>Don't know which version to download? Click here!</a>"
               echo ""
               echo "📌 <a href='https://github.com/${{github.repository}}/releases/tag/${{ env.LATEST_TAG }}'>Full changelog</a>"
           } > output.txt
@@ -398,7 +398,7 @@ jobs:
                         --arg role_mention "$role_mention" \
                         --arg field_value "$FORMATTED_NOTES_CLEAN
 
-            [❓Don't know which version to download? Click here!](https://github.com/${{ github.repository }}/blob/main/INSTALLATION.md)  
+            [❓Don't know which version to download? Click here!](https://github.com/RyanYuuki/AnymeX/blob/main/INSTALLATION.md)  
             
             [📌 Full changelog](https://github.com/${{ github.repository }}/releases/tag/${{ env.LATEST_TAG }})" \
                         --arg footer_text "Version $VERSION" \
