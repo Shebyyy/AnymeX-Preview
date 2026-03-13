@@ -9,7 +9,6 @@
 [![Main Repo](https://img.shields.io/badge/Main%20Repo-RyanYuuki%2FAnymeX-5865F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RyanYuuki/AnymeX)
 [![Beta Repo](https://img.shields.io/badge/Beta%20Repo-Shebyyy%2FAnymeX--Preview-FF6B35?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Shebyyy/AnymeX-Preview)
 
-
 [![Build Status](https://img.shields.io/badge/Build-Beta-orange?style=for-the-badge)](https://github.com/Shebyyy/AnymeX-Preview/releases)
 [![Latest Release](https://img.shields.io/github/v/release/Shebyyy/AnymeX-Preview?style=for-the-badge&label=Beta%20Release&color=FF6B35)](https://github.com/Shebyyy/AnymeX-Preview/releases/latest)
 
