@@ -37,7 +37,7 @@ Beta builds are automatically generated from the main repository with a few key 
 | Channel | Description | Link |
 |---|---|---|
 | **Stable** | Recommended for most users | [![Stable Release](https://img.shields.io/github/v/release/RyanYuuki/AnymeX?style=flat-square&label=Download&color=5865F2)](https://github.com/RyanYuuki/AnymeX/releases/latest) |
-| **Beta** | Latest test builds | [![Beta Release](https://img.shields.io/github/v/release/Shebyyy/AnymeX?style=flat-square&label=Download&color=FF6B35)](https://github.com/Shebyyy/AnymeX-Preview/releases/latest) |
+| **Beta** | Latest test builds | [![Beta Release](https://img.shields.io/github/v/release/Shebyyy/AnymeX-Preview?style=flat-square&label=Download&color=FF6B35)](https://github.com/Shebyyy/AnymeX-Preview/releases/latest) |
 
 ---
 
