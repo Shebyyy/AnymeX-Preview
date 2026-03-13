@@ -281,40 +281,39 @@ jobs:
           fi
 
           # Combine categories into final output
-          # Note: Telegram HTML parser fails on multiline blockquotes, so we use <br> for line breaks
+          # Use real newlines inside blockquotes — Telegram does NOT support <br>
           {
               cat header.txt
               echo ""
               # Add beta warning right after header if it exists
               if [ -f beta_warning_clean.txt ]; then
-                BETA_WARN=$(cat beta_warning_clean.txt | tr '\n' ' ')
-                echo "<blockquote>$BETA_WARN</blockquote>"
+                echo "<blockquote>$(cat beta_warning_clean.txt)</blockquote>"
                 echo ""
               fi
-              # Each section: convert newlines to <br> inside blockquote for valid HTML
+              # Each section: keep real newlines inside blockquote
               if [ -f TFeaturesT.txt ] && [ -f feat_clean.txt ]; then
-                CONTENT=$(cat feat_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TFeaturesT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TFeaturesT.txt)"
+                echo "<blockquote>$(cat feat_clean.txt)</blockquote>"
               fi
               if [ -f TFixesT.txt ] && [ -f fixes_clean.txt ]; then
-                CONTENT=$(cat fixes_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TFixesT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TFixesT.txt)"
+                echo "<blockquote>$(cat fixes_clean.txt)</blockquote>"
               fi
               if [ -f TRefactorsT.txt ] && [ -f refactors_clean.txt ]; then
-                CONTENT=$(cat refactors_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TRefactorsT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TRefactorsT.txt)"
+                echo "<blockquote>$(cat refactors_clean.txt)</blockquote>"
               fi
               if [ -f TStyleT.txt ] && [ -f style_clean.txt ]; then
-                CONTENT=$(cat style_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TStyleT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TStyleT.txt)"
+                echo "<blockquote>$(cat style_clean.txt)</blockquote>"
               fi
               if [ -f TPerformanceT.txt ] && [ -f perf_clean.txt ]; then
-                CONTENT=$(cat perf_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TPerformanceT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TPerformanceT.txt)"
+                echo "<blockquote>$(cat perf_clean.txt)</blockquote>"
               fi
               if [ -f TChoresT.txt ] && [ -f chores_clean.txt ]; then
-                CONTENT=$(cat chores_clean.txt | tr '\n' ' ' | sed 's/● /<br>● /g' | sed 's/^<br>//')
-                echo "$(cat TChoresT.txt) <blockquote>$CONTENT</blockquote>"
+                echo "$(cat TChoresT.txt)"
+                echo "<blockquote>$(cat chores_clean.txt)</blockquote>"
               fi
               echo ""
               echo "❓<a href='https://github.com/${{ github.repository }}/blob/main/INSTALLATION.md'>Don't know which version to download? Click here!</a>"
@@ -327,15 +326,19 @@ jobs:
               exit 0
           fi
           
-          markdown_info_tel=$(< output.txt)
           echo "Final Telegram Message:"
-          echo "$markdown_info_tel"
-          
+          cat output.txt
+
+          # Use JSON body so multiline content and special chars are safely encoded
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
-              -d "chat_id=$TELEGRAM_CHAT_ID" \
-              -d "text=$markdown_info_tel" \
-              -d "parse_mode=HTML" \
-              -d "disable_web_page_preview=true"
+              -H "Content-Type: application/json" \
+              -d "{
+                \"chat_id\": \"$TELEGRAM_CHAT_ID\",
+                \"message_thread_id\": \"$TELEGRAM_TOPIC\",
+                \"text\": $(jq -Rs . < output.txt),
+                \"parse_mode\": \"HTML\",
+                \"disable_web_page_preview\": true
+              }"
               
       - name: Send Assets to Telegram
         run: |
@@ -373,7 +376,7 @@ jobs:
             $BETA_WARNING
             
             $FORMATTED_NOTES_CLEAN"
-                      fi
+          fi
           
           # Mention the role based on the release name
           if [[ "${{ env.LATEST_TAG }}" == *alpha* ]]; then
