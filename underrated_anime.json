@@ -1,30 +1,26 @@
 [
   {
-    "id": 918,
+    "anilist_id": 918,
     "title": "Haibane Renmei",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx918-sGGHOkRMDEDN.jpg",
-    "score": 78,
+    "recommended_by": "@ASheby",
     "reason": "A quiet, melancholic masterpiece about belonging and redemption that nobody talks about"
   },
   {
-    "id": 2025,
+    "anilist_id": 2025,
     "title": "Shouwa Genroku Rakugo Shinjuu",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21234-mJSSjxCMCVJY.jpg",
-    "score": 84,
+    "recommended_by": "@ASheby",
     "reason": "A stunning period drama about a dying art form with some of the best character writing in anime"
   },
   {
-    "id": 6594,
+    "anilist_id": 6594,
     "title": "Tatami Galaxy",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx6594-SqBCMMFtEiS8.jpg",
-    "score": 82,
+    "recommended_by": "@ASheby",
     "reason": "Witty, fast-paced and visually creative — a love letter to wasted youth"
   },
   {
-    "id": 4654,
+    "anilist_id": 4654,
     "title": "Kaiba",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx4654-PrBCBFcDQRaQ.jpg",
-    "score": 76,
+    "recommended_by": "@ASheby",
     "reason": "Surreal sci-fi about memory and identity with a gorgeous unique art style almost no one has seen"
   }
 ]
