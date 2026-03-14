@@ -1,14 +1,5 @@
 [
   {
-    "anilist_id": 30002,
-    "mal_id": 30002,
-    "title": "Oyasumi Punpun",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
-    "author": "ASheby",
-    "reason": "A brutally honest coming-of-age story that explores depression, love, and adulthood with haunting symbolism"
-  },
-  {
     "anilist_id": 44489,
     "mal_id": 44489,
     "title": "Houseki no Kuni",
@@ -25,14 +16,5 @@
     "mal_user_id": 13598844,
     "author": "ASheby",
     "reason": "A psychological thriller exploring the human psyche through surreal hallucinations and disturbing introspection"
-  },
-  {
-    "anilist_id": 99278,
-    "mal_id": 99278,
-    "title": "The Horizon",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
-    "author": "ASheby",
-    "reason": "A short but emotionally devastating story about two children wandering through a war-torn world"
   }
 ]
