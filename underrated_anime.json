@@ -1,0 +1,16 @@
+[
+  {
+    "id": 12345,
+    "title": "Hidden Gem Anime Title",
+    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/...",
+    "score": 85,
+    "reason": "Amazing story but overlooked due to niche genre"
+  },
+  {
+    "id": 67890,
+    "title": "Another Underrated Anime",
+    "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/...",
+    "score": 90,
+    "episodes": 12
+  }
+]
