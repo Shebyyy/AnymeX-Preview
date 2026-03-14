@@ -1,0 +1,16 @@
+[
+  {
+    "id": 54321,
+    "title": "Underrated Manga Title",
+    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/...",
+    "score": 88,
+    "reason": "Masterpiece that deserves more attention"
+  },
+  {
+    "id": 98765,
+    "title": "Hidden Manga Gem",
+    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/...",
+    "score": 92,
+    "chapters": 150
+  }
+]
