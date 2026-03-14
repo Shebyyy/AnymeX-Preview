@@ -1,16 +1,38 @@
 [
   {
-    "id": 54321,
-    "title": "Underrated Manga Title",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/...",
-    "score": 88,
-    "reason": "Masterpiece that deserves more attention"
+    "anilist_id": 30002,
+    "mal_id": 30002,
+    "title": "Oyasumi Punpun",
+    "anilist_user_id": 5724017,
+    "mal_user_id": 13598844,
+    "author": "ASheby",
+    "reason": "A brutally honest coming-of-age story that explores depression, love, and adulthood with haunting symbolism"
   },
   {
-    "id": 98765,
-    "title": "Hidden Manga Gem",
-    "cover": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/...",
-    "score": 92,
-    "chapters": 150
+    "anilist_id": 44489,
+    "mal_id": 44489,
+    "title": "Houseki no Kuni",
+    "anilist_user_id": 5724017,
+    "mal_user_id": 13598844,
+    "author": "ASheby",
+    "reason": "Beautifully illustrated philosophical story about identity, purpose, and change that keeps getting deeper"
+  },
+  {
+    "anilist_id": 31397,
+    "mal_id": 31397,
+    "title": "Homunculus",
+    "anilist_user_id": 5724017,
+    "mal_user_id": 13598844,
+    "author": "ASheby",
+    "reason": "A psychological thriller exploring the human psyche through surreal hallucinations and disturbing introspection"
+  },
+  {
+    "anilist_id": 99278,
+    "mal_id": 99278,
+    "title": "The Horizon",
+    "anilist_user_id": 5724017,
+    "mal_user_id": 13598844,
+    "author": "ASheby",
+    "reason": "A short but emotionally devastating story about two children wandering through a war-torn world"
   }
 ]
