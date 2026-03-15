@@ -847,6 +847,17 @@ jobs:
           REPO="${{ github.repository }}"
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
           PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
+          # GitHub username → Discord user ID mapping
+          case "${{ github.actor }}" in
+            Rieversed)       DISCORD_ID="617537674084876318" ;;
+            NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+            Neoniq)          DISCORD_ID="150865547922243584" ;;
+            itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+            Shebyyy)         DISCORD_ID="612532963938271232" ;;
+            *)               DISCORD_ID="" ;;
+          esac
+          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
+
 
           case "$PLATFORM" in
             android) PLAT_EMOJI="📱" ;;
@@ -886,7 +897,9 @@ jobs:
             --arg url "$ACTION_URL" \
             --arg footer "Other platforms may still be running" \
             --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            --arg mention "$MENTION" \
             '{
+              "content": (if $mention != "" then $mention else null end),
               "embeds": [{
                 "title": $title,
                 "description": ("❌ **" + $emoji + " " + $plat + " build failed**\n\n⚙️ Build #" + $run_num + " | " + $build_type + "\n🔀 Merged PRs: " + $pr_display + "\n\n[🔗 View Run & Logs](" + $url + ")"),
@@ -1018,6 +1031,17 @@ jobs:
           RUN_ID="${{ github.run_id }}"
           REPO="${{ github.repository }}"
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+
+          # GitHub username → Discord user ID mapping
+          case "${{ github.actor }}" in
+            Rieversed)       DISCORD_ID="617537674084876318" ;;
+            NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+            Neoniq)          DISCORD_ID="150865547922243584" ;;
+            itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+            Shebyyy)         DISCORD_ID="612532963938271232" ;;
+            *)               DISCORD_ID="" ;;
+          esac
+          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
 
           # Load per-platform results from collect-results job
           RESULTS='${{ needs.collect-results.outputs.results_json }}'
@@ -1192,6 +1216,10 @@ jobs:
             }')
 
           echo "Sending Discord notification..."
+          # Inject mention into content field if actor is mapped
+          if [ -n "$MENTION" ]; then
+            PAYLOAD=$(echo "$PAYLOAD" | jq --arg mention "$MENTION" '. + {"content": $mention}')
+          fi
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD"
