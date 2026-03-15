@@ -304,6 +304,26 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: ${{ env.IS_ALPHA_BUILD != 'true' }}
 
+      # flutter-action may restore a stale pub cache containing modified git-based
+      # dependencies (e.g. Mangayomi/Utils.dart). Hard-reset every cached git repo
+      # so flutter pub get can checkout the pinned commit cleanly on all platforms.
+      - name: Reset dirty pub git cache
+        shell: bash
+        run: |
+          PUB_GIT_DIR="${PUB_CACHE:-$HOME/.pub-cache}/git"
+          if [ -d "$PUB_GIT_DIR" ]; then
+            echo "Resetting dirty pub git repos in $PUB_GIT_DIR"
+            find "$PUB_GIT_DIR" -maxdepth 2 -name "HEAD" | while read HEAD_FILE; do
+              REPO_DIR=$(dirname "$HEAD_FILE")
+              echo "  Resetting: $REPO_DIR"
+              git -C "$REPO_DIR" reset --hard 2>/dev/null || true
+              git -C "$REPO_DIR" clean -fd 2>/dev/null || true
+            done
+            echo "Pub git cache cleaned"
+          else
+            echo "No pub git cache found - skipping"
+          fi
+
       - name: Fix line endings (Windows)
         if: runner.os == 'Windows'
         shell: bash
@@ -580,8 +600,6 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
         run: |
           cd main-repo
-          # Clear git-based pub cache to prevent "local changes would be overwritten by checkout" errors
-          rm -rf ~/.pub-cache/git
           flutter pub get
           flutter build ios --release --no-codesign
           mkdir -p build/ios/iphoneos/Payload
@@ -814,8 +832,6 @@ jobs:
       - name: Collect build job results
         id: collect
         run: |
-          # GitHub doesn't expose matrix job results directly to dependent jobs,
-          # so we check artifacts as a proxy: artifact present = success, absent = failed/skipped.
           PLATFORMS_INPUT="${{ github.event.inputs.platforms }}"
           if [ "$PLATFORMS_INPUT" = "all" ]; then
             REQUESTED="android linux windows macos ios"
@@ -823,35 +839,44 @@ jobs:
             REQUESTED=$(echo "$PLATFORMS_INPUT" | tr ',' ' ')
           fi
 
-          ARTIFACTS=$(curl -s \
+          # Query the jobs API for actual job conclusions — much more reliable than
+          # artifact presence, which can be empty even on success if upload is slow.
+          # Paginate to get all jobs (up to 100 per page is enough for this workflow).
+          JOBS=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=100")
 
-          echo "$ARTIFACTS" > artifacts.json
+          echo "$JOBS" > jobs.json
+          echo "Total jobs found: $(jq '.jobs | length' jobs.json)"
 
-          # For each requested platform, check if at least one expected artifact exists
+          # Build results map: for each requested platform find the matching build job.
+          # Job names look like "build (android, ubuntu-latest)" — match on platform keyword.
           RESULTS="{}"
           for PLATFORM in $REQUESTED; do
-            case "$PLATFORM" in
-              android) KEY="AnymeX-Android-arm64-v8a" ;;
-              ios)     KEY="AnymeX-iOS" ;;
-              linux)   KEY="AnymeX-Linux-zip" ;;
-              windows) KEY="AnymeX-Windows-zip" ;;
-              macos)   KEY="AnymeX-macOS" ;;
-              *)       KEY="" ;;
+            # Find any job whose name contains the platform string and is part of the build matrix.
+            CONCLUSION=$(jq -r --arg p "$PLATFORM" '
+              .jobs[]
+              | select(.name | test("build.*" + $p; "i"))
+              | .conclusion
+            ' jobs.json | head -n1)
+
+            case "$CONCLUSION" in
+              success)   STATUS="success" ;;
+              failure|timed_out|cancelled) STATUS="failed" ;;
+              skipped)   STATUS="skipped" ;;
+              "")        STATUS="failed" ;;   # job not found — treat as failed
+              *)         STATUS="failed" ;;
             esac
-            FOUND=$(jq -r --arg name "$KEY" '.artifacts[] | select(.name == $name) | .id' artifacts.json)
-            if [ -n "$FOUND" ] && [ "$FOUND" != "null" ]; then
-              STATUS="success"
-            else
-              STATUS="failed"
-            fi
-            RESULTS=$(echo "$RESULTS" | jq --arg p "$PLATFORM" --arg s "$STATUS" '. + {($p): $s}')
+
+            echo "  $PLATFORM → conclusion=$CONCLUSION → status=$STATUS"
+            # Use -c (compact) so the JSON stays on one line — required for GITHUB_OUTPUT
+            RESULTS=$(echo "$RESULTS" | jq -c --arg p "$PLATFORM" --arg s "$STATUS" '. + {($p): $s}')
           done
 
-          echo "results_json=$RESULTS" >> $GITHUB_OUTPUT
           echo "Build results: $RESULTS"
+          # Write compact single-line JSON — multi-line values break GITHUB_OUTPUT parsing
+          echo "results_json=$RESULTS" >> $GITHUB_OUTPUT
 
   # ─────────────────────────────────────────────
   # Discord notification after all builds done
