@@ -563,7 +563,13 @@ jobs:
         if: matrix.platform == 'android'
         run: |
           cd main-repo
-          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
           rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build apk --split-per-abi
@@ -582,7 +588,13 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
         run: |
           cd main-repo
-          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
           rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build ios --release --no-codesign
@@ -606,7 +618,13 @@ jobs:
         if: matrix.platform == 'linux'
         run: |
           cd main-repo
-          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
           rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build linux --release
@@ -715,7 +733,13 @@ jobs:
         if: matrix.platform == 'macos'
         run: |
           cd main-repo
-          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
           rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build macos --release
@@ -833,37 +857,48 @@ jobs:
             *)       PLAT_EMOJI="🔨" ;;
           esac
 
+          PLAT_UPPER=$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')
+
           PR_DISPLAY="None"
           if [ -n "$PR_NUMBERS" ]; then
             PR_DISPLAY=""
             IFS=',' read -ra PRS <<< "$PR_NUMBERS"
             for PR in "${PRS[@]}"; do
               PR=$(echo "$PR" | xargs)
-              PR_DATA=$(curl -s                 -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"                 -H "Accept: application/vnd.github+json"                 "https://api.github.com/repos/RyanYuuki/AnymeX/pulls/$PR")
+              PR_DATA=$(curl -s \
+                -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/RyanYuuki/AnymeX/pulls/$PR")
               PR_TITLE=$(echo "$PR_DATA" | jq -r '.title // "Unknown"')
-              PR_DISPLAY+=$'
-             '"• #${PR} - ${PR_TITLE}"
+              PR_DISPLAY=$(printf '%s\n• #%s - %s' "$PR_DISPLAY" "$PR" "$PR_TITLE")
             done
           fi
 
-          DESCRIPTION=$(printf '❌ **%s %s build failed**
-
-          ⚙️ Build #%s | %s
-          🔀 Merged PRs:%s
-
-          [🔗 View Run & Logs](%s)'             "$PLAT_EMOJI" "${PLATFORM^}"             "$RUN_NUMBER" "$BUILD_TYPE"             "$PR_DISPLAY"             "$ACTION_URL")
-
-          PAYLOAD=$(jq -n             --arg title "🔨 Test Build: $TAG"             --arg description "$DESCRIPTION"             --arg footer "Other platforms may still be running"             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"             '{
+          # Build JSON entirely through jq — never interpolate shell vars into JSON strings.
+          # Write to tempfile and use curl -d @file to avoid Windows Git Bash variable mangling.
+          jq -n \
+            --arg title "🔨 Test Build: ${TAG}" \
+            --arg emoji "$PLAT_EMOJI" \
+            --arg plat "$PLAT_UPPER" \
+            --arg run_num "$RUN_NUMBER" \
+            --arg build_type "$BUILD_TYPE" \
+            --arg pr_display "$PR_DISPLAY" \
+            --arg url "$ACTION_URL" \
+            --arg footer "Other platforms may still be running" \
+            --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
               "embeds": [{
                 "title": $title,
-                "description": $description,
+                "description": ("❌ **" + $emoji + " " + $plat + " build failed**\n\n⚙️ Build #" + $run_num + " | " + $build_type + "\n🔀 Merged PRs: " + $pr_display + "\n\n[🔗 View Run & Logs](" + $url + ")"),
                 "color": 15158332,
                 "footer": { "text": $footer },
-                "timestamp": $timestamp
+                "timestamp": $ts
               }]
-            }')
+            }' > /tmp/discord_payload.json
 
-          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}"             -H "Content-Type: application/json"             -d "$PAYLOAD"
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d @/tmp/discord_payload.json
           echo "Discord failure notification sent for $PLATFORM"
 
   # ─────────────────────────────────────────────
@@ -1039,8 +1074,8 @@ jobs:
             local EMOJI_ICON="$2"
             local S=$(get_status "$PLATFORM")
             case "$S" in
-              success) STATUS_LINES+="${EMOJI_ICON} **${PLATFORM^}** ✅\n" ;;
-              failed)  STATUS_LINES+="${EMOJI_ICON} **${PLATFORM^}** ❌ Failed\n" ;;
+              success) STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ✅\n" ;;
+              failed)  STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ❌ Failed\n" ;;
               *)       ;; # skipped / not requested — don't show
             esac
           }
