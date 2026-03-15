@@ -842,16 +842,16 @@ jobs:
               PR_DATA=$(curl -s                 -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"                 -H "Accept: application/vnd.github+json"                 "https://api.github.com/repos/RyanYuuki/AnymeX/pulls/$PR")
               PR_TITLE=$(echo "$PR_DATA" | jq -r '.title // "Unknown"')
               PR_DISPLAY+=$'
-'"• #${PR} - ${PR_TITLE}"
+             '"• #${PR} - ${PR_TITLE}"
             done
           fi
 
           DESCRIPTION=$(printf '❌ **%s %s build failed**
 
-⚙️ Build #%s | %s
-🔀 Merged PRs:%s
+          ⚙️ Build #%s | %s
+          🔀 Merged PRs:%s
 
-[🔗 View Run & Logs](%s)'             "$PLAT_EMOJI" "${PLATFORM^}"             "$RUN_NUMBER" "$BUILD_TYPE"             "$PR_DISPLAY"             "$ACTION_URL")
+          [🔗 View Run & Logs](%s)'             "$PLAT_EMOJI" "${PLATFORM^}"             "$RUN_NUMBER" "$BUILD_TYPE"             "$PR_DISPLAY"             "$ACTION_URL")
 
           PAYLOAD=$(jq -n             --arg title "🔨 Test Build: $TAG"             --arg description "$DESCRIPTION"             --arg footer "Other platforms may still be running"             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"             '{
               "embeds": [{
