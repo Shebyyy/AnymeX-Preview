@@ -580,6 +580,8 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
         run: |
           cd main-repo
+          # Clear git-based pub cache to prevent "local changes would be overwritten by checkout" errors
+          rm -rf ~/.pub-cache/git
           flutter pub get
           flutter build ios --release --no-codesign
           mkdir -p build/ios/iphoneos/Payload
@@ -800,10 +802,62 @@ jobs:
           path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
 
   # ─────────────────────────────────────────────
+  # Collect per-platform build results
+  # ─────────────────────────────────────────────
+  collect-results:
+    needs: [build, resolve-matrix]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    outputs:
+      results_json: ${{ steps.collect.outputs.results_json }}
+    steps:
+      - name: Collect build job results
+        id: collect
+        run: |
+          # GitHub doesn't expose matrix job results directly to dependent jobs,
+          # so we check artifacts as a proxy: artifact present = success, absent = failed/skipped.
+          PLATFORMS_INPUT="${{ github.event.inputs.platforms }}"
+          if [ "$PLATFORMS_INPUT" = "all" ]; then
+            REQUESTED="android linux windows macos ios"
+          else
+            REQUESTED=$(echo "$PLATFORMS_INPUT" | tr ',' ' ')
+          fi
+
+          ARTIFACTS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+
+          echo "$ARTIFACTS" > artifacts.json
+
+          # For each requested platform, check if at least one expected artifact exists
+          RESULTS="{}"
+          for PLATFORM in $REQUESTED; do
+            case "$PLATFORM" in
+              android) KEY="AnymeX-Android-arm64-v8a" ;;
+              ios)     KEY="AnymeX-iOS" ;;
+              linux)   KEY="AnymeX-Linux-zip" ;;
+              windows) KEY="AnymeX-Windows-zip" ;;
+              macos)   KEY="AnymeX-macOS" ;;
+              *)       KEY="" ;;
+            esac
+            FOUND=$(jq -r --arg name "$KEY" '.artifacts[] | select(.name == $name) | .id' artifacts.json)
+            if [ -n "$FOUND" ] && [ "$FOUND" != "null" ]; then
+              STATUS="success"
+            else
+              STATUS="failed"
+            fi
+            RESULTS=$(echo "$RESULTS" | jq --arg p "$PLATFORM" --arg s "$STATUS" '. + {($p): $s}')
+          done
+
+          echo "results_json=$RESULTS" >> $GITHUB_OUTPUT
+          echo "Build results: $RESULTS"
+
+  # ─────────────────────────────────────────────
   # Discord notification after all builds done
   # ─────────────────────────────────────────────
   notify-discord:
-    needs: [build, resolve-tag]
+    needs: [build, resolve-tag, collect-results]
     runs-on: ubuntu-latest
     if: always() && !cancelled()
     steps:
@@ -854,13 +908,80 @@ jobs:
           PLATFORMS="${{ github.event.inputs.platforms }}"
           PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
           RUN_NUMBER="${{ github.run_number }}"
+          RUN_ID="${{ github.run_id }}"
+          REPO="${{ github.repository }}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
 
-          # Color: purple for alpha, teal for stable
-          if [[ "$BUILD_TYPE" == "alpha" ]]; then
-            COLOR=10181046
+          # Load per-platform results from collect-results job
+          RESULTS='${{ needs.collect-results.outputs.results_json }}'
+
+          get_status() {
+            echo "$RESULTS" | jq -r --arg p "$1" '.[$p] // "skipped"'
+          }
+
+          # Determine overall status emoji + color
+          ALL_SUCCESS=true
+          ANY_FAILED=false
+          PLATFORMS_INPUT="${{ github.event.inputs.platforms }}"
+          if [ "$PLATFORMS_INPUT" = "all" ]; then
+            CHECK_PLATFORMS="android linux windows macos ios"
           else
-            COLOR=1754309
+            CHECK_PLATFORMS=$(echo "$PLATFORMS_INPUT" | tr ',' ' ')
           fi
+
+          for P in $CHECK_PLATFORMS; do
+            S=$(get_status "$P")
+            [ "$S" != "success" ] && ALL_SUCCESS=false
+            [ "$S" = "failed"  ] && ANY_FAILED=true
+          done
+
+          if [ "$ALL_SUCCESS" = true ]; then
+            OVERALL_EMOJI="✅"
+            OVERALL_LABEL="All builds passed"
+            COLOR=3066993   # green
+          elif [ "$ANY_FAILED" = true ] && [ "$ALL_SUCCESS" = false ]; then
+            # Check if some passed
+            SOME_PASSED=false
+            for P in $CHECK_PLATFORMS; do
+              [ "$(get_status "$P")" = "success" ] && SOME_PASSED=true
+            done
+            if [ "$SOME_PASSED" = true ]; then
+              OVERALL_EMOJI="⚠️"
+              OVERALL_LABEL="Some builds failed"
+              COLOR=16776960  # yellow
+            else
+              OVERALL_EMOJI="❌"
+              OVERALL_LABEL="All builds failed"
+              COLOR=15158332  # red
+            fi
+          else
+            OVERALL_EMOJI="❌"
+            OVERALL_LABEL="Build failed"
+            COLOR=15158332
+          fi
+
+          # Build status summary line per platform
+          STATUS_LINES=""
+          platform_status_line() {
+            local PLATFORM="$1"
+            local EMOJI_ICON="$2"
+            local S=$(get_status "$PLATFORM")
+            case "$S" in
+              success) STATUS_LINES+="${EMOJI_ICON} **${PLATFORM^}** ✅\n" ;;
+              failed)  STATUS_LINES+="${EMOJI_ICON} **${PLATFORM^}** ❌ Failed\n" ;;
+              *)       ;; # skipped / not requested — don't show
+            esac
+          }
+
+          for P in $CHECK_PLATFORMS; do
+            case "$P" in
+              android) platform_status_line android "📱" ;;
+              ios)     platform_status_line ios     "🍎" ;;
+              linux)   platform_status_line linux   "🐧" ;;
+              windows) platform_status_line windows "🪟" ;;
+              macos)   platform_status_line macos   "🖥️" ;;
+            esac
+          done
 
           # Fetch PR titles from GitHub API
           if [ -z "$PR_NUMBERS" ]; then
@@ -890,7 +1011,7 @@ jobs:
             fi
           }
 
-          # Build per-platform field content
+          # Build per-platform artifact field content
           ANDROID_FIELD=""
           [ -n "$APK_ARM64" ]     && ANDROID_FIELD+="$(make_line "arm64-v8a"   "$APK_ARM64")\n"
           [ -n "$APK_ARMEABI" ]   && ANDROID_FIELD+="$(make_line "armeabi-v7a" "$APK_ARMEABI")\n"
@@ -912,7 +1033,7 @@ jobs:
           MACOS_FIELD=""
           [ -n "$MACOS" ] && MACOS_FIELD+="$(make_line "DMG" "$MACOS")\n"
 
-          # Build fields array — only include platforms that actually built
+          # Build fields array
           FIELDS="[]"
           add_field() {
             local NAME="$1"
@@ -931,15 +1052,26 @@ jobs:
           [ -n "$IOS_FIELD" ]     && add_field "🍎 iOS"     "$IOS_FIELD"
           [ -n "$MACOS_FIELD" ]   && add_field "🖥️ macOS"  "$MACOS_FIELD"
 
-          # Build description with real newlines
-          DESCRIPTION=$(printf '⚙️ Build #%s | %s\n🔀 Merged PRs:%s\n🖥️ Platforms: %s' \
-            "$RUN_NUMBER" "$BUILD_TYPE" "$PR_DISPLAY" "$PLATFORMS")
+          # Add build status summary field (always shown, even on full failure)
+          STATUS_VALUE="$(echo -e "$STATUS_LINES" | sed '/^$/d')"
+          if [ -n "$STATUS_VALUE" ]; then
+            FIELDS=$(echo "$FIELDS" | jq \
+              --arg value "$STATUS_VALUE" \
+              '. + [{"name": "🏗️ Build Status", "value": $value, "inline": false}]')
+          fi
+
+          # Build description
+          DESCRIPTION=$(printf '%s %s\n\n⚙️ Build #%s | %s\n🔀 Merged PRs:%s\n🖥️ Platforms: %s\n\n[🔗 View Run](%s)' \
+            "$OVERALL_EMOJI" "$OVERALL_LABEL" \
+            "$RUN_NUMBER" "$BUILD_TYPE" \
+            "$PR_DISPLAY" "$PLATFORMS" \
+            "$ACTION_URL")
 
           PAYLOAD=$(printf '%s' "$FIELDS" | jq \
             --arg tag "$TAG" \
             --rawfile description <(printf '%s' "$DESCRIPTION") \
             --argjson color "$COLOR" \
-            --arg footer "Artifacts expire in 90 days" \
+            --arg footer "Artifacts expire in 90 days • $ACTION_URL" \
             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
             '{
               "embeds": [{
