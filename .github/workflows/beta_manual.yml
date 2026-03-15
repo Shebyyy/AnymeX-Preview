@@ -304,26 +304,6 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: ${{ env.IS_ALPHA_BUILD != 'true' }}
 
-      # flutter-action may restore a stale pub cache containing modified git-based
-      # dependencies (e.g. Mangayomi/Utils.dart). Hard-reset every cached git repo
-      # so flutter pub get can checkout the pinned commit cleanly on all platforms.
-      - name: Reset dirty pub git cache
-        shell: bash
-        run: |
-          PUB_GIT_DIR="${PUB_CACHE:-$HOME/.pub-cache}/git"
-          if [ -d "$PUB_GIT_DIR" ]; then
-            echo "Resetting dirty pub git repos in $PUB_GIT_DIR"
-            find "$PUB_GIT_DIR" -maxdepth 2 -name "HEAD" | while read HEAD_FILE; do
-              REPO_DIR=$(dirname "$HEAD_FILE")
-              echo "  Resetting: $REPO_DIR"
-              git -C "$REPO_DIR" reset --hard 2>/dev/null || true
-              git -C "$REPO_DIR" clean -fd 2>/dev/null || true
-            done
-            echo "Pub git cache cleaned"
-          else
-            echo "No pub git cache found - skipping"
-          fi
-
       - name: Fix line endings (Windows)
         if: runner.os == 'Windows'
         shell: bash
@@ -583,6 +563,8 @@ jobs:
         if: matrix.platform == 'android'
         run: |
           cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build apk --split-per-abi
           flutter build apk --release
@@ -600,6 +582,8 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
         run: |
           cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build ios --release --no-codesign
           mkdir -p build/ios/iphoneos/Payload
@@ -622,6 +606,8 @@ jobs:
         if: matrix.platform == 'linux'
         run: |
           cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build linux --release
           rm -rf AppDir && mkdir -p AppDir/usr/{bin,share/icons/hicolor/256x256/apps}
@@ -699,6 +685,9 @@ jobs:
         shell: pwsh
         run: |
           cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          $pubGitDir = if ($env:PUB_CACHE) { "$env:PUB_CACHE\git" } else { "$HOME\.pub-cache\git" }
+          if (Test-Path $pubGitDir) { Remove-Item -Recurse -Force $pubGitDir }
           flutter pub get
           dart run inno_bundle:build --release 2>&1 | Select-String -Pattern "Compile aborted" -NotMatch
           $issFile = "build\windows\x64\installer\Release\inno-script.iss"
@@ -726,6 +715,8 @@ jobs:
         if: matrix.platform == 'macos'
         run: |
           cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
           flutter build macos --release
 
@@ -818,6 +809,62 @@ jobs:
         with:
           name: AnymeX-macOS
           path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
+
+      # ── Notify Discord immediately on failure ─
+      - name: Notify Discord on build failure
+        if: failure()
+        shell: bash
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          RUN_ID="${{ github.run_id }}"
+          RUN_NUMBER="${{ github.run_number }}"
+          REPO="${{ github.repository }}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+          PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
+
+          case "$PLATFORM" in
+            android) PLAT_EMOJI="📱" ;;
+            ios)     PLAT_EMOJI="🍎" ;;
+            linux)   PLAT_EMOJI="🐧" ;;
+            windows) PLAT_EMOJI="🪟" ;;
+            macos)   PLAT_EMOJI="🖥️" ;;
+            *)       PLAT_EMOJI="🔨" ;;
+          esac
+
+          PR_DISPLAY="None"
+          if [ -n "$PR_NUMBERS" ]; then
+            PR_DISPLAY=""
+            IFS=',' read -ra PRS <<< "$PR_NUMBERS"
+            for PR in "${PRS[@]}"; do
+              PR=$(echo "$PR" | xargs)
+              PR_DATA=$(curl -s                 -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"                 -H "Accept: application/vnd.github+json"                 "https://api.github.com/repos/RyanYuuki/AnymeX/pulls/$PR")
+              PR_TITLE=$(echo "$PR_DATA" | jq -r '.title // "Unknown"')
+              PR_DISPLAY+=$'
+'"• #${PR} - ${PR_TITLE}"
+            done
+          fi
+
+          DESCRIPTION=$(printf '❌ **%s %s build failed**
+
+⚙️ Build #%s | %s
+🔀 Merged PRs:%s
+
+[🔗 View Run & Logs](%s)'             "$PLAT_EMOJI" "${PLATFORM^}"             "$RUN_NUMBER" "$BUILD_TYPE"             "$PR_DISPLAY"             "$ACTION_URL")
+
+          PAYLOAD=$(jq -n             --arg title "🔨 Test Build: $TAG"             --arg description "$DESCRIPTION"             --arg footer "Other platforms may still be running"             --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"             '{
+              "embeds": [{
+                "title": $title,
+                "description": $description,
+                "color": 15158332,
+                "footer": { "text": $footer },
+                "timestamp": $timestamp
+              }]
+            }')
+
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}"             -H "Content-Type: application/json"             -d "$PAYLOAD"
+          echo "Discord failure notification sent for $PLATFORM"
 
   # ─────────────────────────────────────────────
   # Collect per-platform build results
