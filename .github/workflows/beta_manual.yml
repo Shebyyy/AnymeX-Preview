@@ -1043,14 +1043,21 @@ jobs:
           # Use triggered_by (set by Discord bot) if available, else fall back to github.actor
           ACTOR="${{ github.event.inputs.triggered_by }}"
           [ -z "$ACTOR" ] && ACTOR="${{ github.actor }}"
-          case "$ACTOR" in
-            Rieversed)       DISCORD_ID="617537674084876318" ;;
-            NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
-            Neoniq)          DISCORD_ID="150865547922243584" ;;
-            itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
-            Shebyyy)         DISCORD_ID="612532963938271232" ;;
-            *)               DISCORD_ID="" ;;
-          esac
+          
+          # Check if ACTOR is already a Discord ID (all numbers)
+          if [[ "$ACTOR" =~ ^[0-9]+$ ]]; then
+            DISCORD_ID="$ACTOR"
+          else
+            # Fall back to username mapping
+            case "$ACTOR" in
+              Rieversed)       DISCORD_ID="617537674084876318" ;;
+              NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+              Neoniq)          DISCORD_ID="150865547922243584" ;;
+              itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+              Shebyyy)         DISCORD_ID="612532963938271232" ;;
+              *)               DISCORD_ID="" ;;
+            esac
+          fi
           MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
 
           # Load per-platform results from collect-results job
