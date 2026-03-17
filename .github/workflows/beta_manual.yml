@@ -40,6 +40,10 @@ on:
         description: "Version tag (e.g. v3.0.4-alpha or v3.0.4). Leave empty to auto-use latest release tag from this repo."
         required: false
         default: ""
+      triggered_by:
+        description: "GitHub username of who triggered this build (set automatically by the Discord bot)"
+        required: false
+        default: ""
 
 env:
   FLUTTER_VERSION: "3.32.8"
@@ -848,7 +852,10 @@ jobs:
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
           PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
           # GitHub username → Discord user ID mapping
-          case "${{ github.actor }}" in
+          # Use triggered_by (set by Discord bot) if available, else fall back to github.actor
+          ACTOR="${{ github.event.inputs.triggered_by }}"
+          [ -z "$ACTOR" ] && ACTOR="${{ github.actor }}"
+          case "$ACTOR" in
             Rieversed)       DISCORD_ID="617537674084876318" ;;
             NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
             Neoniq)          DISCORD_ID="150865547922243584" ;;
@@ -1033,7 +1040,10 @@ jobs:
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
 
           # GitHub username → Discord user ID mapping
-          case "${{ github.actor }}" in
+          # Use triggered_by (set by Discord bot) if available, else fall back to github.actor
+          ACTOR="${{ github.event.inputs.triggered_by }}"
+          [ -z "$ACTOR" ] && ACTOR="${{ github.actor }}"
+          case "$ACTOR" in
             Rieversed)       DISCORD_ID="617537674084876318" ;;
             NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
             Neoniq)          DISCORD_ID="150865547922243584" ;;
