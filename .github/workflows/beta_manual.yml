@@ -1039,13 +1039,23 @@ jobs:
           REPO="${{ github.repository }}"
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
 
-          # Get Discord ID from bot input (Discord bot sends user's Discord ID)
+          # Get Discord ID for mention
           DISCORD_ID="${{ github.event.inputs.triggered_by }}"
           
-          # Create mention ONLY if Discord ID was provided by bot
-          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
+          # If no Discord ID from bot, use github.actor username mapping
+          if [ -z "$DISCORD_ID" ]; then
+            ACTOR="${{ github.actor }}"
+            case "$ACTOR" in
+              Rieversed)       DISCORD_ID="617537674084876318" ;;
+              NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+              Neoniq)          DISCORD_ID="150865547922243584" ;;
+              itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+              Shebyyy)         DISCORD_ID="612532963938271232" ;;
+              *)               DISCORD_ID="" ;;
+            esac
+          fi
           
-          # Log who triggered it (for info, not for pinging)
+          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
           TRIGGERED_BY="${{ github.actor }}"
 
           # Load per-platform results from collect-results job
@@ -1197,10 +1207,10 @@ jobs:
           fi
 
           # Build description
-          DESCRIPTION=$(printf '%s %s\n\n⚙️ Build #%s | %s\n🔀 Merged PRs:%s\n🖥️ Platforms: %s\n\n[🔗 View Run](%s)' \
+          DESCRIPTION=$(printf '%s %s\n\n⚙️ Build #%s | %s\n👤 Triggered by: %s\n🔀 Merged PRs:%s\n🖥️ Platforms: %s\n\n[🔗 View Run](%s)' \
             "$OVERALL_EMOJI" "$OVERALL_LABEL" \
             "$RUN_NUMBER" "$BUILD_TYPE" \
-            "$PR_DISPLAY" "$PLATFORMS" \
+            "$TRIGGERED_BY" "$PR_DISPLAY" "$PLATFORMS" \
             "$ACTION_URL")
 
           PAYLOAD=$(printf '%s' "$FIELDS" | jq \
