@@ -851,18 +851,22 @@ jobs:
           REPO="${{ github.repository }}"
           ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
           PR_NUMBERS="${{ github.event.inputs.pr_numbers }}"
-          # GitHub username → Discord user ID mapping
-          # Use triggered_by (set by Discord bot) if available, else fall back to github.actor
-          ACTOR="${{ github.event.inputs.triggered_by }}"
-          [ -z "$ACTOR" ] && ACTOR="${{ github.actor }}"
-          case "$ACTOR" in
-            Rieversed)       DISCORD_ID="617537674084876318" ;;
-            NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
-            Neoniq)          DISCORD_ID="150865547922243584" ;;
-            itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
-            Shebyyy)         DISCORD_ID="612532963938271232" ;;
-            *)               DISCORD_ID="" ;;
-          esac
+          
+          # Get Discord ID for mention
+          DISCORD_ID="${{ github.event.inputs.triggered_by }}"
+          
+          # If triggered_by is empty or not a number, try github.actor username mapping
+          if ! [[ "$DISCORD_ID" =~ ^[0-9]+$ ]]; then
+            ACTOR="${{ github.actor }}"
+            case "$ACTOR" in
+              Rieversed)       DISCORD_ID="617537674084876318" ;;
+              NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+              Neoniq)          DISCORD_ID="150865547922243584" ;;
+              itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+              Shebyyy)         DISCORD_ID="612532963938271232" ;;
+              *)               DISCORD_ID="" ;;
+            esac
+          fi
           MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
 
 
@@ -1042,8 +1046,8 @@ jobs:
           # Get Discord ID for mention
           DISCORD_ID="${{ github.event.inputs.triggered_by }}"
           
-          # If no Discord ID from bot, use github.actor username mapping
-          if [ -z "$DISCORD_ID" ]; then
+          # If triggered_by is empty or not a number, use github.actor username mapping
+          if ! [[ "$DISCORD_ID" =~ ^[0-9]+$ ]]; then
             ACTOR="${{ github.actor }}"
             case "$ACTOR" in
               Rieversed)       DISCORD_ID="617537674084876318" ;;
