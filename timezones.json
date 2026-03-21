@@ -16,5 +16,11 @@
     "name": "Moscow Standard Time",
     "offset": 3.0,
     "utc": "UTC+03:00"
+  },
+  "523539866311720963": {
+    "code": "IST",
+    "name": "Indian Standard Time",
+    "offset": 5.5,
+    "utc": "UTC+05:30"
   }
 }
