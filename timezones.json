@@ -10,5 +10,11 @@
     "name": "Indian Standard Time",
     "offset": 5.5,
     "utc": "UTC+05:30"
+  },
+  "150865547922243584": {
+    "code": "EAT",
+    "name": "East Africa Time",
+    "offset": 3.0,
+    "utc": "UTC+03:00"
   }
 }
