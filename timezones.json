@@ -1,7 +1,9 @@
 {
   "1474618752912851064": {
-    "timezone": "IST",
-    "offset": 5.5
+    "code": "IST",
+    "name": "Indian Standard Time",
+    "offset": 5.5,
+    "utc": "UTC+05:30"
   },
   "612532963938271232": {
     "code": "IST",
