@@ -1,1 +1,18 @@
-{}
+{
+  "1303000390505336893": {
+    "prefix": "?",
+    "language": "en",
+    "mod_log_channel": null,
+    "join_leave_channel": null,
+    "allowed_roles": [
+      1313085810874253422
+    ],
+    "admin_roles": [],
+    "mute_role": null,
+    "warn_thresholds": {
+      "3": "mute",
+      "5": "ban"
+    },
+    "warn_expiry_days": 30
+  }
+}
