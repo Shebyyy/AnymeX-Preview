@@ -5,7 +5,8 @@
     "mod_log_channel": null,
     "join_leave_channel": null,
     "allowed_roles": [
-      1313085810874253422
+      1313085810874253422,
+      1313085757707128922
     ],
     "admin_roles": [],
     "mute_role": null,
