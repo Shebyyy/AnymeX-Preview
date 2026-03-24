@@ -28,5 +28,11 @@
     "name": "Indian Standard Time",
     "offset": 5.5,
     "utc": "UTC+05:30"
+  },
+  "918825160654598224": {
+    "code": "IST",
+    "name": "Indian Standard Time",
+    "offset": 5.5,
+    "utc": "UTC+05:30"
   }
 }
