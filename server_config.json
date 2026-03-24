@@ -6,7 +6,8 @@
     "join_leave_channel": null,
     "allowed_roles": [
       1313085810874253422,
-      1313085757707128922
+      1313085757707128922,
+      1313085909708570644
     ],
     "admin_roles": [],
     "mute_role": null,
