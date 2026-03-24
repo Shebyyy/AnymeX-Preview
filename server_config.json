@@ -2,15 +2,15 @@
   "1303000390505336893": {
     "prefix": "?",
     "language": "en",
-    "mod_log_channel": null,
-    "join_leave_channel": null,
+    "mod_log_channel": 1313094347524411392,
+    "join_leave_channel": 1313094379195465768,
     "allowed_roles": [
       1313085810874253422,
       1313085757707128922,
       1313085909708570644
     ],
     "admin_roles": [],
-    "mute_role": null,
+    "mute_role": 1378407973218422898,
     "warn_thresholds": {
       "3": "mute",
       "5": "ban"
