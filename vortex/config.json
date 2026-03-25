@@ -1,1 +1,44 @@
-{}
+{
+  "1464286788272259219": {
+    "mod_log": "1464287770116755634",
+    "welcome_channel": null,
+    "welcome_message": "Welcome {user} to {server}! 🎉",
+    "muted_role": null,
+    "ticket_category": null,
+    "ticket_log": null,
+    "automod": {
+      "spam": {
+        "enabled": false,
+        "max_messages": 5,
+        "interval": 5
+      },
+      "caps": {
+        "enabled": false,
+        "threshold": 70
+      },
+      "links": {
+        "enabled": false,
+        "whitelist": []
+      },
+      "words": {
+        "enabled": false,
+        "blacklist": []
+      },
+      "invites": {
+        "enabled": false
+      },
+      "mentions": {
+        "enabled": false,
+        "max": 5
+      }
+    },
+    "logging": {
+      "message_edit": true,
+      "message_delete": true,
+      "member_join": true,
+      "member_leave": true,
+      "role_change": true,
+      "voice": true
+    }
+  }
+}
