@@ -43,7 +43,7 @@
   },
   "1246822625397968927": {
     "mod_log": "1246822772621971608",
-    "welcome_channel": null,
+    "welcome_channel": "1388592589913198637",
     "welcome_message": "Welcome {user} to {server}! 🎉",
     "muted_role": null,
     "ticket_category": "1246822626999930940",
