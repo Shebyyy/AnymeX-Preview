@@ -616,6 +616,7 @@ jobs:
           GIT_CALLBACK_SCHEME: ${{ secrets.GIT_CALLBACK_SCHEME }}
           COMMENTS_BASE_URL:  ${{ secrets.COMMENTS_BASE_URL }}
         run: |
+          cd main-repo
           cat > .env << EOF
           AL_CLIENT_ID=$AL_CLIENT_ID
           AL_CLIENT_SECRET=$AL_CLIENT_SECRET
