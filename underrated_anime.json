@@ -54,5 +54,14 @@
     "mal_user_id": 789012,
     "author": "Sheby",
     "reason": "Really underrated gem"
+  },
+  {
+    "anilist_id": 135,
+    "mal_id": 176,
+    "title": "Hikaru no Go",
+    "anilist_user_id": 123456,
+    "mal_user_id": 789012,
+    "author": "Sheby",
+    "reason": "Really underrated gem"
   }
 ]
