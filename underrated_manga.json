@@ -100,7 +100,8 @@
         "avatar": "https://cdn.myanimelist.net/s/common/userimages/72fbdfd0-3abb-4875-9878-de6d3361d948_225w?s=fd6297dd3c1990c9ed6fd4d00c465536"
       }
     },
-    "poster": null
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx38967-OudN4nABIzKF.jpg",
+    "score": 82
   },
   {
     "anilist_id": 201773,
@@ -125,7 +126,8 @@
         "avatar": null
       }
     },
-    "poster": null
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx201773-ecGmhCRhfu05.jpg",
+    "score": 75
   },
   {
     "anilist_id": 180511,
@@ -150,7 +152,8 @@
         "avatar": null
       }
     },
-    "poster": null
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx180511-7KRgPMHC1tUM.jpg",
+    "score": 72
   },
   {
     "anilist_id": 118417,
@@ -175,7 +178,8 @@
         "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
       }
     },
-    "poster": null
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx118417-9nQC8HLn2CQC.png",
+    "score": 74
   },
   {
     "anilist_id": 173020,
@@ -200,6 +204,7 @@
         "avatar": null
       }
     },
-    "poster": null
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx173020-vqe5J7U1cizO.png",
+    "score": 75
   }
 ]
