@@ -3,126 +3,280 @@
     "anilist_id": 387,
     "mal_id": 387,
     "title": "Haibane Renmei",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "A quiet, melancholic masterpiece about belonging and redemption that nobody talks about"
+    "reason": "A quiet, melancholic masterpiece about belonging and redemption that nobody talks about",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 20972,
     "mal_id": 28735,
     "title": "Shouwa Genroku Rakugo Shinjuu",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "A stunning period drama about a dying art form with some of the best character writing in anime"
+    "reason": "A stunning period drama about a dying art form with some of the best character writing in anime",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 7785,
     "mal_id": 7785,
     "title": "Tatami Galaxy",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Witty, fast-paced and visually creative — a love letter to wasted youth"
+    "reason": "Witty, fast-paced and visually creative — a love letter to wasted youth",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 3701,
     "mal_id": 3701,
     "title": "Kaiba",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Surreal sci-fi about memory and identity with a gorgeous unique art style almost no one has seen"
+    "reason": "Surreal sci-fi about memory and identity with a gorgeous unique art style almost no one has seen",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 790,
     "mal_id": 790,
     "title": "Ergo Proxy",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "A dark cyberpunk mystery packed with philosophy and psychological themes that many viewers skipped because of its complex storytelling"
+    "reason": "A dark cyberpunk mystery packed with philosophy and psychological themes that many viewers skipped because of its complex storytelling",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 5081,
     "mal_id": 5081,
     "title": "Bakemonogatari",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Underrated because of its heavy dialogue and unique storytelling style, which makes it less accessible, but it has exceptional writing, direction, and character development."
+    "reason": "Underrated because of its heavy dialogue and unique storytelling style, which makes it less accessible, but it has exceptional writing, direction, and character development.",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 440,
     "mal_id": 440,
     "title": "Revolutionary Girl Utena",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Underrated due to its abstract and symbolic narrative; it’s highly influential with deep themes, but not widely appreciated by mainstream audiences."
+    "reason": "Underrated due to its abstract and symbolic narrative; it’s highly influential with deep themes, but not widely appreciated by mainstream audiences.",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 8861,
     "mal_id": 8861,
     "title": "Yosuga no Sora: In Solitude Where We are Least Alone",
-    "anilist_user_id": 6201895,
-    "mal_user_id": 18956335,
     "author": "Sepheryy",
-    "reason": "This show is such an emotional melodrama of a show and as a viewer, characters connect to you on an emotional level. Also the theme of the show, soundtrack give off such a dreamcore/weirdcore vibes it feels surreal. Not to mention the ambiguous ending.\n\nAlso it's a really wholesome anime with lots of family love."
+    "reason": "This show is such an emotional melodrama of a show and as a viewer, characters connect to you on an emotional level. Also the theme of the show, soundtrack give off such a dreamcore/weirdcore vibes it feels surreal. Not to mention the ambiguous ending.\n\nAlso it's a really wholesome anime with lots of family love.",
+    "user": {
+      "anilist": {
+        "id": 6201895,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 18956335,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 21732,
     "mal_id": 33091,
     "title": "Planetarian",
-    "anilist_user_id": 6963665,
-    "mal_user_id": 18232702,
     "author": "Yoga Damaran",
-    "reason": "just 1.5 hours anime with awesome ending, a great sci-fi drama you don't want to miss"
+    "reason": "just 1.5 hours anime with awesome ending, a great sci-fi drama you don't want to miss",
+    "user": {
+      "anilist": {
+        "id": 6963665,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 18232702,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 108268,
     "mal_id": 39468,
     "title": "Ascendance of a Bookworm",
-    "anilist_user_id": 6110204,
-    "mal_user_id": 14313948,
     "author": "itsmechinmoy",
-    "reason": "One of the best Isekai 🙏🏻 (no regular Isekai bs)"
+    "reason": "One of the best Isekai 🙏🏻 (no regular Isekai bs)",
+    "user": {
+      "anilist": {
+        "id": 6110204,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 14313948,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 3702,
     "mal_id": 3702,
     "title": "Detroit Metal City",
-    "anilist_user_id": 286115,
-    "mal_user_id": 6502216,
     "author": "🐽",
-    "reason": "Unique. Not for everyone, but gem nontheless"
+    "reason": "Unique. Not for everyone, but gem nontheless",
+    "user": {
+      "anilist": {
+        "id": 286115,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 6502216,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 155783,
     "mal_id": 53393,
     "title": "Tengoku Daimakyo",
-    "anilist_user_id": 6335658,
-    "mal_user_id": 19910960,
     "author": "Arken",
-    "reason": "Sets in a dystopian world where two children sets on their journey to find heaven. The perspective flow in the story is quite intresting and it doesn't hold back to make it dark and cruel. The impact with every episode increase."
+    "reason": "Sets in a dystopian world where two children sets on their journey to find heaven. The perspective flow in the story is quite intresting and it doesn't hold back to make it dark and cruel. The impact with every episode increase.",
+    "user": {
+      "anilist": {
+        "id": 6335658,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 19910960,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 106240,
     "mal_id": 38816,
     "title": "HELLO WORLD",
-    "anilist_user_id": 6335658,
-    "mal_user_id": 19910960,
     "author": "Arken",
-    "reason": "A Time Travel story about saving someone and facing the consequences of it, It also uses some good elements to hook peoples to story(there are something I would like to say but it might come as spoiler so try it)."
+    "reason": "A Time Travel story about saving someone and facing the consequences of it, It also uses some good elements to hook peoples to story(there are something I would like to say but it might come as spoiler so try it).",
+    "user": {
+      "anilist": {
+        "id": 6335658,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 19910960,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 14345,
     "mal_id": 14345,
     "title": "BTOOOM!",
-    "anilist_user_id": 5991558,
-    "mal_user_id": 289135,
     "author": "night",
-    "reason": "Really underrated sci-fi death game story about people stuck on an island fighting with high tech bombs which are unique to every person"
+    "reason": "Really underrated sci-fi death game story about people stuck on an island fighting with high tech bombs which are unique to every person",
+    "user": {
+      "anilist": {
+        "id": 5991558,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 289135,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   }
 ]
