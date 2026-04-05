@@ -3,72 +3,160 @@
     "anilist_id": 74489,
     "mal_id": 44489,
     "title": "Houseki no Kuni",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Beautifully illustrated philosophical story about identity, purpose, and change that keeps getting deeper"
+    "reason": "Beautifully illustrated philosophical story about identity, purpose, and change that keeps getting deeper",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 30936,
     "mal_id": 936,
     "title": "Homunculus",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "A psychological thriller exploring the human psyche through surreal hallucinations and disturbing introspection"
+    "reason": "A psychological thriller exploring the human psyche through surreal hallucinations and disturbing introspection",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 31133,
     "mal_id": 1133,
     "title": "Dorohedoro",
-    "anilist_user_id": 5724017,
-    "mal_user_id": 13598844,
     "author": "ASheby",
-    "reason": "Underrated for its unconventional art style and chaotic world-building; despite its originality, dark humor, and strong characters, it’s often overlooked."
+    "reason": "Underrated for its unconventional art style and chaotic world-building; despite its originality, dark humor, and strong characters, it’s often overlooked.",
+    "user": {
+      "anilist": {
+        "id": 5724017,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 13598844,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 38967,
     "mal_id": 8967,
     "title": "Onani Master Kurosawa",
-    "anilist_user_id": 7754776,
-    "mal_user_id": 21270804,
     "author": "Dizzy",
-    "reason": "People think of it as a gooner manga or don't like the art style"
+    "reason": "People think of it as a gooner manga or don't like the art style",
+    "user": {
+      "anilist": {
+        "id": 7754776,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 21270804,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 201773,
     "mal_id": 188409,
     "title": "Haimiya-senpai wa Kowakute Kawaii",
-    "anilist_user_id": 7460497,
-    "mal_user_id": 4961398,
     "author": "Fast",
-    "reason": "Both MCs are so good along with the romance genuinely peak. Art is so damn good. Character Development in MC is present."
+    "reason": "Both MCs are so good along with the romance genuinely peak. Art is so damn good. Character Development in MC is present.",
+    "user": {
+      "anilist": {
+        "id": 7460497,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 4961398,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 180511,
     "mal_id": 170154,
     "title": "Albus Changes the World",
-    "anilist_user_id": 7460497,
-    "mal_user_id": 4961398,
     "author": "Fast",
-    "reason": "Good and different story funny at times.\nGood summary for this manga will be that MC speedruns."
+    "reason": "Good and different story funny at times.\nGood summary for this manga will be that MC speedruns.",
+    "user": {
+      "anilist": {
+        "id": 7460497,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 4961398,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 118417,
     "mal_id": 118206,
     "title": "San Nen Sa",
-    "anilist_user_id": 6335658,
-    "mal_user_id": 19910960,
     "author": "Arken",
-    "reason": "The difference of being Three Years Apart. The start is as that main couple is already married and their story is shown via flashbacks. I would say it is pretty good and brings freshness to RomCom genre."
+    "reason": "The difference of being Three Years Apart. The start is as that main couple is already married and their story is shown via flashbacks. I would say it is pretty good and brings freshness to RomCom genre.",
+    "user": {
+      "anilist": {
+        "id": 6335658,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 19910960,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   },
   {
     "anilist_id": 173020,
     "mal_id": 165028,
     "title": "I Killed the Main Player",
-    "anilist_user_id": 7460497,
-    "mal_user_id": 4961398,
     "author": "Fast",
-    "reason": "Peak comedy. Parody to slop genre."
+    "reason": "Peak comedy. Parody to slop genre.",
+    "user": {
+      "anilist": {
+        "id": 7460497,
+        "username": null,
+        "avatar": null
+      },
+      "mal": {
+        "id": 4961398,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": null
   }
 ]
