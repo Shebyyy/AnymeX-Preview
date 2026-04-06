@@ -556,5 +556,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16706-qMfhkWuHkWhX.jpg",
     "score": 78
+  },
+  {
+    "anilist_id": 21,
+    "mal_id": 21,
+    "title": "ONE PIECE",
+    "author": "itsmechinmoy",
+    "reason": "Underrated for new anime watchers",
+    "user": {
+      "discord": {
+        "id": 523539866311720963,
+        "username": "itsmechinmoy",
+        "avatar": "https://cdn.discordapp.com/avatars/523539866311720963/8858aababe4802c4bce4ad6caa5816ab.png?size=1024"
+      },
+      "anilist": {
+        "id": 6110204,
+        "username": "itsmechinmoy",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6110204-nhhnglDW5K7x.png"
+      },
+      "mal": {
+        "id": 14313948,
+        "username": "Itsmechinmoy",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/f739c758-6171-4482-a21f-b6cef0ca4ce0_225w?s=8d3b5a5c07b89cb4ce5d755b109e6100"
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+    "score": 87
   }
 ]
