@@ -660,5 +660,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21366-0wrYK0kjKeFn.jpg",
     "score": 83
+  },
+  {
+    "anilist_id": 8675,
+    "mal_id": 8675,
+    "title": "Seitokai Yakuindomo",
+    "author": "Arken",
+    "reason": "Tsuda Takatoshi has started his high school in a recently made co-ed school which was all girls last year. Where he got dragged to join Students Council and the members of students council love to make dirty jokes it is hard for him to be only a straight man around. The gag is pretty well done and it handles it settings very well",
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8675-5H2QSLvXA7bH.jpg",
+    "score": 73
   }
 ]
