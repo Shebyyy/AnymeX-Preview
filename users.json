@@ -416,5 +416,32 @@
     "mal_anime_mean_score": null,
     "mal_manga_completed": null,
     "mal_manga_mean_score": null
+  },
+  "1457686619720122434": {
+    "author_name": "kamalbhullar",
+    "discord_id": 1457686619720122434,
+    "discord_username": "kamaljeet22_05406",
+    "discord_display_name": "kee6",
+    "discord_avatar": "https://cdn.discordapp.com/embed/avatars/1.png",
+    "anilist_user_id": 7581086,
+    "anilist_username": "kamalbhullar",
+    "anilist_url": "https://anilist.co/user/7581086",
+    "anilist_avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png",
+    "anilist_banner": null,
+    "anilist_about": "",
+    "anilist_anime_count": 233,
+    "anilist_manga_count": 19,
+    "anilist_mean_score": 90,
+    "anilist_minutes_watched": 69263,
+    "anilist_chapters_read": 2529,
+    "mal_user_id": null,
+    "mal_username": null,
+    "mal_url": null,
+    "mal_avatar": null,
+    "mal_about": null,
+    "mal_anime_completed": null,
+    "mal_anime_mean_score": null,
+    "mal_manga_completed": null,
+    "mal_manga_mean_score": null
   }
 }
