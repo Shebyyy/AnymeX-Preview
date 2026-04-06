@@ -443,5 +443,32 @@
     "mal_anime_mean_score": null,
     "mal_manga_completed": null,
     "mal_manga_mean_score": null
+  },
+  "1115261507522015292": {
+    "author_name": "Bakaboss",
+    "discord_id": 1115261507522015292,
+    "discord_username": "nayemiku",
+    "discord_display_name": "Nayem",
+    "discord_avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024",
+    "anilist_user_id": 7475531,
+    "anilist_username": "BakaBoss",
+    "anilist_url": "https://anilist.co/user/7475531",
+    "anilist_avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-SY6hixAhPjON.png",
+    "anilist_banner": "https://s4.anilist.co/file/anilistcdn/user/banner/b7475531-XrB4WdAFMOj5.jpg",
+    "anilist_about": "“I have no enemies… but I still fight the war inside me.” \n\n                                 — Thorfinn ⚔️",
+    "anilist_anime_count": 160,
+    "anilist_manga_count": 12,
+    "anilist_mean_score": 87.21,
+    "anilist_minutes_watched": 93573,
+    "anilist_chapters_read": 1625,
+    "mal_user_id": null,
+    "mal_username": null,
+    "mal_url": null,
+    "mal_avatar": null,
+    "mal_about": null,
+    "mal_anime_completed": null,
+    "mal_anime_mean_score": null,
+    "mal_manga_completed": null,
+    "mal_manga_mean_score": null
   }
 }
