@@ -400,5 +400,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx130298-YMdcKHytpWNH.jpg",
     "score": 81
+  },
+  {
+    "anilist_id": 20920,
+    "mal_id": 28121,
+    "title": "Is It Wrong to Try to Pick Up Girls in a Dungeon?",
+    "author": "kamalbhullar",
+    "reason": "A good story with unique and endearing characters. Action situations that, combined with good dialogue and background music, detonate into epic moments that will leave you with goosebumps. Witness the birth of a great hero.",
+    "user": {
+      "discord": {
+        "id": 1457686619720122434,
+        "username": "kamaljeet22_05406",
+        "avatar": "https://cdn.discordapp.com/embed/avatars/1.png"
+      },
+      "anilist": {
+        "id": 7581086,
+        "username": "kamalbhullar",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20920-MTREwZOG4BAD.jpg",
+    "score": 73
   }
 ]
