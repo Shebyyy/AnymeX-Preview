@@ -452,5 +452,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx126403-BfVSRzWUtVFW.png",
     "score": 86
+  },
+  {
+    "anilist_id": 21857,
+    "mal_id": 33487,
+    "title": "Masamune-kun's Revenge",
+    "author": "kamalbhullar",
+    "reason": "revenge anime",
+    "user": {
+      "discord": {
+        "id": 1457686619720122434,
+        "username": "kamaljeet22_05406",
+        "avatar": "https://cdn.discordapp.com/embed/avatars/1.png"
+      },
+      "anilist": {
+        "id": 7581086,
+        "username": "kamalbhullar",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21857-haPDVD7DKDpg.jpg",
+    "score": 65
   }
 ]
