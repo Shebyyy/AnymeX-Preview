@@ -504,5 +504,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20789-Ma5ouSYPkru9.jpg",
     "score": 73
+  },
+  {
+    "anilist_id": 158539,
+    "mal_id": 53149,
+    "title": "Lookism",
+    "author": "kamalbhullar",
+    "reason": "nice",
+    "user": {
+      "discord": {
+        "id": 1457686619720122434,
+        "username": "kamaljeet22_05406",
+        "avatar": "https://cdn.discordapp.com/embed/avatars/1.png"
+      },
+      "anilist": {
+        "id": 7581086,
+        "username": "kamalbhullar",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx158539-jcLUcvqALA08.jpg",
+    "score": 72
   }
 ]
