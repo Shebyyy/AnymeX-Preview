@@ -25,7 +25,9 @@
     "mal_anime_mean_score": 7.15,
     "mal_manga_completed": 0,
     "mal_manga_mean_score": 0,
-    "simkl_username": "ASheby"
+    "simkl_username": "ASheby",
+    "simkl_user_id": null,
+    "simkl_avatar": null
   },
   "1474618752912851064": {
     "anilist_user_id": 62220383,
@@ -209,10 +211,10 @@
     "anilist_avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b286115-tbtfUqhvJzZ5.jpg",
     "anilist_banner": null,
     "anilist_about": "",
-    "anilist_anime_count": 424,
+    "anilist_anime_count": 431,
     "anilist_manga_count": 47,
-    "anilist_mean_score": 79.71,
-    "anilist_minutes_watched": 126302,
+    "anilist_mean_score": 79.55,
+    "anilist_minutes_watched": 127034,
     "anilist_chapters_read": 5690,
     "mal_username": "Neoniq",
     "mal_url": "https://myanimelist.net/profile/Neoniq",
