@@ -23,7 +23,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74489-5HtDCFfut8Be.jpg",
-    "score": 89
+    "score": 89,
+    "nsfw": false
   },
   {
     "anilist_id": 30936,
@@ -49,7 +50,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30936-P55KMUW1sgLN.jpg",
-    "score": 83
+    "score": 83,
+    "nsfw": false
   },
   {
     "anilist_id": 31133,
@@ -75,7 +77,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx31133-Jx6map3Oidz1.png",
-    "score": 86
+    "score": 86,
+    "nsfw": false
   },
   {
     "anilist_id": 38967,
@@ -101,7 +104,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx38967-OudN4nABIzKF.jpg",
-    "score": 82
+    "score": 82,
+    "nsfw": false
   },
   {
     "anilist_id": 201773,
@@ -127,7 +131,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx201773-ecGmhCRhfu05.jpg",
-    "score": 76
+    "score": 76,
+    "nsfw": false
   },
   {
     "anilist_id": 180511,
@@ -153,7 +158,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx180511-7KRgPMHC1tUM.jpg",
-    "score": 72
+    "score": 72,
+    "nsfw": false
   },
   {
     "anilist_id": 118417,
@@ -179,7 +185,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx118417-9nQC8HLn2CQC.png",
-    "score": 74
+    "score": 74,
+    "nsfw": false
   },
   {
     "anilist_id": 173020,
@@ -205,7 +212,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx173020-vqe5J7U1cizO.png",
-    "score": 75
+    "score": 75,
+    "nsfw": false
   },
   {
     "anilist_id": 167372,
@@ -231,7 +239,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b167372-zfQUGcQMWiAI.png",
-    "score": 72
+    "score": 72,
+    "nsfw": false
   },
   {
     "anilist_id": 54705,
@@ -257,6 +266,7 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx54705-78Th5SRaL0Ns.png",
-    "score": 81
+    "score": 81,
+    "nsfw": false
   }
 ]
