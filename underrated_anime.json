@@ -1011,5 +1011,53 @@
     "studios": [
       "feel."
     ]
+  },
+  {
+    "anilist_id": 20807,
+    "mal_id": 30240,
+    "title": "Prison School",
+    "author": "Bakaboss",
+    "reason": "If you want crazy, over-the-top comedy with smart mind games, watch Prison School.",
+    "user": {
+      "discord": {
+        "id": 1115261507522015292,
+        "username": "nayemiku",
+        "avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024"
+      },
+      "anilist": {
+        "id": 7475531,
+        "username": "BakaBoss",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-SY6hixAhPjON.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20807-8nFoO0AUdGsy.jpg",
+    "score": 73,
+    "genres": [
+      "Comedy",
+      "Ecchi"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 12,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "SUMMER",
+    "season_year": 2015,
+    "description": "Hachimitsu Private Academy was a revered and elite all-girls' boarding school on the outskirts of Tokyo...once upon a time. But with the new school year comes a revision to school policy: Boys are to be admitted into the student body for the first time ever. But on his first day at Hachimitsu, Kiyoshi Fujino discovers that he's one of only five boys enrolled at the school. Their numbers overwhelmed by the thousand girls in the student body, is it heaven or hell that awaits these five (un)fortuna",
+    "studios": [
+      "J.C.STAFF"
+    ]
   }
 ]
