@@ -912,5 +912,54 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99750-pNyly9d3MEgV.jpg",
     "score": 84,
     "nsfw": false
+  },
+  {
+    "anilist_id": 20727,
+    "mal_id": 24439,
+    "title": "Blood Blockade Battlefront",
+    "author": "Bakaboss",
+    "reason": "Blood Blockade Battlefront(Kekkai Sensen) feels underrated because its chaotic storytelling and dense world-building can overwhelm casual viewers, hiding its brilliance behind fast-paced confusion ⚡",
+    "user": {
+      "discord": {
+        "id": 1115261507522015292,
+        "username": "nayemiku",
+        "avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024"
+      },
+      "anilist": {
+        "id": 7475531,
+        "username": "BakaBoss",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-SY6hixAhPjON.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20727-jgVnxLCHAKqZ.jpg",
+    "score": 74,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Supernatural"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 12,
+    "duration": 25,
+    "chapters": null,
+    "volumes": null,
+    "season": "SPRING",
+    "season_year": 2015,
+    "description": "A breach between Earth and the netherworlds has opened up over the city of New York, trapping New Yorkers and creatures from other dimensions in an impenetrable bubble. They've lived together for years, in a world of crazy crime sci-fi sensibilities. Now someone is threatening to sever the bubble, and a group of stylish superhumans is working to keep it from happening.<br>\n<br>\n(Source: Anime News Network)\n<br><br>\n<i>Note: The last episode aired with a runtime of ~46 minutes as opposed to the s",
+    "studios": [
+      "bones"
+    ]
   }
 ]
