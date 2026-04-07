@@ -712,5 +712,31 @@
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14813-3mNvcKNEQcDs.jpg",
     "score": 78
+  },
+  {
+    "anilist_id": 99750,
+    "mal_id": 36098,
+    "title": "I Want to Eat Your Pancreas",
+    "author": "Ayanokōji",
+    "reason": "Peak, but somewhat depressing.",
+    "user": {
+      "discord": {
+        "id": 1331083395614380090,
+        "username": "devta.exe",
+        "avatar": "https://cdn.discordapp.com/avatars/1331083395614380090/b85b30a12038f51ad7b31a34cd52c2ae.png?size=1024"
+      },
+      "anilist": {
+        "id": 7546133,
+        "username": "AkaneRudra",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7546133-x9B983O0qJj1.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99750-pNyly9d3MEgV.jpg",
+    "score": 84
   }
 ]
