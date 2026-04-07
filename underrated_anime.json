@@ -22,7 +22,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx387-dS4aJivu0zPB.png",
-    "score": 79
+    "score": 79,
+    "nsfw": false
   },
   {
     "anilist_id": 20972,
@@ -47,7 +48,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20972-95dyLz6lkCZ8.jpg",
-    "score": 84
+    "score": 84,
+    "nsfw": false
   },
   {
     "anilist_id": 7785,
@@ -72,7 +74,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7785-aTjIhsYva8cJ.jpg",
-    "score": 85
+    "score": 85,
+    "nsfw": false
   },
   {
     "anilist_id": 3701,
@@ -97,7 +100,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3701-ooD3N9dD2rqa.jpg",
-    "score": 79
+    "score": 79,
+    "nsfw": false
   },
   {
     "anilist_id": 790,
@@ -122,7 +126,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx790-YTUCvBKX8ZWK.jpg",
-    "score": 76
+    "score": 76,
+    "nsfw": false
   },
   {
     "anilist_id": 5081,
@@ -147,7 +152,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5081-9GocceQ5Z865.jpg",
-    "score": 82
+    "score": 82,
+    "nsfw": false
   },
   {
     "anilist_id": 440,
@@ -172,7 +178,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b440-r4l3N5WGgUOZ.jpg",
-    "score": 82
+    "score": 82,
+    "nsfw": false
   },
   {
     "anilist_id": 8861,
@@ -197,7 +204,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8861-DZKseZpdtBwp.jpg",
-    "score": 56
+    "score": 56,
+    "nsfw": true
   },
   {
     "anilist_id": 21732,
@@ -222,7 +230,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21732-uOgNB5Y4FH5h.jpg",
-    "score": 73
+    "score": 73,
+    "nsfw": false
   },
   {
     "anilist_id": 108268,
@@ -247,7 +256,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108268-Dtt82uOi3vq5.jpg",
-    "score": 78
+    "score": 78,
+    "nsfw": false
   },
   {
     "anilist_id": 3702,
@@ -272,7 +282,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3702-TCo0UYxWQzYj.jpg",
-    "score": 76
+    "score": 76,
+    "nsfw": false
   },
   {
     "anilist_id": 155783,
@@ -297,7 +308,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx155783-YosKbsmZzuDE.jpg",
-    "score": 81
+    "score": 81,
+    "nsfw": false
   },
   {
     "anilist_id": 106240,
@@ -322,7 +334,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx106240-XeWQ4YhKzv7h.png",
-    "score": 73
+    "score": 73,
+    "nsfw": false
   },
   {
     "anilist_id": 14345,
@@ -347,7 +360,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14345-BeDPCuhQGtL5.jpg",
-    "score": 68
+    "score": 68,
+    "nsfw": false
   },
   {
     "anilist_id": 103572,
@@ -373,7 +387,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103572-cchriAdH95cQ.png",
-    "score": 75
+    "score": 75,
+    "nsfw": false
   },
   {
     "anilist_id": 130298,
@@ -399,7 +414,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx130298-YMdcKHytpWNH.jpg",
-    "score": 81
+    "score": 81,
+    "nsfw": false
   },
   {
     "anilist_id": 20920,
@@ -425,7 +441,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20920-MTREwZOG4BAD.jpg",
-    "score": 73
+    "score": 73,
+    "nsfw": false
   },
   {
     "anilist_id": 126403,
@@ -451,7 +468,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx126403-BfVSRzWUtVFW.png",
-    "score": 86
+    "score": 86,
+    "nsfw": false
   },
   {
     "anilist_id": 21857,
@@ -477,7 +495,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21857-haPDVD7DKDpg.jpg",
-    "score": 65
+    "score": 65,
+    "nsfw": false
   },
   {
     "anilist_id": 20789,
@@ -503,7 +522,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20789-Ma5ouSYPkru9.jpg",
-    "score": 73
+    "score": 73,
+    "nsfw": false
   },
   {
     "anilist_id": 158539,
@@ -529,7 +549,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx158539-jcLUcvqALA08.jpg",
-    "score": 72
+    "score": 72,
+    "nsfw": false
   },
   {
     "anilist_id": 16706,
@@ -555,7 +576,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16706-qMfhkWuHkWhX.jpg",
-    "score": 78
+    "score": 78,
+    "nsfw": false
   },
   {
     "anilist_id": 21,
@@ -581,7 +603,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
-    "score": 87
+    "score": 87,
+    "nsfw": false
   },
   {
     "anilist_id": 26,
@@ -607,7 +630,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx26-ADSztyHBNO39.jpg",
-    "score": 76
+    "score": 76,
+    "nsfw": false
   },
   {
     "anilist_id": 97922,
@@ -633,7 +657,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97922-qrGn5fkQinDs.jpg",
-    "score": 74
+    "score": 74,
+    "nsfw": false
   },
   {
     "anilist_id": 21366,
@@ -659,7 +684,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21366-0wrYK0kjKeFn.jpg",
-    "score": 83
+    "score": 83,
+    "nsfw": false
   },
   {
     "anilist_id": 8675,
@@ -685,7 +711,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8675-5H2QSLvXA7bH.jpg",
-    "score": 73
+    "score": 73,
+    "nsfw": false
   },
   {
     "anilist_id": 14813,
@@ -711,7 +738,8 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14813-3mNvcKNEQcDs.jpg",
-    "score": 78
+    "score": 78,
+    "nsfw": false
   },
   {
     "anilist_id": 99750,
@@ -737,6 +765,7 @@
       }
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99750-pNyly9d3MEgV.jpg",
-    "score": 84
+    "score": 84,
+    "nsfw": false
   }
 ]
