@@ -1,1 +1,13 @@
-{}
+{
+  "anime:21": {
+    "media_type": "anime",
+    "anilist_id": 21,
+    "title": "ONE PIECE",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
+  }
+}
