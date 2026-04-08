@@ -1208,5 +1208,53 @@
     "studios": [
       "Lapin Track"
     ]
+  },
+  {
+    "anilist_id": 20987,
+    "mal_id": 28825,
+    "title": "Himouto! Umaru-chan",
+    "author": "Arken",
+    "reason": "A funny anime about MC's perfect little sister but as soon as she is home she became a sloth a lazy person, playing game all night, late night snacking watching anime late night. The comedy is well done.\n\nAnya Forger from SpyxFamil's character design is inspired from Umaru's chibi version.",
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20987-9Tq7kZTeJPMo.jpg",
+    "score": 68,
+    "genres": [
+      "Comedy",
+      "Slice of Life"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 12,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "SUMMER",
+    "season_year": 2015,
+    "description": "Umaru is a renowned beautiful 16-year-old girl, living with her elder brother Taihei. She's a perfect little sister: Popular, smart, kind-hearted, everybody admires her. So who would believe Umaru keeps a certain secret? Sleeping, gaming, watching TV, eating junk food, drinking cola… that's almost all she does at home, leaving all the housework to her brother.\n<br><br>\n(Source: Crunchyroll, edited)",
+    "studios": [
+      "Doga Kobo"
+    ]
   }
 ]
