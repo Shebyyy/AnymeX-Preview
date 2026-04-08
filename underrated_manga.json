@@ -318,5 +318,54 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx54705-78Th5SRaL0Ns.png",
     "score": 81,
     "nsfw": false
+  },
+  {
+    "anilist_id": 79865,
+    "mal_id": 49865,
+    "title": "Ajin: Demi-Human",
+    "author": "Arken",
+    "reason": "Story about Kei Nagai, who got into an accident suddenly but didn't died because he was a Ajin(Demihuman), Only few Demihuman are found and those who are Demihuman government capture them and experiment all sorts of things treating them as a lab rat and reward the peoples who capture Demihuman his existence was known to whole country there is nowhere safe. \n\nIt is pretty gritting story the scales are high, he is hunted by everyone, needs to survive want to live a normal life again. The writing is good, story is good and the plot is great",
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b79865-rwKmISrhJJyP.jpg",
+    "score": 80,
+    "genres": [
+      "Action",
+      "Horror",
+      "Mystery",
+      "Psychological",
+      "Supernatural"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": 99,
+    "volumes": 17,
+    "season": null,
+    "season_year": null,
+    "description": "High school student Kei Nagai is struck dead in a grisly traffic accident, but immediately revives to learn that he may not be like every other human. Instead, he may be a mysterious almost immortal being granted not only the powers of rejuvination but the abilities to see super-natural beings. Scared, he runs away, and is aided in his escape from society by his friend. Unfortunately for Kei, the manhunt is on and he will soon be caught within a conflict between mankind and others like him as th",
+    "studios": []
   }
 ]
