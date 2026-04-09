@@ -9,5 +9,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:20727": {
+    "media_type": "anime",
+    "anilist_id": 20727,
+    "title": "Blood Blockade Battlefront",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
