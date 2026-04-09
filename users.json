@@ -488,5 +488,23 @@
     "mal_anime_mean_score": 7.64,
     "mal_manga_completed": 5,
     "mal_manga_mean_score": 7.5
+  },
+  "975678891547041822": {
+    "author_name": "natureluvr169",
+    "discord_id": 975678891547041822,
+    "discord_username": "ddawgg33",
+    "discord_display_name": "natureluvr169",
+    "discord_avatar": "https://cdn.discordapp.com/avatars/975678891547041822/99bfaff5cf586326155ddbe64374455e.png?size=1024",
+    "anilist_user_id": 5683838,
+    "anilist_username": "ddawgg",
+    "anilist_url": "https://anilist.co/user/5683838",
+    "anilist_avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5683838-mfJoiWxV9bor.jpg",
+    "anilist_banner": "https://s4.anilist.co/file/anilistcdn/user/banner/b5683838-EvIuMtWHv5QK.jpg",
+    "anilist_about": "",
+    "anilist_anime_count": 143,
+    "anilist_manga_count": 73,
+    "anilist_mean_score": 85,
+    "anilist_minutes_watched": 49146,
+    "anilist_chapters_read": 10137
   }
 }
