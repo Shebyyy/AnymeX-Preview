@@ -31,5 +31,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:16706": {
+    "media_type": "anime",
+    "anilist_id": 16706,
+    "title": "The World God Only Knows: Goddesses",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
