@@ -615,6 +615,8 @@ jobs:
           GIT_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
           GIT_CALLBACK_SCHEME: ${{ secrets.GIT_CALLBACK_SCHEME }}
           COMMENTS_BASE_URL:  ${{ secrets.COMMENTS_BASE_URL }}
+          BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
+          BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
         run: |
           cd main-repo
           cat > .env << EOF
@@ -630,6 +632,8 @@ jobs:
           GIT_CLIENT_SECRET=$GIT_CLIENT_SECRET
           GIT_CALLBACK_SCHEME=$GIT_CALLBACK_SCHEME
           COMMENTS_BASE_URL=$COMMENTS_BASE_URL
+          BOT_BASE_URL=$BOT_BASE_URL
+          BOT_API_SECRET=$BOT_API_SECRET
           EOF
           
       - name: Clean Flutter for Beta Build
