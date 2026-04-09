@@ -20,5 +20,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:26": {
+    "media_type": "anime",
+    "anilist_id": 26,
+    "title": "Texhnolyze",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
