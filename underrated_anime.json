@@ -1408,5 +1408,55 @@
     "studios": [
       "bones"
     ]
+  },
+  {
+    "anilist_id": 105156,
+    "mal_id": 38659,
+    "title": "Cautious Hero: The Hero Is Overpowered but Overly Cautious",
+    "author": "vkAwesome",
+    "reason": "12 episode full entertainment and solid story.",
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5864168,
+        "username": "vkAwesome",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5864168-QsJysAbXqg1k.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105156-ZVtxISdoUqnY.png",
+    "score": 73,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Fantasy"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 12,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "FALL",
+    "season_year": 2019,
+    "description": "The goddess Rista summons a hero to help her hard mode video game-like world. The hero, Seiya, is exceptional in every way, but he is incredibly cautious to the point of buying three sets of armor (one to wear, a spare, and a spare for the spare) and going full power against weak slimes (just in case). \n <br /> <br />\n",
+    "studios": [
+      "WHITE FOX"
+    ]
   }
 ]
