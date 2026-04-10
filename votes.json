@@ -76,5 +76,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:31133": {
+    "media_type": "manga",
+    "anilist_id": 31133,
+    "title": "Dorohedoro",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
