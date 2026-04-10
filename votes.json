@@ -42,5 +42,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:3701": {
+    "media_type": "anime",
+    "anilist_id": 3701,
+    "title": "Kaiba",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
