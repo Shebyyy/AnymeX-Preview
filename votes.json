@@ -53,5 +53,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:85911": {
+    "media_type": "manga",
+    "anilist_id": 85911,
+    "title": "Tomodachi Game",
+    "upvotes": [
+      "al:7546133"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
