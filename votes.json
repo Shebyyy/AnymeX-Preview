@@ -64,5 +64,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:126403": {
+    "media_type": "anime",
+    "anilist_id": 126403,
+    "title": "Link Click",
+    "upvotes": [
+      "al:7546133"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
