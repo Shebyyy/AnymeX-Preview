@@ -1508,5 +1508,54 @@
     "studios": [
       "Lerche"
     ]
+  },
+  {
+    "anilist_id": 147642,
+    "mal_id": 51648,
+    "title": "The Unwanted Undead Adventurer",
+    "author": "vkAwesome",
+    "reason": "Good",
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5864168,
+        "username": "vkAwesome",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5864168-QsJysAbXqg1k.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx147642-SztpXNn9ke6P.jpg",
+    "score": 74,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "ONA",
+    "episodes": 12,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "WINTER",
+    "season_year": 2024,
+    "description": "Rentt Faina has hunted monsters for the last 10 years. Sadly, he’s not great at his job, stuck hunting slimes and goblins for a few coins each day. His luck turns when he finds an undiscovered path. At the path’s end, he meets his demise in the maw of a legendary dragon. But, he wakes up as an undead bag of bones! He sets out to achieve Existential Evolution and rejoin the land of the living.<br>\n<br>\n(Source: Crunchyroll)\n<br><br>\n<i>Note: Each episode streamed 3 days early on some streaming si",
+    "studios": [
+      "CONNECT"
+    ]
   }
 ]
