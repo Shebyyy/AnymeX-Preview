@@ -1689,5 +1689,58 @@
     "studios": [
       "APPP"
     ]
+  },
+  {
+    "anilist_id": 101291,
+    "mal_id": 37450,
+    "title": "Rascal Does Not Dream of Bunny Girl Senpai",
+    "author": "Ayanokōji",
+    "reason": "Nice to explore as something new.",
+    "user": {
+      "discord": {
+        "id": 1331083395614380090,
+        "username": "devta.exe",
+        "avatar": "https://cdn.discordapp.com/avatars/1331083395614380090/b85b30a12038f51ad7b31a34cd52c2ae.png?size=1024"
+      },
+      "anilist": {
+        "id": 7546133,
+        "username": "AkaneRudra",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7546133-x9B983O0qJj1.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "added_by_discord_id": "1331083395614380090",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101291-wfEdgPqtfU0l.jpg",
+    "score": 81,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Mystery",
+      "Psychological",
+      "Romance",
+      "Supernatural"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 13,
+    "duration": 25,
+    "chapters": null,
+    "volumes": null,
+    "season": "FALL",
+    "season_year": 2018,
+    "description": "There's a rumor about a mysterious phenomenon called \"puberty syndrome.\" For example, Sakuta Azusagawa is a high school student who suddenly sees a bunny girl appear in front of him. The girl is actually a girl named Mai Sakurajima, who is Sakuta's upperclassman who is also a famous actress who has gone on hiatus from the entertainment industry. For some reason, the people around Mai cannot see her bunny-girl figure. Sakuta sets out to solve this mystery, and as he spends time with Mai, he learn",
+    "studios": [
+      "CloverWorks"
+    ]
   }
 ]
