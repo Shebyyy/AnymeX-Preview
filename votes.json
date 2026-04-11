@@ -123,5 +123,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:1535": {
+    "media_type": "anime",
+    "anilist_id": 1535,
+    "title": "Death Note",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
