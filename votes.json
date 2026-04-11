@@ -112,5 +112,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:21093": {
+    "media_type": "anime",
+    "anilist_id": 21093,
+    "title": "Monster Musume: Everyday Life With Monster Girls",
+    "upvotes": [],
+    "downvotes": [
+      "al:7475531"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
