@@ -101,5 +101,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:790": {
+    "media_type": "anime",
+    "anilist_id": 790,
+    "title": "Ergo Proxy",
+    "upvotes": [
+      "al:7475531"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
