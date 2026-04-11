@@ -145,5 +145,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:101291": {
+    "media_type": "anime",
+    "anilist_id": 101291,
+    "title": "Rascal Does Not Dream of Bunny Girl Senpai",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
