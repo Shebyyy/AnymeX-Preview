@@ -1639,5 +1639,55 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
     "score": 84,
     "nsfw": false
+  },
+  {
+    "anilist_id": 268,
+    "mal_id": 268,
+    "title": "GOLDEN BOY",
+    "author": "vkAwesome",
+    "reason": "Golden Boy was in my watchlist for long time but for some reason i avoided it maybe because it's old or animation or the reel i saw on Instagram. I thought its nothing just a few witty dialogues and scene.\n\nBut now im totally baffled. Every episode is own story and every scene is full of entertainment. Animation is really good and expensive. English dub is really good.\n\nI would advise you to watch in Eng dub if you aren't fluent in Japanese.",
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5864168,
+        "username": "vkAwesome",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5864168-QsJysAbXqg1k.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "added_by_discord_id": "886674437448040489",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx268-0T6bdW9CzVvz.png",
+    "score": 78,
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Ecchi"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "OVA",
+    "episodes": 6,
+    "duration": 29,
+    "chapters": null,
+    "volumes": null,
+    "season": "FALL",
+    "season_year": 1995,
+    "description": "Kintarou Oe doesn't look like it, but he is a genius who completed all his university courses and then quit before graduating. He becomes a wandering student, going from place to place on his bicycle, seeking to learn what he can about life, the world, and women. He is willing and able to do any job he has to prove himself. His travels take him to a variety of locations and a variety of women, each who learns to love the hardworking guy, but not before he can run off.\n<br><br>\n(Source: Anime New",
+    "studios": [
+      "APPP"
+    ]
   }
 ]
