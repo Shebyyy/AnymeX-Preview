@@ -604,5 +604,56 @@
     "season_year": null,
     "description": "When six-year-old Inés laid eyes on the handsome heir to House Escalante, she promptly made the boy her fiancé. Since noble men are all the same, she figured she might as well choose a pretty one. But Lord Cárcel isn't ready for this sort of commitment just yet, and he spends the next decade and a half avoiding the marriage at all costs! Luckily, that's no trouble for Inés, as this marriage failing is exactly what she wants. In fact, he has her blessing to sow his wild oats as long as he stays o",
     "studios": []
+  },
+  {
+    "anilist_id": 96518,
+    "mal_id": 94919,
+    "title": "Bokutachi ga Yarimashita",
+    "author": "Bakaboss",
+    "reason": "It’s underrated because it traps you in the uncomfortable truth that one impulsive mistake can permanently fracture identity and reality, leaving no emotional escape for the reader. 😔",
+    "user": {
+      "discord": {
+        "id": 1115261507522015292,
+        "username": "nayemiku",
+        "avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024"
+      },
+      "anilist": {
+        "id": 7475531,
+        "username": "BakaBoss",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-QMa3Iyzmqj7A.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx96518-9yAgOYCSJhMj.jpg",
+    "score": 79,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Drama",
+      "Psychological",
+      "Romance",
+      "Slice of Life",
+      "Thriller"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": 87,
+    "volumes": 9,
+    "season": null,
+    "season_year": null,
+    "description": "Although satisfied with his average lifestyle, Tobio Masubuchi wishes for a long and fun existence, hoping that nothing will get in his way. Alongside his good friends Sho Isami, Yuki \"Maru\" Maruyama, and Hidero \"Paisen\" Kosaka, the group passes each day worry free, doing as they please. But when delinquents from a neighboring school overhear Maru saying that they should die, their troubles begin.\n<br><br>\nAfter being kidnapped and brutally assaulted, Maru is found by his friends, who are shocke",
+    "studios": []
   }
 ]
