@@ -25,7 +25,8 @@
         "username": "ASheby",
         "id": 5081635,
         "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
-      }
+      },
+      "isAdmin": true
     },
     "poster": "https://simkl.in/posters/49/4944796be3c2c515f_m.jpg",
     "score": 7.2,
@@ -56,7 +57,8 @@
             "username": "ASheby",
             "id": 5081635,
             "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
-          }
+          },
+          "isAdmin": true
         },
         "author": "Sheby",
         "text": "Often overlooked as just another teen movie, but it delivers a very real and relatable coming-of-age story with strong performances and honest emotions that hit deeper than expected.",
