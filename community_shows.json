@@ -25,7 +25,8 @@
         "username": "ASheby",
         "id": 5081635,
         "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
-      }
+      },
+      "isAdmin": true
     },
     "poster": "https://simkl.in/posters/20/20572c58e912e54_m.jpg",
     "score": 7.7,
@@ -56,7 +57,8 @@
             "username": "ASheby",
             "id": 5081635,
             "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
-          }
+          },
+          "isAdmin": true
         },
         "author": "Sheby",
         "text": "Often judged by its weak first season, but after Season 1 it becomes much darker and better written, with strong character development and unique supernatural storylines that many people miss.",
