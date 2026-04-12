@@ -1,0 +1,66 @@
+[
+  {
+    "anilist_id": 1535,
+    "mal_id": 1535,
+    "title": "Death Note",
+    "author": "Rieversed",
+    "reason": "testtestestestestestetsetstsetse",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 617537674084876318,
+            "username": "rieversed",
+            "avatar": "https://cdn.discordapp.com/avatars/617537674084876318/e00731a7dccffba80e77006950b5344d.png?size=1024"
+          },
+          "anilist": {
+            "id": 7168625,
+            "username": "Rieversed",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7168625-kT4MGec01Kua.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          }
+        },
+        "author": "Rieversed",
+        "text": "testtestestestestestetsetstsetse",
+        "added_at": "2026-04-12T10:32:03Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 617537674084876318,
+        "username": "rieversed",
+        "avatar": "https://cdn.discordapp.com/avatars/617537674084876318/e00731a7dccffba80e77006950b5344d.png?size=1024"
+      },
+      "anilist": {
+        "id": 7168625,
+        "username": "Rieversed",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7168625-kT4MGec01Kua.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      }
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
+    "score": 84,
+    "nsfw": false
+  }
+]
