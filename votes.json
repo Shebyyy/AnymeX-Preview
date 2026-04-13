@@ -160,9 +160,11 @@
     "media_type": "anime",
     "anilist_id": 20807,
     "title": "Prison School",
-    "upvotes": [],
+    "upvotes": [
+      "mal:13598844"
+    ],
     "downvotes": [],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 0
   }
 }
