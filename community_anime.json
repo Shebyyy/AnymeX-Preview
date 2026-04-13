@@ -2971,6 +2971,36 @@
         "author": "vkAwesome",
         "text": "Good",
         "added_at": null
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 612532963938271232,
+            "username": "asheby",
+            "avatar": "https://cdn.discordapp.com/avatars/612532963938271232/cf5d3f43c29516523531f21b09d4a743.png?size=1024"
+          },
+          "anilist": {
+            "id": 5724017,
+            "username": "ASheby",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5724017-Ap0MixlTBYOj.png"
+          },
+          "mal": {
+            "id": 13598844,
+            "username": "ASheby",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/422709bd-93d8-40d2-9acb-8940bac74a7f_225w?s=5d55de5a71803444cfee69204f47e5de"
+          },
+          "simkl": {
+            "username": "ASheby",
+            "id": 5081635,
+            "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
+          },
+          "isAdmin": true
+        },
+        "author": "ASheby",
+        "text": "testing logs kwjshhshshshejjeje",
+        "added_at": "2026-04-13T04:45:29Z"
       }
     ]
   },
