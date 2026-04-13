@@ -1283,5 +1283,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30070-iqQFA13GBkeI.png",
     "score": 70,
     "nsfw": false
+  },
+  {
+    "anilist_id": 128067,
+    "mal_id": 146909,
+    "title": "SSS-Class Revival Hunter",
+    "author": "LittleDevilSatan",
+    "reason": "the most unexpected and one of the best romantic storylines. it is such a refreshing point of view on the tower genre 10/10 100% recommend!",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6398583,
+            "username": "LittleDevilSatan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "LittleDevilSatan",
+        "text": "the most unexpected and one of the best romantic storylines. it is such a refreshing point of view on the tower genre 10/10 100% recommend!",
+        "added_at": "2026-04-13T22:10:24Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6398583,
+        "username": "LittleDevilSatan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx128067-wnLBg6Cy1ncs.jpg",
+    "score": 83,
+    "nsfw": false
   }
 ]
