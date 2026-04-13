@@ -166,5 +166,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:177104": {
+    "media_type": "anime",
+    "anilist_id": 177104,
+    "title": "The Most Notorious \"Talker\" Runs the World's Greatest Clan",
+    "upvotes": [
+      "mal:13598844"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
