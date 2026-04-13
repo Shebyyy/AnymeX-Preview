@@ -1216,5 +1216,71 @@
         "added_at": null
       }
     ]
+  },
+  {
+    "anilist_id": 30070,
+    "mal_id": 70,
+    "title": "Ubel Blatt",
+    "author": "adramelach",
+    "reason": "Good plot.Revenge story which takes place very sooner that expected at the start itself",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6051081,
+            "username": "adramelach",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6051081-GoDBScChZjKB.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "adramelach",
+        "text": "Good plot.Revenge story which takes place very sooner that expected at the start itself",
+        "added_at": "2026-04-13T02:40:42Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6051081,
+        "username": "adramelach",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6051081-GoDBScChZjKB.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30070-iqQFA13GBkeI.png",
+    "score": 70,
+    "nsfw": false
   }
 ]
