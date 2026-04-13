@@ -177,5 +177,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:162983": {
+    "media_type": "anime",
+    "anilist_id": 162983,
+    "title": "Undead Murder Farce",
+    "upvotes": [
+      "mal:13598844"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
