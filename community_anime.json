@@ -3260,5 +3260,88 @@
         "added_at": null
       }
     ]
+  },
+  {
+    "anilist_id": 113311,
+    "mal_id": 40716,
+    "title": "Kakushigoto",
+    "author": "Arken",
+    "reason": "Single Father Kakushi Gotou draws top selling Erotic Manga and keeping it a secret from her daughter. \n\nIt is a great wholesome slice of life story with a good comedic elements.\n\nIt is from the author of Joshiraku & Zetsubou-Sensei.",
+    "reasons": [
+      {
+        "discord_id": "854642964483538945",
+        "discord_username": "titangen",
+        "user": {
+          "discord": {
+            "id": 854642964483538945,
+            "username": "titangen",
+            "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+          },
+          "anilist": {
+            "id": 6335658,
+            "username": "GenTitan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+          },
+          "mal": {
+            "id": 19910960,
+            "username": "GenTitan",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arken",
+        "text": "Single Father Kakushi Gotou draws top selling Erotic Manga and keeping it a secret from her daughter. \n\nIt is a great wholesome slice of life story with a good comedic elements.\n\nIt is from the author of Joshiraku & Zetsubou-Sensei.",
+        "added_at": "2026-04-13T08:08:45.334282Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "854642964483538945",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113311-6bSvvCHBpjpI.jpg",
+    "score": 78,
+    "genres": [
+      "Comedy",
+      "Slice of Life"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 12,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "SPRING",
+    "season_year": 2020,
+    "description": "Single father Kakushi Gotou has a secret. He’s a top-selling artist of popular erotic manga, but his impressionable young daughter, Hime, can never find out! Now he’s having to bend over backwards just to keep her inquisitive little mind from discovering what he does for a living. A father-daughter tale of love and laughter.<br>\n<br>\n(Source: Funimation)",
+    "studios": [
+      "Ajiado"
+    ]
   }
 ]
