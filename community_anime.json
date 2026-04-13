@@ -3439,5 +3439,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99263-LcazQwdlWzMy.jpg",
     "score": 77,
     "nsfw": false
+  },
+  {
+    "anilist_id": 918,
+    "mal_id": 918,
+    "title": "Gintama",
+    "author": "Cruezxsp",
+    "reason": "If you haven’t watched Gintama, you’re seriously missing out on one of the most unique anime ever made. It perfectly blends comedy, action, and emotional storytelling in a way no other series does. One moment you’ll be laughing uncontrollably at its absurd humor and parodies, and the next, you’ll be completely invested in intense, heartfelt arcs. The characters are incredibly lovable and memorable, especially Gintoki, whose lazy attitude hides a deeply caring and powerful personality. Gintama isn’t just an anime—it’s an experience that keeps surprising you every time you watch it.",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 1000376190130999397,
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "If you haven’t watched Gintama, you’re seriously missing out on one of the most unique anime ever made. It perfectly blends comedy, action, and emotional storytelling in a way no other series does. One moment you’ll be laughing uncontrollably at its absurd humor and parodies, and the next, you’ll be completely invested in intense, heartfelt arcs. The characters are incredibly lovable and memorable, especially Gintoki, whose lazy attitude hides a deeply caring and powerful personality. Gintama isn’t just an anime—it’s an experience that keeps surprising you every time you watch it.",
+        "added_at": "2026-04-13T15:36:55Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 1000376190130999397,
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx918-iOaeBVUn4uK7.jpg",
+    "score": 85,
+    "nsfw": false
   }
 ]
