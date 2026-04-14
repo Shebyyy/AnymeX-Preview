@@ -3571,5 +3571,88 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98659-WNyPLIZDpGGY.jpg",
     "score": 76,
     "nsfw": false
+  },
+  {
+    "anilist_id": 185519,
+    "mal_id": 60508,
+    "title": "See You Tomorrow at the Food Court",
+    "author": "Ty",
+    "reason": "A cute slice of life anime that entails the lives of two girls enjoying daily after-school company together at a food court. A comedic premise with discussions on gacha games, school life, personal gripes and their friendship makes this six-episode series a chill and fun binge-watch.",
+    "reasons": [
+      {
+        "discord_id": "868860134649122836",
+        "discord_username": "tylikesty",
+        "user": {
+          "discord": {
+            "id": "868860134649122836",
+            "username": "tylikesty",
+            "avatar": "https://cdn.discordapp.com/avatars/868860134649122836/a_5316311d17be5d75ad8b7ff616e71367.gif?size=1024"
+          },
+          "anilist": {
+            "id": 6529636,
+            "username": "TwtTy",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6529636-zGbTsB1ZUyMh.png"
+          },
+          "mal": {
+            "id": 17220855,
+            "username": "_twt_ty",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/884927ee-37dd-4b2a-8e55-2bb279e86e3c_225w?s=93471f1bfd30fc22662adf1ec4d72f5c"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Ty",
+        "text": "A cute slice of life anime that entails the lives of two girls enjoying daily after-school company together at a food court. A comedic premise with discussions on gacha games, school life, personal gripes and their friendship makes this six-episode series a chill and fun binge-watch.",
+        "added_at": "2026-04-14T01:36:37.688073Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "868860134649122836",
+        "username": "tylikesty",
+        "avatar": "https://cdn.discordapp.com/avatars/868860134649122836/a_5316311d17be5d75ad8b7ff616e71367.gif?size=1024"
+      },
+      "anilist": {
+        "id": 6529636,
+        "username": "TwtTy",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6529636-zGbTsB1ZUyMh.png"
+      },
+      "mal": {
+        "id": 17220855,
+        "username": "_twt_ty",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/884927ee-37dd-4b2a-8e55-2bb279e86e3c_225w?s=93471f1bfd30fc22662adf1ec4d72f5c"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "868860134649122836",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185519-cuRKYBlZ3uWw.jpg",
+    "score": 73,
+    "genres": [
+      "Comedy",
+      "Slice of Life"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 6,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "SUMMER",
+    "season_year": 2025,
+    "description": "Meet Wada, who gives off an unapproachable vibe, and Yamamoto, who strikes fear into those around her because of her looks. Though the two girls attend separate high schools, they meet up at a shopping center’s food court almost every day. Take a little peek at the laid-back afternoons Wada and Yamamoto share as they reflect on the ups and downs of high school life together.\n\n<br><br>\n(Source: Crunchyroll)",
+    "studios": [
+      "Atelier Pontdarc"
+    ]
   }
 ]
