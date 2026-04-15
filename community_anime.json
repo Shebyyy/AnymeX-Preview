@@ -188,6 +188,37 @@
         "author": null,
         "text": "Witty, fast-paced and visually creative — a love letter to wasted youth",
         "added_at": null
+      },
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "If you haven’t watched The Tatami Galaxy, you’re missing a truly unique and thought-provoking anime. It explores college life, choices, and regrets through a fast-paced, visually creative storytelling style. Each episode shows alternate realities of the protagonist’s life, making you reflect on how small decisions shape your future. The narration is rapid and engaging, the humor is clever, and the deeper message about self-acceptance hits hard. It’s not just entertaining—it makes you think long after you finish it.",
+        "added_at": "2026-04-15T08:15:12.526162Z",
+        "edited_at": null
       }
     ]
   },
