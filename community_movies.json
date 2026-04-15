@@ -65,5 +65,74 @@
         "added_at": null
       }
     ]
+  },
+  {
+    "simkl_id": 65770,
+    "title": "Memories of Murder",
+    "year": 2003,
+    "author": "Cruezxsp",
+    "reason": "Directed by Bong Joon-ho, the film is based on true events and follows detectives struggling to solve a brutal serial murder case. It blends suspense, dark humor, and realism in a way that feels unsettlingly authentic. The performances, especially by Song Kang-ho, are powerful and deeply human. It’s not just a thriller—it’s a haunting experience that stays with you long after it ends",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "Directed by Bong Joon-ho, the film is based on true events and follows detectives struggling to solve a brutal serial murder case. It blends suspense, dark humor, and realism in a way that feels unsettlingly authentic. The performances, especially by Song Kang-ho, are powerful and deeply human. It’s not just a thriller—it’s a haunting experience that stays with you long after it ends",
+        "added_at": "2026-04-15T08:47:31.703610Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://simkl.in/posters/19/19493485020b9261b2_m.jpg",
+    "score": 8.1,
+    "genres": "Crime, Drama, Mystery, Thriller",
+    "simkl_url": "https://simkl.com/movies/65770",
+    "nsfw": false
   }
 ]
