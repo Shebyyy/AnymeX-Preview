@@ -134,5 +134,74 @@
     "genres": "Crime, Drama, Mystery, Thriller",
     "simkl_url": "https://simkl.com/movies/65770",
     "nsfw": false
+  },
+  {
+    "simkl_id": 231538,
+    "title": "Edge of Tomorrow",
+    "year": 2014,
+    "author": "Cruezxsp",
+    "reason": "Starring Tom Cruise, the movie takes a fresh spin on time-loop storytelling, mixing intense battles with smart humor. His character evolves from a cowardly officer into a skilled fighter in a really satisfying way. Alongside Emily Blunt, the action feels powerful and engaging. With its fast pace, clever concept, and thrilling execution, Edge of Tomorrow keeps you hooked from start to finish",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "Starring Tom Cruise, the movie takes a fresh spin on time-loop storytelling, mixing intense battles with smart humor. His character evolves from a cowardly officer into a skilled fighter in a really satisfying way. Alongside Emily Blunt, the action feels powerful and engaging. With its fast pace, clever concept, and thrilling execution, Edge of Tomorrow keeps you hooked from start to finish",
+        "added_at": "2026-04-15T08:49:23.525982Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://simkl.in/posters/13/135901752252e31c57_m.jpg",
+    "score": 7.8,
+    "genres": "Action, Adventure, Science Fiction, War",
+    "simkl_url": "https://simkl.com/movies/231538",
+    "nsfw": false
   }
 ]
