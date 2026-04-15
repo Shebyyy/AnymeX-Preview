@@ -4001,5 +4001,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21123-bCuqm8wLDqOw.png",
     "score": 75,
     "nsfw": false
+  },
+  {
+    "anilist_id": 21711,
+    "mal_id": 32998,
+    "title": "91 Days",
+    "author": "Cruezxsp",
+    "reason": "It follows a story of revenge within the mafia world, filled with tension, betrayal, and tough choices. The atmosphere is dark and realistic, and the characters feel deeply human with complex motivations. There’s no over-the-top action—just a slow, intense build that keeps you hooked. If you enjoy serious storytelling and emotional depth, 91 Days is definitely worth watching",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "It follows a story of revenge within the mafia world, filled with tension, betrayal, and tough choices. The atmosphere is dark and realistic, and the characters feel deeply human with complex motivations. There’s no over-the-top action—just a slow, intense build that keeps you hooked. If you enjoy serious storytelling and emotional depth, 91 Days is definitely worth watching",
+        "added_at": "2026-04-15T11:03:35Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21711-EQN4sCIXRhKf.png",
+    "score": 76,
+    "nsfw": false
   }
 ]
