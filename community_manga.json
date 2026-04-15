@@ -1349,5 +1349,87 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx128067-wnLBg6Cy1ncs.jpg",
     "score": 83,
     "nsfw": false
+  },
+  {
+    "anilist_id": 114605,
+    "mal_id": 146982,
+    "title": "Latna Saga: Survival of a Sword King",
+    "author": "Cruezxsp",
+    "reason": "It follows a protagonist who gets stuck in a brutal survival system, leading to intense growth, overpowered moments, and surprisingly emotional depth. The action scenes are epic, the world-building is engaging, and the balance of humor and seriousness keeps it interesting. It’s not just about strength—it’s about endurance, struggle, and rising against impossible odds",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "It follows a protagonist who gets stuck in a brutal survival system, leading to intense growth, overpowered moments, and surprisingly emotional depth. The action scenes are epic, the world-building is engaging, and the balance of humor and seriousness keeps it interesting. It’s not just about strength—it’s about endurance, struggle, and rising against impossible odds",
+        "added_at": "2026-04-15T09:11:43.316230Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx114605-MYUWMsdjry6m.jpg",
+    "score": 76,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "nsfw": false,
+    "status": "RELEASING",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": null,
+    "volumes": null,
+    "season": null,
+    "season_year": null,
+    "description": "After being recently discharged from military service and just drifting through life, Hanbin Ryu is suddenly transported to another world. However, his “guide line,” the system bestowed upon him to help with his survival and growth, was filled with errors, causing him to be stuck in the tutorial stage for over 20 years. When he is finally released from this personal hell, he finds everyone has turned against otherworlders like him. Just how will this low-level, super-tutorial newbie survive?<br>",
+    "studios": []
   }
 ]
