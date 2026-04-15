@@ -192,11 +192,9 @@
     "media_type": "anime",
     "anilist_id": 7785,
     "title": "Tatami Galaxy",
-    "upvotes": [
-      "al:778172"
-    ],
+    "upvotes": [],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 0,
     "total_downvotes": 0
   }
 }
