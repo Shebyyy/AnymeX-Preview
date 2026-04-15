@@ -196,5 +196,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:2251": {
+    "media_type": "anime",
+    "anilist_id": 2251,
+    "title": "Baccano!",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
