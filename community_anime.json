@@ -3851,5 +3851,89 @@
     "studios": [
       "MADHOUSE"
     ]
+  },
+  {
+    "anilist_id": 2251,
+    "mal_id": 2251,
+    "title": "Baccano!",
+    "author": "Cruezxsp",
+    "reason": "It tells multiple stories at once, jumping between timelines and characters, but everything connects in a brilliant way. From mafia conflicts to immortality mysteries, the chaos is pure fun. The fast-paced storytelling, stylish setting, and unforgettable characters like Isaac and Miria make every moment entertaining. It may feel confusing at first, but once it clicks, Baccano! becomes an incredibly rewarding and exciting experience",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "It tells multiple stories at once, jumping between timelines and characters, but everything connects in a brilliant way. From mafia conflicts to immortality mysteries, the chaos is pure fun. The fast-paced storytelling, stylish setting, and unforgettable characters like Isaac and Miria make every moment entertaining. It may feel confusing at first, but once it clicks, Baccano! becomes an incredibly rewarding and exciting experience",
+        "added_at": "2026-04-15T08:19:37.324368Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2251-tTQoWxVy4472.jpg",
+    "score": 81,
+    "genres": [
+      "Action",
+      "Mystery",
+      "Supernatural"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "TV",
+    "episodes": 13,
+    "duration": 25,
+    "chapters": null,
+    "volumes": null,
+    "season": "SUMMER",
+    "season_year": 2007,
+    "description": "During the early 1930s in Chicago, the transcontinental train, Flying Pussyfoot, is starting its legendary journey that will leave a trail of blood all over the country. At the same time in New York, the ambitious scientist Szilard and his unwilling aide Ennis, are looking for missing bottles of the immortality elixir. In addition, a war between the mafia groups is getting worse. On board the Advena Avis, in 1711, alchemists are about to learn the price of immortality.<br><br>\nBased on the award",
+    "studios": [
+      "Brain's Base"
+    ]
   }
 ]
