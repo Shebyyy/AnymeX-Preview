@@ -207,5 +207,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:128067": {
+    "media_type": "manga",
+    "anilist_id": 128067,
+    "title": "SSS-Class Revival Hunter",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
