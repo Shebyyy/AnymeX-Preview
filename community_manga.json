@@ -1498,5 +1498,86 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx116768-lYPIhbYUojSM.jpg",
     "score": 75,
     "nsfw": false
+  },
+  {
+    "anilist_id": 146983,
+    "mal_id": 145863,
+    "title": "Goodbye, Eri",
+    "author": "Arken",
+    "reason": "This 200+ pages one shot that blends the cinematic storytelling with raw nature of characters.",
+    "reasons": [
+      {
+        "discord_id": "854642964483538945",
+        "discord_username": "titangen",
+        "user": {
+          "discord": {
+            "id": 854642964483538945,
+            "username": "titangen",
+            "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+          },
+          "anilist": {
+            "id": 6335658,
+            "username": "GenTitan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+          },
+          "mal": {
+            "id": 19910960,
+            "username": "GenTitan",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arken",
+        "text": "This 200+ pages one shot that blends the cinematic storytelling with raw nature of characters.",
+        "added_at": "2026-04-16T07:20:26.410783Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "854642964483538945",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx146983-pLf4apCkFwKL.jpg",
+    "score": 85,
+    "genres": [
+      "Drama",
+      "Psychological"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "ONE_SHOT",
+    "episodes": null,
+    "duration": null,
+    "chapters": 1,
+    "volumes": 1,
+    "season": null,
+    "season_year": null,
+    "description": "With his mother dying, Yuuta attempts to capture her last days on his phone. After her death, Yuuta heads to the roof of the hospital to commit suicide, but a meeting with a strange girl leads him on the path to making a movie.\n<br><br>\n(Source: Manga Plus)<br><br><i>Note: The one-shot was compiled in a special volume, released on July 4, 2022.</i>",
+    "studios": []
   }
 ]
