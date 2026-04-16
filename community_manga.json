@@ -1437,7 +1437,7 @@
     "mal_id": 148159,
     "title": "Dark Mortal",
     "author": "SrPigman",
-    "reason": "es de mis favoritas, historia bien hecha, final bien hecho",
+    "reason": "Translated: It's one of my favorites, well done story, well done ending\nOriginal (Spanish): es de mis favoritas, historia bien hecha, final bien hecho",
     "reasons": [
       {
         "discord_id": null,
@@ -1466,8 +1466,9 @@
           "isAdmin": false
         },
         "author": "SrPigman",
-        "text": "es de mis favoritas, historia bien hecha, final bien hecho",
-        "added_at": "2026-04-16T03:44:00Z"
+        "text": "Translated: It's one of my favorites, well done story, well done ending\nOriginal (Spanish): es de mis favoritas, historia bien hecha, final bien hecho",
+        "added_at": "2026-04-16T03:44:00Z",
+        "translated_at": "2026-04-16T04:50:50Z"
       }
     ],
     "user": {
