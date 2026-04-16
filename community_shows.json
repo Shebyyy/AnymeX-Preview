@@ -203,5 +203,74 @@
     "genres": "Action, Adventure, Drama, History",
     "simkl_url": "https://simkl.com/shows/1375946",
     "nsfw": true
+  },
+  {
+    "simkl_id": 1343616,
+    "title": "All of Us Are Dead",
+    "year": 2022,
+    "author": "Cruezxsp",
+    "reason": "Set in a high school during a sudden outbreak, it captures fear, friendship, and the instinct to survive in a very real way. The tension is constant, the action is brutal, and the characters feel relatable as they face impossible choices. It’s not just about zombies—it’s about human emotions under pressure, making it a gripping and unforgettable watch",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "Set in a high school during a sudden outbreak, it captures fear, friendship, and the instinct to survive in a very real way. The tension is constant, the action is brutal, and the characters feel relatable as they face impossible choices. It’s not just about zombies—it’s about human emotions under pressure, making it a gripping and unforgettable watch",
+        "added_at": "2026-04-16T19:59:34.466923Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://simkl.in/posters/12/121758735572ac424f_m.jpg",
+    "score": 7.6,
+    "genres": "Action, Drama, Fantasy, Horror",
+    "simkl_url": "https://simkl.com/shows/1343616",
+    "nsfw": true
   }
 ]
