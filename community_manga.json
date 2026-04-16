@@ -1431,5 +1431,71 @@
     "season_year": null,
     "description": "After being recently discharged from military service and just drifting through life, Hanbin Ryu is suddenly transported to another world. However, his “guide line,” the system bestowed upon him to help with his survival and growth, was filled with errors, causing him to be stuck in the tutorial stage for over 20 years. When he is finally released from this personal hell, he finds everyone has turned against otherworlders like him. Just how will this low-level, super-tutorial newbie survive?<br>",
     "studios": []
+  },
+  {
+    "anilist_id": 116768,
+    "mal_id": 148159,
+    "title": "Dark Mortal",
+    "author": "SrPigman",
+    "reason": "es de mis favoritas, historia bien hecha, final bien hecho",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7334861,
+            "username": "SrPigman",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7334861-wAiIsxsES6KW.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "SrPigman",
+        "text": "es de mis favoritas, historia bien hecha, final bien hecho",
+        "added_at": "2026-04-16T03:44:00Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 7334861,
+        "username": "SrPigman",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7334861-wAiIsxsES6KW.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx116768-lYPIhbYUojSM.jpg",
+    "score": 75,
+    "nsfw": false
   }
 ]
