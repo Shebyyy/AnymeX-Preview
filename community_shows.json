@@ -272,5 +272,74 @@
     "genres": "Action, Drama, Fantasy, Horror",
     "simkl_url": "https://simkl.com/shows/1343616",
     "nsfw": true
+  },
+  {
+    "simkl_id": 1499576,
+    "title": "Alice in Borderland",
+    "year": 2020,
+    "author": "Cruezxsp",
+    "reason": "It throws ordinary people into deadly games where intelligence, strategy, and courage decide who lives or dies. The tension is constant, the challenges are unpredictable, and every episode raises the stakes even higher. With strong character development and shocking twists, it’s not just about survival—it’s about understanding human nature under extreme pressure",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "It throws ordinary people into deadly games where intelligence, strategy, and courage decide who lives or dies. The tension is constant, the challenges are unpredictable, and every episode raises the stakes even higher. With strong character development and shocking twists, it’s not just about survival—it’s about understanding human nature under extreme pressure",
+        "added_at": "2026-04-17T09:54:25.093779Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://simkl.in/posters/10/10628374c2d201d85f_m.jpg",
+    "score": 7.9,
+    "genres": "Action, Adventure, Drama, Horror",
+    "simkl_url": "https://simkl.com/shows/1499576",
+    "nsfw": true
   }
 ]
