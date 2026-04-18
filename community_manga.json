@@ -1645,5 +1645,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx150440-QdBFoMh4YHsK.jpg",
     "score": 77,
     "nsfw": false
+  },
+  {
+    "anilist_id": 114164,
+    "mal_id": 129651,
+    "title": "My New Wife’s Fake Smile",
+    "author": "HidinNightmares",
+    "reason": "Very cute. Very peak. Wholesome. Love it. Would recommend to anybody, especially romance enjoyers. Will reread soon.",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6913114,
+            "username": "HidinNightmares",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6913114-4vGLHkHXQUSw.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "HidinNightmares",
+        "text": "Very cute. Very peak. Wholesome. Love it. Would recommend to anybody, especially romance enjoyers. Will reread soon.",
+        "added_at": "2026-04-18T17:00:55Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6913114,
+        "username": "HidinNightmares",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6913114-4vGLHkHXQUSw.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx114164-9QodSMx4SWbL.jpg",
+    "score": 72,
+    "nsfw": false
   }
 ]
