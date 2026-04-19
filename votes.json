@@ -240,5 +240,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:155783": {
+    "media_type": "anime",
+    "anilist_id": 155783,
+    "title": "Tengoku Daimakyo",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
