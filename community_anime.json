@@ -4392,5 +4392,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx617-yo9IcTEQRNuN.jpg",
     "score": 73,
     "nsfw": false
+  },
+  {
+    "anilist_id": 134732,
+    "mal_id": 49052,
+    "title": "Aoashi",
+    "author": "BakaBoss",
+    "reason": "Aoashi focuses on realistic team tactics and slow character growth instead of flashy hype moments, so most casual fans overlook its depth ⚽",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 1115261507522015292,
+            "username": "nayemiku",
+            "avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024"
+          },
+          "anilist": {
+            "id": 7475531,
+            "username": "BakaBoss",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-FrKKPfPzPazl.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "BakaBoss",
+        "text": "Aoashi focuses on realistic team tactics and slow character growth instead of flashy hype moments, so most casual fans overlook its depth ⚽",
+        "added_at": "2026-04-20T02:26:58Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 1115261507522015292,
+        "username": "nayemiku",
+        "avatar": "https://cdn.discordapp.com/avatars/1115261507522015292/beb60cc5082f49a207daa24300de32c9.png?size=1024"
+      },
+      "anilist": {
+        "id": 7475531,
+        "username": "BakaBoss",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-FrKKPfPzPazl.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx134732-OXKSrOhF9pCM.jpg",
+    "score": 81,
+    "nsfw": false
   }
 ]
