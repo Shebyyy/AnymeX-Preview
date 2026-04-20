@@ -273,5 +273,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:14813": {
+    "media_type": "anime",
+    "anilist_id": 14813,
+    "title": "My Teen Romantic Comedy SNAFU",
+    "upvotes": [
+      "al:5792869"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
