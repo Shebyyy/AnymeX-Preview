@@ -1,0 +1,1172 @@
+name: Build Fork/AnymeX (No Release)
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: "Fork repo to clone (e.g. someuser/AnymeX — set automatically by the Discord bot)"
+        required: true
+        default: "RyanYuuki/AnymeX"
+      source_branch:
+        description: "Branch to clone from the selected fork (set automatically by the Discord bot)"
+        required: false
+        default: "main"
+      platforms:
+        description: "Platforms to build (comma-separated or 'all')"
+        required: true
+        default: "android,linux,ios"
+        type: choice
+        options:
+          - all
+          - android
+          - linux
+          - windows
+          - macos
+          - ios
+          - android,linux,ios
+          - android,ios
+          - android,windows
+          - android,linux
+          - android,macos
+          - linux,windows
+          - linux,macos
+          - windows,macos
+          - ios,macos
+      build_type:
+        description: "Build type"
+        required: true
+        default: "alpha"
+        type: choice
+        options:
+          - stable
+          - alpha
+      tag_override:
+        description: "Version tag (e.g. v3.0.4-alpha or v3.0.4). Leave empty to auto-use latest release tag from this repo."
+        required: false
+        default: ""
+      triggered_by:
+        description: "GitHub username of who triggered this build (set automatically by the Discord bot)"
+        required: false
+        default: ""
+
+env:
+  FLUTTER_VERSION: "3.41.6"
+  ZSIGN_VERSION: "0.7"
+
+jobs:
+
+  # ─────────────────────────────────────────────
+  # Resolve version tag
+  # ─────────────────────────────────────────────
+  resolve-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      effective_tag: ${{ steps.get-tag.outputs.effective_tag }}
+    steps:
+      - name: Resolve effective tag
+        id: get-tag
+        shell: bash
+        run: |
+          TAG_OVERRIDE="${{ github.event.inputs.tag_override }}"
+
+          if [ -n "$TAG_OVERRIDE" ]; then
+            echo "📌 Using provided tag: $TAG_OVERRIDE"
+            RAW_TAG="$TAG_OVERRIDE"
+          else
+            echo "🔍 No tag provided — fetching latest release from ${{ github.repository }}..."
+            RAW_TAG=$(curl -s \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/latest" \
+              | jq -r '.tag_name')
+
+            if [ -z "$RAW_TAG" ] || [ "$RAW_TAG" = "null" ]; then
+              echo "❌ Could not fetch latest release tag — please provide tag_override manually"
+              exit 1
+            fi
+
+            echo "✅ Latest release tag: $RAW_TAG"
+          fi
+
+          # Replace -beta suffix with -alpha (e.g. v3.0.7+5-beta → v3.0.7+5-alpha)
+          EFFECTIVE_TAG="${RAW_TAG/-beta/-alpha}"
+          if [ "$EFFECTIVE_TAG" != "$RAW_TAG" ]; then
+            echo "🔄 Replaced -beta with -alpha: $RAW_TAG → $EFFECTIVE_TAG"
+          fi
+
+          echo "effective_tag=$EFFECTIVE_TAG" >> $GITHUB_OUTPUT
+
+  # ─────────────────────────────────────────────
+  # Resolve which platforms to actually build
+  # ─────────────────────────────────────────────
+  resolve-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Resolve platform matrix
+        id: set-matrix
+        shell: bash
+        run: |
+          INPUT="${{ github.event.inputs.platforms }}"
+          ALL='["android","linux","windows","macos","ios"]'
+
+          if [ "$INPUT" = "all" ]; then
+            PLATFORMS="$ALL"
+          else
+            IFS=',' read -ra PARTS <<< "$INPUT"
+            JSON="["
+            for i in "${!PARTS[@]}"; do
+              PART=$(echo "${PARTS[$i]}" | xargs)   # trim whitespace
+              if [ $i -gt 0 ]; then JSON+=","; fi
+              JSON+="\"$PART\""
+            done
+            JSON+="]"
+            PLATFORMS="$JSON"
+          fi
+
+          # Map platform → runner OS
+          MATRIX_INCLUDES=""
+          FIRST=true
+          for PLATFORM in $(echo "$PLATFORMS" | jq -r '.[]'); do
+            case "$PLATFORM" in
+              android) OS="ubuntu-latest" ;;
+              linux)   OS="ubuntu-latest" ;;
+              windows) OS="windows-latest" ;;
+              macos)   OS="macos-latest" ;;
+              ios)     OS="macos-latest" ;;
+              *)       echo "Unknown platform: $PLATFORM"; continue ;;
+            esac
+            if [ "$FIRST" = true ]; then FIRST=false; else MATRIX_INCLUDES+=","; fi
+            MATRIX_INCLUDES+="{\"platform\":\"$PLATFORM\",\"os\":\"$OS\"}"
+          done
+
+          MATRIX="{\"include\":[$MATRIX_INCLUDES]}"
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+          echo "Resolved matrix: $MATRIX"
+
+  # ─────────────────────────────────────────────
+  # Main build job
+  # ─────────────────────────────────────────────
+  build:
+    needs: [resolve-matrix, resolve-tag]
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.resolve-matrix.outputs.matrix) }}
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: alpha-repo
+
+      # ── Clone main repo ──────────────────────
+      - name: Clone Main Repository
+        shell: bash
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "  Cloning Main Repository"
+          echo "════════════════════════════════════════════"
+          SOURCE_REPO="${{ github.event.inputs.source_repo }}"
+          SOURCE_REPO="${SOURCE_REPO:-RyanYuuki/AnymeX}"
+          BRANCH="${{ github.event.inputs.source_branch }}"
+          BRANCH="${BRANCH:-main}"
+          git clone --branch "$BRANCH" "https://github.com/${SOURCE_REPO}.git" main-repo
+          echo "✅ Cloned ${SOURCE_REPO} (branch: $BRANCH) to main-repo/"
+
+      # ── Copy alpha assets ─────────────────────
+      - name: Copy Alpha Assets to Main Repo
+        shell: bash
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "  Copying Alpha Assets"
+          echo "════════════════════════════════════════════"
+
+          cp -r alpha-repo/logo/android/app/src/main/res/* main-repo/android/app/src/main/res/
+          echo "✅ Android icons copied"
+
+          cp -r alpha-repo/logo/ios/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/ios/Runner/Assets.xcassets/AppIcon.appiconset/
+          echo "✅ iOS icons copied"
+
+          cp -r alpha-repo/logo/macos/Runner/Assets.xcassets/AppIcon.appiconset/* main-repo/macos/Runner/Assets.xcassets/AppIcon.appiconset/
+          echo "✅ macOS icons copied"
+
+          cp alpha-repo/logo/windows/runner/resources/app_icon.ico main-repo/windows/runner/resources/
+          cp alpha-repo/logo/anymex.ico main-repo/
+          echo "✅ Windows icons copied"
+
+          mkdir -p main-repo/assets/images
+          cp alpha-repo/assets/images/logo.png main-repo/assets/images/
+          cp alpha-repo/assets/images/logo_transparent.png main-repo/assets/images/
+          echo "✅ Linux icons copied"
+
+          cp alpha-repo/scripts/rename_app_alpha.sh main-repo/scripts/
+          chmod +x main-repo/scripts/rename_app_alpha.sh
+          echo "✅ Rename script copied"
+
+      # ── Detect build type ─────────────────────
+      - name: Set Build Type Environment Variable
+        shell: bash
+        run: |
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          if [[ "$BUILD_TYPE" == "alpha" ]]; then
+            echo "IS_ALPHA_BUILD=true" >> $GITHUB_ENV
+            echo "🔵 Alpha build — caching disabled"
+          else
+            echo "IS_ALPHA_BUILD=false" >> $GITHUB_ENV
+            echo "🟢 Stable build — caching enabled"
+          fi
+
+          # Determine effective tag
+          EFFECTIVE_TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          echo "EFFECTIVE_TAG=$EFFECTIVE_TAG" >> $GITHUB_ENV
+          echo "✅ Using tag: $EFFECTIVE_TAG"
+
+      # ── Toolchain ─────────────────────────────
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Cache Rust
+        if: env.IS_ALPHA_BUILD != 'true'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            main-repo/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('main-repo/**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - uses: actions/setup-java@v3
+        if: matrix.platform == 'android' || matrix.platform == 'linux' || matrix.platform == 'windows' || matrix.platform == 'macos'
+        with:
+          distribution: "adopt"
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: ${{ env.IS_ALPHA_BUILD != 'true' }}
+
+      - name: Fix line endings (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          cd main-repo
+          sed -i 's/\r$//' scripts/rename_app_alpha.sh
+
+      # ── Alpha rename ───────────────────────────
+      - name: Auto rename for alpha build
+        shell: bash
+        run: |
+          cd main-repo
+          TAG="${EFFECTIVE_TAG}"
+
+          echo "════════════════════════════════════════════"
+          echo "  Build Type Detection"
+          echo "════════════════════════════════════════════"
+          echo "Tag: $TAG"
+
+          if [[ "$TAG" == *"-alpha" ]]; then
+            echo "🔵 Alpha build detected"
+
+            VERSION_PART=$(echo "$TAG" | sed 's/^v//')
+
+            if [[ "$VERSION_PART" == *"+"* ]]; then
+              SEMVER=$(echo "$VERSION_PART" | cut -d'+' -f1 | cut -d'-' -f1)
+            else
+              SEMVER=$(echo "$VERSION_PART" | cut -d'-' -f1)
+            fi
+
+            BUILD_NUMBER="${GITHUB_RUN_NUMBER}"
+            PUBSPEC_VERSION="${SEMVER}+${BUILD_NUMBER}"
+            DISPLAY_VERSION="v${VERSION_PART}"
+
+            echo "Pubspec version: $PUBSPEC_VERSION"
+            echo "Display version: $DISPLAY_VERSION"
+
+            if [ ! -f "scripts/rename_app_alpha.sh" ]; then
+              echo "❌ Error: scripts/rename_app_alpha.sh not found"
+              exit 1
+            fi
+
+            chmod +x scripts/rename_app_alpha.sh
+            if ./scripts/rename_app_alpha.sh "$PUBSPEC_VERSION" "$DISPLAY_VERSION"; then
+              echo "✅ Alpha rename completed successfully"
+            else
+              echo "❌ Alpha rename failed"
+              exit 1
+            fi
+          else
+            echo "🟢 Stable build — skipping rename"
+          fi
+
+      # ── Configure Google Services ─────────────
+      - name: Configure Google Services for Alpha
+        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD == 'true'
+        shell: bash
+        run: |
+          cd main-repo
+          echo "🔵 Disabling Google Services for alpha"
+          sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
+          sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
+          echo "✅ Google Services disabled"
+
+      # ── Verify alpha config ────────────────────
+      - name: Verify alpha configuration
+        if: env.IS_ALPHA_BUILD == 'true'
+        shell: bash
+        run: |
+          cd main-repo
+          echo "════════════════════════════════════════════"
+          echo "  Verifying Alpha Configuration"
+          echo "════════════════════════════════════════════"
+
+          ERRORS=0
+
+          check() {
+            local DESC="$1"; shift
+            if "$@" 2>/dev/null; then
+              echo "✅ $DESC"
+            else
+              echo "❌ $DESC"
+              ERRORS=$((ERRORS + 1))
+            fi
+          }
+
+          # Dart
+          echo ""; echo "🎯 DART"
+          check "MaterialApp title" grep -q 'title: "AnymeX α"' lib/main.dart
+
+          # Android
+          echo ""; echo "📱 ANDROID"
+          check "Package name in build.gradle"   grep -q "com.ryan.anymexalpha" android/app/build.gradle
+          check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexalpha"' android/app/src/main/AndroidManifest.xml
+          check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX α"' android/app/src/main/AndroidManifest.xml
+          check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexalpha"
+
+          # iOS
+          echo ""; echo "🍎 iOS"
+          check "Bundle ID in project.pbxproj" grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexalpha" ios/Runner.xcodeproj/project.pbxproj
+          check "App name in Info.plist"        grep -q "<string>AnymeX α</string>" ios/Runner/Info.plist
+
+          # macOS
+          echo ""; echo "🖥️  macOS"
+          [ -f "macos/Runner/Configs/AppInfo.xcconfig" ] && {
+            check "Bundle ID in AppInfo.xcconfig"  grep -q "PRODUCT_BUNDLE_IDENTIFIER = com.ryan.anymexalpha" macos/Runner/Configs/AppInfo.xcconfig
+            check "Product name in AppInfo.xcconfig" grep -q "PRODUCT_NAME = anymex_alpha" macos/Runner/Configs/AppInfo.xcconfig
+          } || echo "⚠️  AppInfo.xcconfig not found (skipping)"
+
+          # Linux
+          echo ""; echo "🐧 LINUX"
+          [ -f "linux/my_application.cc" ] && check "App name in my_application.cc" grep -q '"AnymeX α"' linux/my_application.cc || echo "⚠️  my_application.cc not found (skipping)"
+          [ -f "linux/CMakeLists.txt" ]    && check "App ID in CMakeLists.txt"      grep -q 'set(APPLICATION_ID "com.ryan.anymexalpha")' linux/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+
+          # Windows
+          echo ""; echo "🪟 WINDOWS"
+          [ -f "windows/runner/Runner.rc" ] && {
+            check "Binary name in Runner.rc"   grep -q '"anymex_alpha"' windows/runner/Runner.rc
+            check "Product name in Runner.rc"  grep -q 'VALUE "ProductName", "AnymeX α"' windows/runner/Runner.rc
+          } || echo "⚠️  Runner.rc not found (skipping)"
+          [ -f "windows/CMakeLists.txt" ] && check "Binary name in CMakeLists.txt" grep -q 'set(BINARY_NAME "anymex_alpha")' windows/CMakeLists.txt || echo "⚠️  CMakeLists.txt not found (skipping)"
+
+          # Flutter version
+          echo ""; echo "🎯 FLUTTER"
+          TAG="${EFFECTIVE_TAG}"
+          VERSION_PART=$(echo "$TAG" | sed 's/^v//')
+          if [[ "$VERSION_PART" == *"+"* ]]; then
+            SEMVER=$(echo "$VERSION_PART" | cut -d'+' -f1 | cut -d'-' -f1)
+          else
+            SEMVER=$(echo "$VERSION_PART" | cut -d'-' -f1)
+          fi
+          VERSION="${SEMVER}+${GITHUB_RUN_NUMBER}"
+          check "Version in pubspec.yaml: $VERSION" grep -q "version: $VERSION" pubspec.yaml
+
+          echo ""
+          echo "════════════════════════════════════════════"
+          if [ $ERRORS -eq 0 ]; then
+            echo "✅ ALL CHECKS PASSED"
+            exit 0
+          else
+            echo "❌ FAILED: $ERRORS error(s)"
+            exit 1
+          fi
+          echo "════════════════════════════════════════════"
+
+      # ── Platform-specific caches & setups ─────
+      - name: Cache Gradle
+        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD != 'true'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('main-repo/**/*.gradle*', 'main-repo/**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Cache CMake
+        if: matrix.platform == 'android'
+        uses: actions/cache@v3
+        with:
+          path: ~/cmake
+          key: cmake-3.18.1-linux-x64
+
+      - name: Setup Android
+        if: matrix.platform == 'android'
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        run: |
+          cd main-repo
+          if [ ! -d "$HOME/cmake/cmake-3.18.1-Linux-x86_64" ]; then
+            mkdir -p $HOME/cmake && cd $HOME/cmake
+            wget -q https://github.com/Kitware/CMake/releases/download/v3.18.1/cmake-3.18.1-Linux-x86_64.tar.gz
+            tar -xzf cmake-3.18.1-Linux-x86_64.tar.gz
+          fi
+          cd $GITHUB_WORKSPACE/main-repo
+          echo "cmake.dir=$HOME/cmake/cmake-3.18.1-Linux-x86_64" >> android/local.properties
+          mkdir -p android/app
+          echo "$KEYSTORE_BASE64" | base64 -d > android/app/anymex.jks
+          cat > android/key.properties << EOF
+          storePassword=$KEYSTORE_PASSWORD
+          keyPassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          storeFile=anymex.jks
+          EOF
+
+      - name: Setup Linux
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ninja-build cmake maven clang mpv libgtk-3-dev libblkid-dev liblzma-dev pkg-config libmpv-dev webkit2gtk-4.1 fuse rpm
+          wget -qO appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod +x appimagetool && sudo mv appimagetool /usr/local/bin/
+
+      - name: Setup Windows (Install Inno)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $isccPath = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (Test-Path $isccPath) { Write-Host "Inno Setup already installed"; exit 0 }
+          $installer = "$env:TEMP\innosetup.exe"
+          Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile $installer -UseBasicParsing
+          Start-Process -FilePath $installer -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART","/SP-" -Wait -NoNewWindow
+          if (-not (Test-Path $isccPath)) { Write-Error "Inno Setup install failed"; exit 1 }
+
+      - name: Add Inno Setup to PATH
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $innoPath = "${env:ProgramFiles(x86)}\Inno Setup 6"
+          if (-not (Test-Path $innoPath)) { Write-Error "Inno Setup dir not found"; exit 1 }
+          echo "$innoPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      # ── Setup .env ────────────────────────────
+      - name: Setup Environment
+        shell: bash
+        env:
+          AL_CLIENT_ID: ${{ secrets.AL_CLIENT_ID }}
+          AL_CLIENT_SECRET: ${{ secrets.AL_CLIENT_SECRET }}
+          SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+          SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
+          MAL_CLIENT_ID: ${{ secrets.MAL_CLIENT_ID }}
+          MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
+          CALLBACK_SCHEME: ${{ secrets.CALLBACK_SCHEME }}
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+          GIT_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
+          GIT_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
+          GIT_CALLBACK_SCHEME: ${{ secrets.GIT_CALLBACK_SCHEME }}
+          COMMENTS_BASE_URL: ${{ secrets.COMMENTS_BASE_URL_TEST }}
+          BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
+          BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
+        run: |
+          cd main-repo
+          cat > .env << EOF
+          AL_CLIENT_ID=$AL_CLIENT_ID
+          AL_CLIENT_SECRET=$AL_CLIENT_SECRET
+          SIMKL_CLIENT_ID=$SIMKL_CLIENT_ID
+          SIMKL_CLIENT_SECRET=$SIMKL_CLIENT_SECRET
+          MAL_CLIENT_ID=$MAL_CLIENT_ID
+          MAL_CLIENT_SECRET=$MAL_CLIENT_SECRET
+          CALLBACK_SCHEME=$CALLBACK_SCHEME
+          GOOGLE_BOOKS_API_KEY=$GOOGLE_BOOKS_API_KEY
+          GIT_CLIENT_ID=$GIT_CLIENT_ID
+          GIT_CLIENT_SECRET=$GIT_CLIENT_SECRET
+          GIT_CALLBACK_SCHEME=$GIT_CALLBACK_SCHEME
+          COMMENTS_BASE_URL=$COMMENTS_BASE_URL
+          BOT_BASE_URL=$BOT_BASE_URL
+          BOT_API_SECRET=$BOT_API_SECRET
+          EOF
+
+      - name: Clean Flutter for Alpha Build
+        if: env.IS_ALPHA_BUILD == 'true'
+        run: |
+          cd main-repo
+          flutter clean
+
+      # ════════════════════════════════════════════
+      # BUILDS — each APK as individual artifact
+      # ════════════════════════════════════════════
+
+      - name: Build Android
+        if: matrix.platform == 'android'
+        run: |
+          cd main-repo
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
+          flutter pub get
+          flutter build apk --split-per-abi
+          flutter build apk --release
+          cd build/app/outputs/flutter-apk
+          mv app-armeabi-v7a-release.apk AnymeX-Android-armeabi-v7a.apk
+          mv app-arm64-v8a-release.apk   AnymeX-Android-arm64-v8a.apk
+          mv app-x86_64-release.apk      AnymeX-Android-x86_64.apk
+          mv app-release.apk             AnymeX-Android-universal.apk
+
+      - name: Build iOS
+        if: matrix.platform == 'ios'
+        env:
+          P12_BASE64: ${{ secrets.P12_CERTIFICATE }}
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+        run: |
+          cd main-repo
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
+          flutter pub get
+          flutter build ios --release --no-codesign
+          mkdir -p build/ios/iphoneos/Payload
+          ln -s ../Runner.app build/ios/iphoneos/Payload/Runner.app
+          if [ -n "$P12_BASE64" ] && [ -n "$PROVISIONING_PROFILE_BASE64" ] && [ -n "$P12_PASSWORD" ]; then
+            echo "$P12_BASE64" | base64 --decode > certificate.p12
+            echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > profile.mobileprovision
+            curl -sL -o zsign.zip "https://github.com/zhlynn/zsign/releases/download/v${{ env.ZSIGN_VERSION }}/zsign-v${{ env.ZSIGN_VERSION }}-macos-x64.zip"
+            unzip -q zsign.zip
+            chmod +x zsign 2>/dev/null || true
+            ZSIGN_EXEC=$(ls zsign* 2>/dev/null | head -n 1)
+            $ZSIGN_EXEC -f -k ./certificate.p12 -p "$P12_PASSWORD" -m ./profile.mobileprovision ./build/ios/iphoneos/Payload/Runner.app
+          else
+            echo "⚠️ No signing secrets — building unsigned .ipa"
+          fi
+          cd build/ios/iphoneos
+          zip -qr ./AnymeX-iOS.ipa Payload
+
+      - name: Build Linux
+        if: matrix.platform == 'linux'
+        run: |
+          cd main-repo
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
+          flutter pub get
+          flutter build linux --release
+          rm -rf AppDir && mkdir -p AppDir/usr/{bin,share/icons/hicolor/256x256/apps,lib}
+          cp -r build/linux/x64/release/bundle/* AppDir/usr/bin/
+          if [ -d "build/jni_libs" ]; then
+            cp build/jni_libs/*.so AppDir/usr/bin/lib/ 2>/dev/null || true
+          fi
+          cp assets/images/logo.png AppDir/usr/share/icons/hicolor/256x256/apps/anymex.png
+          cp assets/images/logo.png AppDir/anymex.png
+
+          APP_NAME="AnymeX"
+          if [[ "${{ github.event.inputs.build_type }}" == "alpha" ]]; then
+            APP_NAME="AnymeX α"
+          fi
+
+          cat > AppDir/anymex.desktop << EOF
+          [Desktop Entry]
+          Name=${APP_NAME}
+          Exec=usr/bin/anymex
+          Icon=anymex
+          Type=Application
+          Categories=Utility;
+          EOF
+          cat > AppDir/AppRun << 'EOF'
+          #!/bin/sh
+          SELF=$(readlink -f "$0")
+          HERE=${SELF%/*}
+          export PATH="${HERE}/usr/bin/:${PATH}"
+          export LD_LIBRARY_PATH="${HERE}/usr/bin/lib/:${HERE}/usr/lib/:${LD_LIBRARY_PATH}"
+          exec "${HERE}/usr/bin/anymex" "$@"
+          EOF
+          chmod +x AppDir/AppRun
+
+          /usr/local/bin/appimagetool AppDir build/linux/x64/release/AnymeX-Linux.AppImage
+
+          mkdir -p rpm_build/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp -r build/linux/x64/release/bundle rpm_build/SOURCES/anymex-1.0.0
+          tar czf rpm_build/SOURCES/anymex-1.0.0.tar.gz -C rpm_build/SOURCES anymex-1.0.0
+          mkdir -p rpm_build/SOURCES/usr/share/icons/hicolor/256x256/apps
+          cp assets/images/logo.png rpm_build/SOURCES/usr/share/icons/hicolor/256x256/apps/anymex.png
+          cat > rpm_build/SPECS/anymex.spec << 'EOF'
+          Name: anymex
+          Version: 1.0.0
+          Release: 1%{?dist}
+          Summary: AnymeX Flutter app
+          License: MIT
+          Source0: %{name}-%{version}.tar.gz
+          BuildArch: x86_64
+          %description
+          AnymeX is a Flutter-based opensource app for tracking anime, mangas and novels.
+          %prep
+          %setup -q
+          %install
+          mkdir -p %{buildroot}/usr/bin
+          mkdir -p %{buildroot}/usr/share/applications
+          mkdir -p %{buildroot}/usr/share/icons/hicolor/256x256/apps
+          cp -r * %{buildroot}/usr/bin/
+          cp -r %{_sourcedir}/usr/share/* %{buildroot}/usr/share/
+          cat > %{buildroot}/usr/share/applications/anymex.desktop << 'EOL'
+          [Desktop Entry]
+          Name=AnymeX
+          Exec=/usr/bin/anymex
+          Icon=anymex
+          Type=Application
+          Categories=Utility;
+          EOL
+          %files
+          /usr/bin/*
+          /usr/share/applications/anymex.desktop
+          /usr/share/icons/hicolor/256x256/apps/anymex.png
+          EOF
+          rpmbuild --define "_topdir $(pwd)/rpm_build" -ba rpm_build/SPECS/anymex.spec
+          mv rpm_build/RPMS/x86_64/*.rpm build/linux/x64/release/AnymeX-Linux.rpm
+          cd build/linux/x64/release/bundle && zip -qr ../AnymeX-Linux.zip ./*
+
+      - name: Build Windows
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          cd main-repo
+          # Wipe git-based pub deps so flutter pub get always fetches a clean checkout
+          $pubGitDir = if ($env:PUB_CACHE) { "$env:PUB_CACHE\git" } else { "$HOME\.pub-cache\git" }
+          if (Test-Path $pubGitDir) { Remove-Item -Recurse -Force $pubGitDir }
+          flutter pub get
+          dart run jni:setup
+          dart run inno_bundle:build --release 2>&1 | Select-String -Pattern "Compile aborted" -NotMatch
+          $issFile = "build\windows\x64\installer\Release\inno-script.iss"
+          if (-not (Test-Path $issFile)) { Write-Error "ISS file not found"; exit 1 }
+
+          if ("${{ github.event.inputs.build_type }}" -eq "alpha") {
+            $content = Get-Content $issFile -Raw
+            $content = $content -replace 'AnymeX\.exe', 'anymex_alpha.exe'
+            $content = $content -replace '"AnymeX"', '"AnymeX α"'
+            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX α'
+            Set-Content $issFile -Value $content -NoNewline
+          }
+
+          $content = Get-Content $issFile -Raw
+          $content = $content -replace '.*Icelandic\.isl.*\r?\n', ''
+          Set-Content $issFile -Value $content -NoNewline
+
+          & iscc $issFile
+          if ($LASTEXITCODE -ne 0) { Write-Error "ISCC failed"; exit 1 }
+
+          cd build/windows/x64/runner/Release
+          Compress-Archive -Path * -DestinationPath AnymeX-Windows.zip
+
+      - name: Build macOS
+        if: matrix.platform == 'macos'
+        run: |
+          cd main-repo
+          if ! command -v mvn &> /dev/null; then
+            brew install maven
+          fi
+          # Restore any files modified by the rename script that conflict with pub git checkouts.
+          # Mangayomi resolves as a git dependency whose worktree lives inside main-repo;
+          # the rename script may touch those files, causing `git checkout` to abort.
+          # Restore only the specific file that conflicts with pub's git checkout.
+          # Do NOT use "checkout -- ." as that would undo the rename script changes.
+          git checkout -- lib/Services/Mangayomi/Eval/JavaScript/Utils.dart 2>/dev/null || true
+          # Wipe pub git cache so flutter fetches a clean copy
+          rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
+          flutter pub get
+          dart run jni:setup
+          flutter build macos --release
+
+          APP_PATH=$(find build/macos/Build/Products/Release -maxdepth 1 -name "*.app" | head -n 1)
+          if [ -z "$APP_PATH" ]; then echo "❌ No .app found!"; exit 1; fi
+
+          APP_NAME=$(basename "$APP_PATH" .app)
+          DMG_VOL_NAME="$APP_NAME"
+          if [[ "${{ github.event.inputs.build_type }}" == "alpha" ]]; then
+            DMG_VOL_NAME="AnymeX α"
+          fi
+
+          mkdir -p temp_dir build/macos/Release
+          cp -R "$APP_PATH" temp_dir/
+          ln -s /Applications temp_dir/Applications
+
+          hdiutil create -volname "$DMG_VOL_NAME" \
+            -srcfolder temp_dir \
+            -ov -format UDZO \
+            "build/macos/Release/${APP_NAME}.dmg"
+          rm -rf temp_dir
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+
+      # ════════════════════════════════════════════
+      # UPLOAD ARTIFACTS — all individual
+      # ════════════════════════════════════════════
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
+        with:
+          name: AnymeX-Android-armeabi-v7a
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-armeabi-v7a.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
+        with:
+          name: AnymeX-Android-arm64-v8a
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-arm64-v8a.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
+        with:
+          name: AnymeX-Android-x86_64
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-x86_64.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'android'
+        with:
+          name: AnymeX-Android-universal
+          path: main-repo/build/app/outputs/flutter-apk/AnymeX-Android-universal.apk
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'ios'
+        with:
+          name: AnymeX-iOS
+          path: main-repo/build/ios/iphoneos/AnymeX-iOS.ipa
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-zip
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.zip
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-AppImage
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.AppImage
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux'
+        with:
+          name: AnymeX-Linux-rpm
+          path: main-repo/build/linux/x64/release/AnymeX-Linux.rpm
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'windows'
+        with:
+          name: AnymeX-Windows-zip
+          path: main-repo/build/windows/x64/runner/Release/AnymeX-Windows.zip
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'windows'
+        with:
+          name: AnymeX-Windows-installer
+          path: main-repo/build/windows/x64/installer/Release/AnymeX-x86_64-*-Installer.exe
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'macos'
+        with:
+          name: AnymeX-macOS
+          path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
+
+      # ── Notify Discord immediately on failure ─
+      - name: Notify Discord on build failure
+        if: failure()
+        shell: bash
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          RUN_ID="${{ github.run_id }}"
+          RUN_NUMBER="${{ github.run_number }}"
+          REPO="${{ github.repository }}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+          SOURCE_REPO="${{ github.event.inputs.source_repo }}"
+          
+          # Get Discord ID for mention
+          DISCORD_ID="${{ github.event.inputs.triggered_by }}"
+          
+          # If triggered_by is empty or not a number, try github.actor username mapping
+          if ! [[ "$DISCORD_ID" =~ ^[0-9]+$ ]]; then
+            ACTOR="${{ github.actor }}"
+            case "$ACTOR" in
+              Rieversed)       DISCORD_ID="617537674084876318" ;;
+              NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+              Neoniq)          DISCORD_ID="150865547922243584" ;;
+              itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+              Shebyyy)         DISCORD_ID="612532963938271232" ;;
+              *)               DISCORD_ID="" ;;
+            esac
+          fi
+          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
+
+
+          case "$PLATFORM" in
+            android) PLAT_EMOJI="📱" ;;
+            ios)     PLAT_EMOJI="🍎" ;;
+            linux)   PLAT_EMOJI="🐧" ;;
+            windows) PLAT_EMOJI="🪟" ;;
+            macos)   PLAT_EMOJI="🖥️" ;;
+            *)       PLAT_EMOJI="🔨" ;;
+          esac
+
+          PLAT_UPPER=$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')
+
+          # Build JSON entirely through jq — never interpolate shell vars into JSON strings.
+          # Write to tempfile and use curl -d @file to avoid Windows Git Bash variable mangling.
+          jq -n \
+            --arg title "🔨 Fork Build: ${TAG}" \
+            --arg emoji "$PLAT_EMOJI" \
+            --arg plat "$PLAT_UPPER" \
+            --arg run_num "$RUN_NUMBER" \
+            --arg build_type "$BUILD_TYPE" \
+            --arg source_repo "$SOURCE_REPO" \
+            --arg url "$ACTION_URL" \
+            --arg footer "Other platforms may still be running" \
+            --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            --arg mention "$MENTION" \
+            '{
+              "content": (if $mention != "" then $mention else null end),
+              "embeds": [{
+                "title": $title,
+                "description": ("❌ **" + $emoji + " " + $plat + " build failed**\n\n⚙️ Build #" + $run_num + " | " + $build_type + "\n🍴 Repo: " + $source_repo + "\n\n[🔗 View Run & Logs](" + $url + ")"),
+                "color": 15158332,
+                "footer": { "text": $footer },
+                "timestamp": $ts
+              }]
+            }' > /tmp/discord_payload.json
+
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d @/tmp/discord_payload.json
+          echo "Discord failure notification sent for $PLATFORM"
+
+  # ─────────────────────────────────────────────
+  # Collect per-platform build results
+  # ─────────────────────────────────────────────
+  collect-results:
+    needs: [build, resolve-matrix]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    outputs:
+      results_json: ${{ steps.collect.outputs.results_json }}
+    steps:
+      - name: Collect build job results
+        id: collect
+        run: |
+          PLATFORMS_INPUT="${{ github.event.inputs.platforms }}"
+          if [ "$PLATFORMS_INPUT" = "all" ]; then
+            REQUESTED="android linux windows macos ios"
+          else
+            REQUESTED=$(echo "$PLATFORMS_INPUT" | tr ',' ' ')
+          fi
+
+          # Query the jobs API for actual job conclusions — much more reliable than
+          # artifact presence, which can be empty even on success if upload is slow.
+          # Paginate to get all jobs (up to 100 per page is enough for this workflow).
+          JOBS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=100")
+
+          echo "$JOBS" > jobs.json
+          echo "Total jobs found: $(jq '.jobs | length' jobs.json)"
+
+          # Build results map: for each requested platform find the matching build job.
+          # Job names look like "build (android, ubuntu-latest)" — match on platform keyword.
+          RESULTS="{}"
+          for PLATFORM in $REQUESTED; do
+            # Find any job whose name contains the platform string and is part of the build matrix.
+            CONCLUSION=$(jq -r --arg p "$PLATFORM" '
+              .jobs[]
+              | select(.name | test("build.*" + $p; "i"))
+              | .conclusion
+            ' jobs.json | head -n1)
+
+            case "$CONCLUSION" in
+              success)   STATUS="success" ;;
+              failure|timed_out|cancelled) STATUS="failed" ;;
+              skipped)   STATUS="skipped" ;;
+              "")        STATUS="failed" ;;   # job not found — treat as failed
+              *)         STATUS="failed" ;;
+            esac
+
+            echo "  $PLATFORM → conclusion=$CONCLUSION → status=$STATUS"
+            # Use -c (compact) so the JSON stays on one line — required for GITHUB_OUTPUT
+            RESULTS=$(echo "$RESULTS" | jq -c --arg p "$PLATFORM" --arg s "$STATUS" '. + {($p): $s}')
+          done
+
+          echo "Build results: $RESULTS"
+          # Write compact single-line JSON — multi-line values break GITHUB_OUTPUT parsing
+          echo "results_json=$RESULTS" >> $GITHUB_OUTPUT
+
+  # ─────────────────────────────────────────────
+  # Discord notification after all builds done
+  # ─────────────────────────────────────────────
+  notify-discord:
+    needs: [build, resolve-tag, collect-results]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    steps:
+      - name: Fetch Artifact Info
+        id: fetch-artifacts
+        run: |
+          echo "Fetching artifacts for run ${{ github.run_id }}..."
+
+          ARTIFACTS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+
+          echo "$ARTIFACTS" > artifacts.json
+
+          get_artifact() {
+            local NAME="$1"
+            local ID=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .id' artifacts.json)
+            local SIZE=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .size_in_bytes' artifacts.json)
+            if [ -n "$ID" ] && [ "$ID" != "null" ]; then
+              SIZE_HR=$(awk -v size="$SIZE" 'BEGIN{
+                split("B KB MB GB", unit);
+                for (i=1; size>=1024 && i<4; i++) size/=1024;
+                printf "%.1f %s", size, unit[i]
+              }')
+              echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ID|$SIZE_HR"
+            else
+              echo ""
+            fi
+          }
+
+          echo "APK_ARM64=$(get_artifact "AnymeX-Android-arm64-v8a")"         >> $GITHUB_ENV
+          echo "APK_ARMEABI=$(get_artifact "AnymeX-Android-armeabi-v7a")"     >> $GITHUB_ENV
+          echo "APK_UNIVERSAL=$(get_artifact "AnymeX-Android-universal")"     >> $GITHUB_ENV
+          echo "APK_X86=$(get_artifact "AnymeX-Android-x86_64")"              >> $GITHUB_ENV
+          echo "IOS=$(get_artifact "AnymeX-iOS")"                             >> $GITHUB_ENV
+          echo "LINUX_ZIP=$(get_artifact "AnymeX-Linux-zip")"                 >> $GITHUB_ENV
+          echo "LINUX_APPIMAGE=$(get_artifact "AnymeX-Linux-AppImage")"       >> $GITHUB_ENV
+          echo "LINUX_RPM=$(get_artifact "AnymeX-Linux-rpm")"                 >> $GITHUB_ENV
+          echo "WIN_ZIP=$(get_artifact "AnymeX-Windows-zip")"                 >> $GITHUB_ENV
+          echo "WIN_INSTALLER=$(get_artifact "AnymeX-Windows-installer")"     >> $GITHUB_ENV
+          echo "MACOS=$(get_artifact "AnymeX-macOS")"                         >> $GITHUB_ENV
+
+      - name: Send Discord Notification
+        run: |
+          TAG="${{ needs.resolve-tag.outputs.effective_tag }}"
+          BUILD_TYPE="${{ github.event.inputs.build_type }}"
+          PLATFORMS="${{ github.event.inputs.platforms }}"
+          SOURCE_REPO="${{ github.event.inputs.source_repo }}"
+          RUN_NUMBER="${{ github.run_number }}"
+          RUN_ID="${{ github.run_id }}"
+          REPO="${{ github.repository }}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+
+          # Get Discord ID for mention
+          DISCORD_ID="${{ github.event.inputs.triggered_by }}"
+          
+          # If triggered_by is empty or not a number, use github.actor username mapping
+          if ! [[ "$DISCORD_ID" =~ ^[0-9]+$ ]]; then
+            ACTOR="${{ github.actor }}"
+            case "$ACTOR" in
+              Rieversed)       DISCORD_ID="617537674084876318" ;;
+              NITHINSPACETIME) DISCORD_ID="1474618752912851064" ;;
+              Neoniq)          DISCORD_ID="150865547922243584" ;;
+              itsmechinmoy)    DISCORD_ID="523539866311720963" ;;
+              Shebyyy)         DISCORD_ID="612532963938271232" ;;
+              *)               DISCORD_ID="" ;;
+            esac
+          fi
+          
+          MENTION=$([ -n "$DISCORD_ID" ] && echo "<@${DISCORD_ID}>" || echo "")
+          TRIGGERED_BY="${{ github.actor }}"
+
+          # Load per-platform results from collect-results job
+          RESULTS='${{ needs.collect-results.outputs.results_json }}'
+
+          get_status() {
+            echo "$RESULTS" | jq -r --arg p "$1" '.[$p] // "skipped"'
+          }
+
+          # Determine overall status emoji + color
+          ALL_SUCCESS=true
+          ANY_FAILED=false
+          PLATFORMS_INPUT="${{ github.event.inputs.platforms }}"
+          if [ "$PLATFORMS_INPUT" = "all" ]; then
+            CHECK_PLATFORMS="android linux windows macos ios"
+          else
+            CHECK_PLATFORMS=$(echo "$PLATFORMS_INPUT" | tr ',' ' ')
+          fi
+
+          for P in $CHECK_PLATFORMS; do
+            S=$(get_status "$P")
+            [ "$S" != "success" ] && ALL_SUCCESS=false
+            [ "$S" = "failed"  ] && ANY_FAILED=true
+          done
+
+          if [ "$ALL_SUCCESS" = true ]; then
+            OVERALL_EMOJI="✅"
+            OVERALL_LABEL="All builds passed"
+            COLOR=3066993   # green
+          elif [ "$ANY_FAILED" = true ] && [ "$ALL_SUCCESS" = false ]; then
+            # Check if some passed
+            SOME_PASSED=false
+            for P in $CHECK_PLATFORMS; do
+              [ "$(get_status "$P")" = "success" ] && SOME_PASSED=true
+            done
+            if [ "$SOME_PASSED" = true ]; then
+              OVERALL_EMOJI="⚠️"
+              OVERALL_LABEL="Some builds failed"
+              COLOR=16776960  # yellow
+            else
+              OVERALL_EMOJI="❌"
+              OVERALL_LABEL="All builds failed"
+              COLOR=15158332  # red
+            fi
+          else
+            OVERALL_EMOJI="❌"
+            OVERALL_LABEL="Build failed"
+            COLOR=15158332
+          fi
+
+          # Build status summary line per platform
+          STATUS_LINES=""
+          platform_status_line() {
+            local PLATFORM="$1"
+            local EMOJI_ICON="$2"
+            local S=$(get_status "$PLATFORM")
+            case "$S" in
+              success) STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ✅\n" ;;
+              failed)  STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ❌ Failed\n" ;;
+              *)       ;; # skipped / not requested — don't show
+            esac
+          }
+
+          for P in $CHECK_PLATFORMS; do
+            case "$P" in
+              android) platform_status_line android "📱" ;;
+              ios)     platform_status_line ios     "🍎" ;;
+              linux)   platform_status_line linux   "🐧" ;;
+              windows) platform_status_line windows "🪟" ;;
+              macos)   platform_status_line macos   "🖥️" ;;
+            esac
+          done
+
+          # Helper: "URL|SIZE" → markdown line
+          make_line() {
+            local LABEL="$1"
+            local VALUE="$2"
+            if [ -n "$VALUE" ]; then
+              local URL=$(echo "$VALUE" | cut -d'|' -f1)
+              local SIZE=$(echo "$VALUE" | cut -d'|' -f2)
+              echo "**${LABEL}** | [Download](${URL}) | ${SIZE}"
+            fi
+          }
+
+          # Build per-platform artifact field content
+          ANDROID_FIELD=""
+          [ -n "$APK_ARM64" ]     && ANDROID_FIELD+="$(make_line "arm64-v8a"   "$APK_ARM64")\n"
+          [ -n "$APK_ARMEABI" ]   && ANDROID_FIELD+="$(make_line "armeabi-v7a" "$APK_ARMEABI")\n"
+          [ -n "$APK_UNIVERSAL" ] && ANDROID_FIELD+="$(make_line "universal"   "$APK_UNIVERSAL")\n"
+          [ -n "$APK_X86" ]       && ANDROID_FIELD+="$(make_line "x86_64"      "$APK_X86")\n"
+
+          WINDOWS_FIELD=""
+          [ -n "$WIN_INSTALLER" ] && WINDOWS_FIELD+="$(make_line "Installer .exe" "$WIN_INSTALLER")\n"
+          [ -n "$WIN_ZIP" ]       && WINDOWS_FIELD+="$(make_line "Portable .zip"  "$WIN_ZIP")\n"
+
+          LINUX_FIELD=""
+          [ -n "$LINUX_APPIMAGE" ] && LINUX_FIELD+="$(make_line "AppImage" "$LINUX_APPIMAGE")\n"
+          [ -n "$LINUX_RPM" ]      && LINUX_FIELD+="$(make_line "RPM"      "$LINUX_RPM")\n"
+          [ -n "$LINUX_ZIP" ]      && LINUX_FIELD+="$(make_line "Zip"      "$LINUX_ZIP")\n"
+
+          IOS_FIELD=""
+          [ -n "$IOS" ]   && IOS_FIELD+="$(make_line "IPA" "$IOS")\n"
+
+          MACOS_FIELD=""
+          [ -n "$MACOS" ] && MACOS_FIELD+="$(make_line "DMG" "$MACOS")\n"
+
+          # Build fields array
+          FIELDS="[]"
+          add_field() {
+            local NAME="$1"
+            local VALUE="$(echo -e "$2" | sed '/^$/d')"
+            if [ -n "$VALUE" ]; then
+              FIELDS=$(echo "$FIELDS" | jq \
+                --arg name "$NAME" \
+                --arg value "$VALUE" \
+                '. + [{"name": $name, "value": $value, "inline": false}]')
+            fi
+          }
+
+          [ -n "$ANDROID_FIELD" ] && add_field "📱 Android" "$ANDROID_FIELD"
+          [ -n "$WINDOWS_FIELD" ] && add_field "🪟 Windows" "$WINDOWS_FIELD"
+          [ -n "$LINUX_FIELD" ]   && add_field "🐧 Linux"   "$LINUX_FIELD"
+          [ -n "$IOS_FIELD" ]     && add_field "🍎 iOS"     "$IOS_FIELD"
+          [ -n "$MACOS_FIELD" ]   && add_field "🖥️ macOS"  "$MACOS_FIELD"
+
+          # Add build status summary field (always shown, even on full failure)
+          STATUS_VALUE="$(echo -e "$STATUS_LINES" | sed '/^$/d')"
+          if [ -n "$STATUS_VALUE" ]; then
+            FIELDS=$(echo "$FIELDS" | jq \
+              --arg value "$STATUS_VALUE" \
+              '. + [{"name": "🏗️ Build Status", "value": $value, "inline": false}]')
+          fi
+
+          # Build description
+          DESCRIPTION=$(printf '%s %s\n\n⚙️ Build #%s | %s\n👤 Triggered by: %s\n🍴 Repo: %s\n🖥️ Platforms: %s\n\n[🔗 View Run](%s)' \
+            "$OVERALL_EMOJI" "$OVERALL_LABEL" \
+            "$RUN_NUMBER" "$BUILD_TYPE" \
+            "$TRIGGERED_BY" "$SOURCE_REPO" "$PLATFORMS" \
+            "$ACTION_URL")
+
+          PAYLOAD=$(printf '%s' "$FIELDS" | jq \
+            --arg tag "$TAG" \
+            --rawfile description <(printf '%s' "$DESCRIPTION") \
+            --argjson color "$COLOR" \
+            --arg footer "Artifacts expire in 90 days • $ACTION_URL" \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
+              "embeds": [{
+                "title": ("🔨 Fork Build: " + $tag),
+                "description": $description,
+                "color": $color,
+                "fields": .,
+                "footer": { "text": $footer },
+                "timestamp": $timestamp
+              }]
+            }')
+
+          echo "Sending Discord notification..."
+          # Inject mention into content field if actor is mapped
+          if [ -n "$MENTION" ]; then
+            PAYLOAD=$(echo "$PAYLOAD" | jq --arg mention "$MENTION" '. + {"content": $mention}')
+          fi
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
+          echo "✅ Discord notification sent"
