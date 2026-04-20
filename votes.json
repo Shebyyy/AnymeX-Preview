@@ -262,5 +262,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:105156": {
+    "media_type": "anime",
+    "anilist_id": 105156,
+    "title": "Cautious Hero: The Hero Is Overpowered but Overly Cautious",
+    "upvotes": [
+      "al:5792869"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
