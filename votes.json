@@ -251,5 +251,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:98659": {
+    "media_type": "anime",
+    "anilist_id": 98659,
+    "title": "Classroom of the Elite",
+    "upvotes": [
+      "al:5792869"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
