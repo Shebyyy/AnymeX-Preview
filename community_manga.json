@@ -1711,5 +1711,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx114164-9QodSMx4SWbL.jpg",
     "score": 72,
     "nsfw": false
+  },
+  {
+    "anilist_id": 126361,
+    "mal_id": 132424,
+    "title": "The Villainess' Butler: Death Flag Destroyer at Your Service",
+    "author": "LEMONARU",
+    "reason": "I loved reading it \nWas very interesting and quite wholesome",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5857202,
+            "username": "LEMONARU",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5857202-m2zi6gV8Yk4l.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "LEMONARU",
+        "text": "I loved reading it \nWas very interesting and quite wholesome",
+        "added_at": "2026-04-22T21:56:27Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5857202,
+        "username": "LEMONARU",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5857202-m2zi6gV8Yk4l.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx126361-yj51VjkVdzrv.jpg",
+    "score": 71,
+    "nsfw": false
   }
 ]
