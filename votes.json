@@ -284,5 +284,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:130298": {
+    "media_type": "anime",
+    "anilist_id": 130298,
+    "title": "The Eminence in Shadow",
+    "upvotes": [
+      "al:7546133"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
