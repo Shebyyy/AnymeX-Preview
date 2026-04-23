@@ -4458,5 +4458,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143866-75E3G6nYEUVr.jpg",
     "score": 70,
     "nsfw": false
+  },
+  {
+    "anilist_id": 21827,
+    "mal_id": 33352,
+    "title": "Violet Evergarden",
+    "author": "Lgoqne",
+    "reason": "It's peak, violet evergarden is the first anime that made me feel something",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6520619,
+            "username": "Lgoqne",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Lgoqne",
+        "text": "It's peak, violet evergarden is the first anime that made me feel something",
+        "added_at": "2026-04-23T04:28:07Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6520619,
+        "username": "Lgoqne",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21827-ubzq619ZA2E9.png",
+    "score": 85,
+    "nsfw": false
   }
 ]
