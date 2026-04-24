@@ -296,5 +296,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:20872": {
+    "media_type": "anime",
+    "anilist_id": 20872,
+    "title": "Plastic Memories",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
