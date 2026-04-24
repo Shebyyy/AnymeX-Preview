@@ -1873,5 +1873,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx86848-4CSItSclJUvi.jpg",
     "score": 78,
     "nsfw": false
+  },
+  {
+    "anilist_id": 193817,
+    "mal_id": 182546,
+    "title": "Jinsei Gyakuten: Uwakisare, Enzai wo Kiserareta Orega, Gakuenichi no Bishoujo ni Natsukareru",
+    "author": "Gaur2704",
+    "reason": "Nothing about this is cliche and it's genuinely a dreamy manga with how good it is. Adults (teachers, parents) are competent and take responsibility. The MC gets support from many people for what he has gone through I've read a bit of the novel and it gets even better. My personal rating for this is definitely 10/10",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 1057970921870200852,
+            "username": "gaur2704",
+            "avatar": "https://cdn.discordapp.com/avatars/1057970921870200852/f03c65e629d0dd3a0b4433b94e29ce85.png?size=1024"
+          },
+          "anilist": {
+            "id": 7460497,
+            "username": "Gaur2704",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7460497-1GMCFGbxHWNT.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Gaur2704",
+        "text": "Nothing about this is cliche and it's genuinely a dreamy manga with how good it is. Adults (teachers, parents) are competent and take responsibility. The MC gets support from many people for what he has gone through I've read a bit of the novel and it gets even better. My personal rating for this is definitely 10/10",
+        "added_at": "2026-04-24T12:50:12Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 1057970921870200852,
+        "username": "gaur2704",
+        "avatar": "https://cdn.discordapp.com/avatars/1057970921870200852/f03c65e629d0dd3a0b4433b94e29ce85.png?size=1024"
+      },
+      "anilist": {
+        "id": 7460497,
+        "username": "Gaur2704",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7460497-1GMCFGbxHWNT.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx193817-mtXm8wHZgrUo.jpg",
+    "score": 68,
+    "nsfw": false
   }
 ]
