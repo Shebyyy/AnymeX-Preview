@@ -308,5 +308,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:173020": {
+    "media_type": "manga",
+    "anilist_id": 173020,
+    "title": "I Killed the Main Player",
+    "upvotes": [
+      "al:7460497"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
