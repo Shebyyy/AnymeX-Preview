@@ -319,5 +319,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:180511": {
+    "media_type": "manga",
+    "anilist_id": 180511,
+    "title": "Albus Changes the World",
+    "upvotes": [
+      "al:7460497"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
