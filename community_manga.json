@@ -1939,5 +1939,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx193817-mtXm8wHZgrUo.jpg",
     "score": 68,
     "nsfw": false
+  },
+  {
+    "anilist_id": 30013,
+    "mal_id": 13,
+    "title": "One Piece",
+    "author": "SHARIQ",
+    "reason": "This is the best manga out there",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5720622,
+            "username": "SHARIQ",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5720622-MTYiQRouLv8h.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "SHARIQ",
+        "text": "This is the best manga out there",
+        "added_at": "2026-04-24T17:05:37Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5720622,
+        "username": "SHARIQ",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5720622-MTYiQRouLv8h.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30013-BeslEMqiPhlk.jpg",
+    "score": 91,
+    "nsfw": false
   }
 ]
