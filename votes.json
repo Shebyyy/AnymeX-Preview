@@ -236,11 +236,13 @@
     "media_type": "manga",
     "anilist_id": 201773,
     "title": "Haimiya-senpai wa Kowakute Kawaii",
-    "upvotes": [],
+    "upvotes": [
+      "al:7460497"
+    ],
     "downvotes": [
       "al:5985386"
     ],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 1
   },
   "anime:155783": {
