@@ -4788,5 +4788,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114535-y3NnjexcqKG1.jpg",
     "score": 81,
     "nsfw": false
+  },
+  {
+    "anilist_id": 5680,
+    "mal_id": 5680,
+    "title": "K-ON!",
+    "author": "Mireon",
+    "reason": "It's funny, also the fact that the characters are just like us",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6858073,
+            "username": "Mireon",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6858073-Yy0fJnqqbImS.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Mireon",
+        "text": "It's funny, also the fact that the characters are just like us",
+        "added_at": "2026-04-24T08:43:34Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6858073,
+        "username": "Mireon",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6858073-Yy0fJnqqbImS.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5680-r3AI3Cwfv0Aq.png",
+    "score": 78,
+    "nsfw": false
   }
 ]
