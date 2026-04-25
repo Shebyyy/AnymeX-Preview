@@ -2005,5 +2005,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30013-BeslEMqiPhlk.jpg",
     "score": 91,
     "nsfw": false
+  },
+  {
+    "anilist_id": 184347,
+    "mal_id": 176244,
+    "title": "Bad Born Blood",
+    "author": "Throndax",
+    "reason": "Amazing world building.\nRelations between characters feel real",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5767965,
+            "username": "Throndax",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5767965-waw8p6Vl09Oc.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Throndax",
+        "text": "Amazing world building.\nRelations between characters feel real",
+        "added_at": "2026-04-25T09:14:22Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5767965,
+        "username": "Throndax",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5767965-waw8p6Vl09Oc.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx184347-lDVGEttgQHbY.jpg",
+    "score": 75,
+    "nsfw": false
   }
 ]
