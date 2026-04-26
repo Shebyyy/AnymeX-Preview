@@ -2071,5 +2071,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx184347-lDVGEttgQHbY.jpg",
     "score": 75,
     "nsfw": false
+  },
+  {
+    "anilist_id": 30656,
+    "mal_id": 656,
+    "title": "Vagabond",
+    "author": "Annuith",
+    "reason": "One of the top 3 mangas of all time. If you dont agree with me, you haven't read it yet.",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6122993,
+            "username": "Annuith",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6122993-P4mdjnEtCu0N.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Annuith",
+        "text": "One of the top 3 mangas of all time. If you dont agree with me, you haven't read it yet.",
+        "added_at": "2026-04-26T15:42:47Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6122993,
+        "username": "Annuith",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6122993-P4mdjnEtCu0N.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30656-9mW113O7rDnA.png",
+    "score": 91,
+    "nsfw": false
   }
 ]
