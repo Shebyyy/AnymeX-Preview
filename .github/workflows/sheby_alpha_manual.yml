@@ -546,6 +546,7 @@ jobs:
           COMMENTS_BASE_URL: ${{ secrets.COMMENTS_BASE_URL_TEST }}
           BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
           BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           cd main-repo
           cat > .env << EOF
@@ -563,6 +564,7 @@ jobs:
           COMMENTS_BASE_URL=$COMMENTS_BASE_URL
           BOT_BASE_URL=$BOT_BASE_URL
           BOT_API_SECRET=$BOT_API_SECRET
+          SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
           EOF
 
       - name: Clean Flutter for Alpha Build
