@@ -4980,5 +4980,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx202102-7qDmTI7eT5xF.png",
     "score": 68,
     "nsfw": false
+  },
+  {
+    "anilist_id": 182300,
+    "mal_id": 59983,
+    "title": "Wistoria: Wand and Sword Season 2",
+    "author": "Kkrish",
+    "reason": "A really good anime coming out this season, amazing action sequences and most episodes stop on a cliffhanger",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6621448,
+            "username": "Kkrish",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6621448-sgbY7K20KCHv.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Kkrish",
+        "text": "A really good anime coming out this season, amazing action sequences and most episodes stop on a cliffhanger",
+        "added_at": "2026-04-27T11:47:45Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6621448,
+        "username": "Kkrish",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6621448-sgbY7K20KCHv.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182300-IYkq5KrkQq1V.jpg",
+    "score": 79,
+    "nsfw": false
   }
 ]
