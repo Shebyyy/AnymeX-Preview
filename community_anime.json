@@ -5046,5 +5046,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182300-IYkq5KrkQq1V.jpg",
     "score": 79,
     "nsfw": false
+  },
+  {
+    "anilist_id": 2034,
+    "mal_id": 2034,
+    "title": "Lovely Complex",
+    "author": "CosmicMaaw",
+    "reason": "just perfect... down to lasttt minute detail",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5947879,
+            "username": "CosmicMaaw",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5947879-jLDcaB1hvz6I.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "CosmicMaaw",
+        "text": "just perfect... down to lasttt minute detail",
+        "added_at": "2026-04-27T17:45:15Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5947879,
+        "username": "CosmicMaaw",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5947879-jLDcaB1hvz6I.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2034-erjg6gzDetAp.png",
+    "score": 78,
+    "nsfw": false
   }
 ]
