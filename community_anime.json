@@ -4855,6 +4855,36 @@
         "author": "Mireon",
         "text": "It's funny, also the fact that the characters are just like us",
         "added_at": "2026-04-24T08:43:34Z"
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7286303,
+            "username": "KIER83737",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "KIER83737",
+        "text": "K-on K-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-onK-on",
+        "added_at": "2026-04-27T03:58:42Z"
       }
     ],
     "user": {
