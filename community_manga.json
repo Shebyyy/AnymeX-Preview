@@ -2203,5 +2203,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx185979-0PIJkgbfPZhZ.jpg",
     "score": 69,
     "nsfw": false
+  },
+  {
+    "anilist_id": 197334,
+    "mal_id": 184179,
+    "title": "The Ranker Dreams of Retirement",
+    "author": "WitheredZ",
+    "reason": "Quite a funny one....AnymeX is forcing me to write this comment as I'm threathened on a gunpoint",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6709390,
+            "username": "WitheredZ",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6709390-iULcxCGEOGro.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "WitheredZ",
+        "text": "Quite a funny one....AnymeX is forcing me to write this comment as I'm threathened on a gunpoint",
+        "added_at": "2026-04-29T15:46:42Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6709390,
+        "username": "WitheredZ",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6709390-iULcxCGEOGro.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx197334-dqgA7whQOULx.jpg",
+    "score": "N/A",
+    "nsfw": false
   }
 ]
