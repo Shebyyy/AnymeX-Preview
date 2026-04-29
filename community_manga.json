@@ -2269,5 +2269,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx197334-dqgA7whQOULx.jpg",
     "score": "N/A",
     "nsfw": false
+  },
+  {
+    "anilist_id": 34632,
+    "mal_id": 4632,
+    "title": "Goodnight Punpun",
+    "author": "Minfct",
+    "reason": "just read it.................boy",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7789486,
+            "username": "Minfct",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7789486-2xpGO7E77GPL.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Minfct",
+        "text": "just read it.................boy",
+        "added_at": "2026-04-29T19:39:58Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 7789486,
+        "username": "Minfct",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7789486-2xpGO7E77GPL.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx34632-5xMDkx3pXsEh.png",
+    "score": 88,
+    "nsfw": false
   }
 ]
