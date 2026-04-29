@@ -354,5 +354,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:101903": {
+    "media_type": "anime",
+    "anilist_id": 101903,
+    "title": "Run with the Wind",
+    "upvotes": [
+      "al:7229945"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
