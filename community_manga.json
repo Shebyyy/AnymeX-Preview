@@ -2137,5 +2137,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30656-9mW113O7rDnA.png",
     "score": 91,
     "nsfw": false
+  },
+  {
+    "anilist_id": 185979,
+    "mal_id": 177451,
+    "title": "The Legendary Hero is an Academy Honors Student",
+    "author": "BlueGuyLikesSkittles",
+    "reason": "don't look at the ratings trust me it gets peak after chapter 35",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7828742,
+            "username": "BlueGuyLikesSkittles",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "BlueGuyLikesSkittles",
+        "text": "don't look at the ratings trust me it gets peak after chapter 35",
+        "added_at": "2026-04-29T05:37:07Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 7828742,
+        "username": "BlueGuyLikesSkittles",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx185979-0PIJkgbfPZhZ.jpg",
+    "score": 69,
+    "nsfw": false
   }
 ]
