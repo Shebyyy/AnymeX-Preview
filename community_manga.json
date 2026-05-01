@@ -2335,5 +2335,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx34632-5xMDkx3pXsEh.png",
     "score": 88,
     "nsfw": false
+  },
+  {
+    "anilist_id": null,
+    "mal_id": 60511,
+    "title": "MAL ID 60511",
+    "author": "LEMONARU",
+    "reason": "iIt's an interesting read with a nice character roster. The world building is also amazing. With interesting plots",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5857202,
+            "username": "LEMONARU",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5857202-m2zi6gV8Yk4l.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "LEMONARU",
+        "text": "iIt's an interesting read with a nice character roster. The world building is also amazing. With interesting plots",
+        "added_at": "2026-05-01T14:04:35Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 5857202,
+        "username": "LEMONARU",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5857202-m2zi6gV8Yk4l.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "",
+    "score": "N/A",
+    "nsfw": false
   }
 ]
