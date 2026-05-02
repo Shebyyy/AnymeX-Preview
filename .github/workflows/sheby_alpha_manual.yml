@@ -238,6 +238,7 @@ jobs:
 
       # ── Copy alpha assets ─────────────────────
       - name: Copy Alpha Assets to Main Repo
+        if: github.event.inputs.build_type == 'alpha'
         shell: bash
         run: |
           echo "════════════════════════════════════════════"
@@ -291,7 +292,7 @@ jobs:
           toolchain: stable
 
       - name: Cache Rust
-        if: env.IS_ALPHA_BUILD != 'true'
+        if: github.event.inputs.build_type != 'alpha'
         uses: actions/cache@v3
         with:
           path: |
@@ -312,7 +313,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: ${{ env.IS_ALPHA_BUILD != 'true' }}
+          cache: ${{ github.event.inputs.build_type != 'alpha' }}
 
       - name: Fix line endings (Windows)
         if: runner.os == 'Windows'
@@ -323,6 +324,7 @@ jobs:
 
       # ── Alpha rename ───────────────────────────
       - name: Auto rename for alpha build
+        if: github.event.inputs.build_type == 'alpha'
         shell: bash
         run: |
           cd main-repo
@@ -369,7 +371,7 @@ jobs:
 
       # ── Configure Google Services ─────────────
       - name: Configure Google Services for Alpha
-        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD == 'true'
+        if: matrix.platform == 'android' && github.event.inputs.build_type == 'alpha'
         shell: bash
         run: |
           cd main-repo
@@ -380,7 +382,7 @@ jobs:
 
       # ── Verify alpha config ────────────────────
       - name: Verify alpha configuration
-        if: env.IS_ALPHA_BUILD == 'true'
+        if: github.event.inputs.build_type == 'alpha'
         shell: bash
         run: |
           cd main-repo
@@ -461,7 +463,7 @@ jobs:
 
       # ── Platform-specific caches & setups ─────
       - name: Cache Gradle
-        if: matrix.platform == 'android' && env.IS_ALPHA_BUILD != 'true'
+        if: matrix.platform == 'android' && github.event.inputs.build_type != 'alpha'
         uses: actions/cache@v3
         with:
           path: |
@@ -568,7 +570,7 @@ jobs:
           EOF
 
       - name: Clean Flutter for Alpha Build
-        if: env.IS_ALPHA_BUILD == 'true'
+        if: github.event.inputs.build_type == 'alpha'
         run: |
           cd main-repo
           flutter clean
