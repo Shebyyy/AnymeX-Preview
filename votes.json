@@ -365,5 +365,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:99750": {
+    "media_type": "anime",
+    "anilist_id": 99750,
+    "title": "I Want to Eat Your Pancreas",
+    "upvotes": [
+      "al:6042301"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
