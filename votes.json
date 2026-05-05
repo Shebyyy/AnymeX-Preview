@@ -376,5 +376,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:147105": {
+    "media_type": "anime",
+    "anilist_id": 147105,
+    "title": "Witch Hat Atelier",
+    "upvotes": [
+      "al:6539535"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
