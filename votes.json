@@ -398,5 +398,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:21827": {
+    "media_type": "anime",
+    "anilist_id": 21827,
+    "title": "Violet Evergarden",
+    "upvotes": [
+      "mal:15175303"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
