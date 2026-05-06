@@ -420,5 +420,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:21732": {
+    "media_type": "anime",
+    "anilist_id": 21732,
+    "title": "Planetarian",
+    "upvotes": [
+      "mal:15175303"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
