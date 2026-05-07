@@ -12,6 +12,13 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Check upstream conclusion
+        if: github.event_name == 'workflow_run'
+        run: |
+          if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
+            echo "Upstream workflow did not succeed (conclusion: ${{ github.event.workflow_run.conclusion }}). Skipping."
+            exit 1
+          fi
       - name: Cloning repository
         uses: actions/checkout@v4
         with:
