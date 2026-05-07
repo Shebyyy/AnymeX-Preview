@@ -28,17 +28,11 @@ permissions:
 jobs:
   check-tag:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     outputs:
       is_beta: ${{ steps.validate.outputs.is_beta }}
       current_tag: ${{ steps.validate.outputs.current_tag }}
     steps:
-      - name: Check upstream conclusion
-        if: github.event_name == 'workflow_run'
-        run: |
-          if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
-            echo "Upstream workflow did not succeed (conclusion: ${{ github.event.workflow_run.conclusion }}). Skipping."
-            exit 1
-          fi
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
