@@ -431,5 +431,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:116768": {
+    "media_type": "manga",
+    "anilist_id": 116768,
+    "title": "Dark Mortal",
+    "upvotes": [
+      "al:5782315"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
