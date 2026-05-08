@@ -2431,5 +2431,71 @@
     "poster": "",
     "score": "N/A",
     "nsfw": false
+  },
+  {
+    "anilist_id": 177706,
+    "mal_id": 170427,
+    "title": "The Knight Only Lives Today",
+    "author": "Adan69",
+    "reason": "everyone loves a determined hero don't they well this the embodiment of determination",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6465837,
+            "username": "Adan69",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6465837-AG6y6l4Kf4oP.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Adan69",
+        "text": "everyone loves a determined hero don't they well this the embodiment of determination",
+        "added_at": "2026-05-08T15:40:04Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6465837,
+        "username": "Adan69",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6465837-AG6y6l4Kf4oP.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx177706-3r8dnAr8Prjq.jpg",
+    "score": 84,
+    "nsfw": false
   }
 ]
