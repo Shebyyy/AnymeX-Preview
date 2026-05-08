@@ -442,5 +442,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:164961": {
+    "media_type": "manga",
+    "anilist_id": 164961,
+    "title": "Bug Ego",
+    "upvotes": [
+      "al:5782315"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
