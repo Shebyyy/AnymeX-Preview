@@ -488,5 +488,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:21355": {
+    "media_type": "anime",
+    "anilist_id": 21355,
+    "title": "Re:ZERO -Starting Life in Another World-",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
