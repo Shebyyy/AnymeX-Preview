@@ -477,5 +477,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:114605": {
+    "media_type": "manga",
+    "anilist_id": 114605,
+    "title": "Latna Saga: Survival of a Sword King",
+    "upvotes": [
+      "al:778172"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
