@@ -6002,7 +6002,7 @@
     "mal_id": 55690,
     "title": "The Dangers in My Heart Season 2",
     "author": "rajinstar",
-    "reason": "I have no words to say. But, I really love this anime. I really enjoy it.",
+    "reason": "I have no words to say. But I really love this anime. I really enjoy it.",
     "reasons": [
       {
         "discord_id": null,
@@ -6031,8 +6031,9 @@
           "isAdmin": false
         },
         "author": "rajinstar",
-        "text": "I have no words to say. But, I really love this anime. I really enjoy it.",
-        "added_at": "2026-05-10T00:44:23Z"
+        "text": "I have no words to say. But I really love this anime. I really enjoy it.",
+        "added_at": "2026-05-10T00:44:23Z",
+        "edited_at": "2026-05-10T00:45:14Z"
       }
     ],
     "user": {
