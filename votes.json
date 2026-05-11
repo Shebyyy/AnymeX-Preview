@@ -518,11 +518,9 @@
     "media_type": "anime",
     "anilist_id": 170221,
     "title": "The Dangers in My Heart Special",
-    "upvotes": [
-      "al:7889702"
-    ],
+    "upvotes": [],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 0,
     "total_downvotes": 0
   }
 }
