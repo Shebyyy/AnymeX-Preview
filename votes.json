@@ -570,5 +570,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:20789": {
+    "media_type": "anime",
+    "anilist_id": 20789,
+    "title": "The Seven Deadly Sins",
+    "upvotes": [
+      "mal:21772037"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
