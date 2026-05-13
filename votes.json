@@ -534,5 +534,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:124080": {
+    "media_type": "anime",
+    "anilist_id": 124080,
+    "title": "Horimiya",
+    "upvotes": [
+      "mal:21772037"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
