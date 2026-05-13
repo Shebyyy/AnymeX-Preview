@@ -558,5 +558,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:141949": {
+    "media_type": "anime",
+    "anilist_id": 141949,
+    "title": "More than a Married Couple, but Not Lovers.",
+    "upvotes": [
+      "mal:21772037"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
