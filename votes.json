@@ -522,5 +522,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:11757": {
+    "media_type": "anime",
+    "anilist_id": 11757,
+    "title": "Sword Art Online",
+    "upvotes": [
+      "mal:21772037"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
