@@ -6225,5 +6225,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11757-SxYDUzdr9rh2.jpg",
     "score": 70,
     "nsfw": false
+  },
+  {
+    "anilist_id": 163133,
+    "mal_id": 54855,
+    "title": "Senpai is an Otokonoko",
+    "author": "MinaaLinaa",
+    "reason": "One of the best trans representations i have seen yet in anime! Absolutely loved it!",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7654159,
+            "username": "MinaaLinaa",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7654159-s6mG6lCATChp.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "MinaaLinaa",
+        "text": "One of the best trans representations i have seen yet in anime! Absolutely loved it!",
+        "added_at": "2026-05-15T11:50:39Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 7654159,
+        "username": "MinaaLinaa",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7654159-s6mG6lCATChp.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163133-bdr9S2bdLoyj.jpg",
+    "score": 72,
+    "nsfw": false
   }
 ]
