@@ -2369,7 +2369,7 @@
   {
     "anilist_id": null,
     "mal_id": 60511,
-    "title": "MAL ID 60511",
+    "title": "Sousei no Onmyouji",
     "author": "LEMONARU",
     "reason": "iIt's an interesting read with a nice character roster. The world building is also amazing. With interesting plots",
     "reasons": [
@@ -2428,9 +2428,16 @@
       "isAdmin": false
     },
     "added_by_discord_id": null,
-    "poster": "",
-    "score": "N/A",
-    "nsfw": false
+    "poster": "https://myanimelist.net/images/manga/2/188935l.jpg",
+    "score": 7.89,
+    "nsfw": false,
+    "status": "FINISHED",
+    "chapters": 143,
+    "volumes": 35,
+    "genres": [
+      "Action",
+      "Fantasy"
+    ]
   },
   {
     "anilist_id": 177706,
@@ -2501,7 +2508,7 @@
   {
     "anilist_id": null,
     "mal_id": 147172,
-    "title": "MAL ID 147172",
+    "title": "Doom Breaker",
     "author": "Cruezxsp",
     "reason": "Translated: The action scenes are pure goosebumps, the art is absolutely insane, and there's a \"just one more\" feeling at the end of every chapter.\nOriginal (Hindi): Action scenes pure goosebumps wale hain, art absolutely insane hai, aur har chapter ke end pe “bas ek aur” wali feeling aati hai",
     "reasons": [
@@ -2560,8 +2567,15 @@
       "isAdmin": false
     },
     "added_by_discord_id": null,
-    "poster": "",
-    "score": "N/A",
-    "nsfw": false
+    "poster": "https://myanimelist.net/images/manga/3/261091l.jpg",
+    "score": 7.89,
+    "nsfw": false,
+    "status": "RELEASING",
+    "chapters": null,
+    "volumes": null,
+    "genres": [
+      "Action",
+      "Fantasy"
+    ]
   }
 ]
