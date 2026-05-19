@@ -585,5 +585,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:169580": {
+    "media_type": "anime",
+    "anilist_id": 169580,
+    "title": "I Made Friends with the Second Prettiest Girl in My Class",
+    "upvotes": [
+      "mal:21772037"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
