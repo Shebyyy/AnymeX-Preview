@@ -536,9 +536,11 @@
     "upvotes": [
       "al:7695478"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "mal:19122691"
+    ],
     "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:124080": {
     "media_type": "anime",
