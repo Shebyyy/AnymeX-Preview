@@ -6387,5 +6387,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
     "score": 79,
     "nsfw": false
+  },
+  {
+    "anilist_id": 159831,
+    "mal_id": 54112,
+    "title": "Zom 100: Bucket List of the Dead",
+    "author": "NekoHex7",
+    "reason": "peak on of a kind zombie adventure \nit's funny and very enjoyable more focused on character than zombies a must watch",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6617212,
+            "username": "NekoHex7",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6617212-h5dcZn2wFOUr.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "NekoHex7",
+        "text": "peak on of a kind zombie adventure \nit's funny and very enjoyable more focused on character than zombies a must watch",
+        "added_at": "2026-05-19T20:08:34Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6617212,
+        "username": "NekoHex7",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6617212-h5dcZn2wFOUr.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx159831-cJUNqCqzuApc.png",
+    "score": 76,
+    "nsfw": false
   }
 ]
