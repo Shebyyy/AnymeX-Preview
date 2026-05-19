@@ -592,5 +592,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:11617": {
+    "media_type": "anime",
+    "anilist_id": 11617,
+    "title": "High School DxD",
+    "upvotes": [],
+    "downvotes": [
+      "mal:17850332"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
