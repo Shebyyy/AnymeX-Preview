@@ -615,5 +615,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:323": {
+    "media_type": "anime",
+    "anilist_id": 323,
+    "title": "Paranoia Agent",
+    "upvotes": [
+      "al:7858884"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
