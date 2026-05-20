@@ -604,5 +604,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:103572": {
+    "media_type": "anime",
+    "anilist_id": 103572,
+    "title": "The Quintessential Quintuplets",
+    "upvotes": [
+      "al:7546133"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
