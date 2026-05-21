@@ -632,10 +632,11 @@
     "anilist_id": 99088,
     "title": "PLUTO",
     "upvotes": [
-      "al:5892637"
+      "al:5892637",
+      "al:5719602"
     ],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 2,
     "total_downvotes": 0
   }
 }
