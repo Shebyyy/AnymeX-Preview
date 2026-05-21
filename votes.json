@@ -626,5 +626,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:99088": {
+    "media_type": "anime",
+    "anilist_id": 99088,
+    "title": "PLUTO",
+    "upvotes": [
+      "al:5892637"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
