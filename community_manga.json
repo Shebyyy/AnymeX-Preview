@@ -2643,5 +2643,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx159930-qK1P4BNQL0zG.jpg",
     "score": 78,
     "nsfw": false
+  },
+  {
+    "anilist_id": 201009,
+    "mal_id": 188109,
+    "title": "The Patron of Villains",
+    "author": "Gaur2704",
+    "reason": "Great misunderstanding manhwa with beautiful art.",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": 1057970921870200852,
+            "username": "gaur2704",
+            "avatar": "https://cdn.discordapp.com/avatars/1057970921870200852/f03c65e629d0dd3a0b4433b94e29ce85.png?size=1024"
+          },
+          "anilist": {
+            "id": 7460497,
+            "username": "Gaur2704",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7460497-1GMCFGbxHWNT.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Gaur2704",
+        "text": "Great misunderstanding manhwa with beautiful art.",
+        "added_at": "2026-05-22T05:25:37Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 1057970921870200852,
+        "username": "gaur2704",
+        "avatar": "https://cdn.discordapp.com/avatars/1057970921870200852/f03c65e629d0dd3a0b4433b94e29ce85.png?size=1024"
+      },
+      "anilist": {
+        "id": 7460497,
+        "username": "Gaur2704",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7460497-1GMCFGbxHWNT.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx201009-jTY2arWw21sc.jpg",
+    "score": 78,
+    "nsfw": false
   }
 ]
