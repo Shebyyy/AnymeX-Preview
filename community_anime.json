@@ -2928,6 +2928,36 @@
         "author": "vkAwesome",
         "text": "12 episode full entertainment and solid story.",
         "added_at": null
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7730175,
+            "username": "Arjun26",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arjun26",
+        "text": "Must watch 👍🏽 - Absolute cinema 👍🏽",
+        "added_at": "2026-05-24T15:08:04Z"
       }
     ]
   },
