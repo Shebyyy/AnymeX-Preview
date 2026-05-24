@@ -6651,5 +6651,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10110-BXC37EbeTL3h.png",
     "score": 69,
     "nsfw": false
+  },
+  {
+    "anilist_id": 126546,
+    "mal_id": 44203,
+    "title": "Seirei Gensouki: Spirit Chronicles",
+    "author": "MackheBird",
+    "reason": "Worth it to watch thank you for this muah",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7780070,
+            "username": "MackheBird",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7780070-yjcMcy9yYZpS.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "MackheBird",
+        "text": "Worth it to watch thank you for this muah",
+        "added_at": "2026-05-24T05:20:22Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 7780070,
+        "username": "MackheBird",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7780070-yjcMcy9yYZpS.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx126546-Jujx9OvKxLzA.jpg",
+    "score": 69,
+    "nsfw": false
   }
 ]
