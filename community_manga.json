@@ -2505,6 +2505,36 @@
         "author": "Adan69",
         "text": "everyone loves a determined hero don't they well this the embodiment of determination",
         "added_at": "2026-05-08T15:40:04Z"
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5755038,
+            "username": "BigPurpleNeko",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5755038-6yPTt7f9cSvN.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "BigPurpleNeko",
+        "text": "Chad MC.......................",
+        "added_at": "2026-05-24T11:39:21Z"
       }
     ],
     "user": {
