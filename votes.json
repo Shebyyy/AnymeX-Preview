@@ -747,5 +747,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:99263": {
+    "media_type": "anime",
+    "anilist_id": 99263,
+    "title": "The Rising of the Shield Hero",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
