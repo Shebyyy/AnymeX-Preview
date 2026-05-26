@@ -665,5 +665,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:151514": {
+    "media_type": "anime",
+    "anilist_id": 151514,
+    "title": "Orb: On the Movements of the Earth",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
