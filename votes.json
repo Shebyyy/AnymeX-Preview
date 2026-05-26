@@ -698,5 +698,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:159831": {
+    "media_type": "anime",
+    "anilist_id": 159831,
+    "title": "Zom 100: Bucket List of the Dead",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
