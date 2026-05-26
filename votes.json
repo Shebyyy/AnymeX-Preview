@@ -676,5 +676,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:9253": {
+    "media_type": "anime",
+    "anilist_id": 9253,
+    "title": "Steins;Gate",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
