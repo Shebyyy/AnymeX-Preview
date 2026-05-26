@@ -724,5 +724,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:116566": {
+    "media_type": "anime",
+    "anilist_id": 116566,
+    "title": "Akudama Drive",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
