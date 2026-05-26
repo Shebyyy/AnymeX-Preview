@@ -737,5 +737,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:21711": {
+    "media_type": "anime",
+    "anilist_id": 21711,
+    "title": "91 Days",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
