@@ -758,5 +758,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:918": {
+    "media_type": "anime",
+    "anilist_id": 918,
+    "title": "Gintama",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
