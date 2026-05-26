@@ -551,9 +551,11 @@
     "media_type": "anime",
     "anilist_id": 124080,
     "title": "Horimiya",
-    "upvotes": [],
+    "upvotes": [
+      "al:5154107"
+    ],
     "downvotes": [],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 0
   },
   "anime:182300": {
