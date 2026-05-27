@@ -2769,5 +2769,86 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx201009-jTY2arWw21sc.jpg",
     "score": 78,
     "nsfw": false
+  },
+  {
+    "anilist_id": 85220,
+    "mal_id": 64157,
+    "title": "Hatarakanai Futari",
+    "author": "Arken",
+    "reason": "Slice of Life, Wholesome vibe with good comedy centred around NEET Siblings.\n\nIt averages 1-8 pages per chapters, sometimes only 1 page per chapter sometimes more.",
+    "reasons": [
+      {
+        "discord_id": "854642964483538945",
+        "discord_username": "titangen",
+        "user": {
+          "discord": {
+            "id": 854642964483538945,
+            "username": "titangen",
+            "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+          },
+          "anilist": {
+            "id": 6335658,
+            "username": "GenTitan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+          },
+          "mal": {
+            "id": 19910960,
+            "username": "GenTitan",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arken",
+        "text": "Slice of Life, Wholesome vibe with good comedy centred around NEET Siblings.\n\nIt averages 1-8 pages per chapters, sometimes only 1 page per chapter sometimes more.",
+        "added_at": "2026-05-27T17:55:37.200115Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "854642964483538945",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx85220-oK1UWMoXu4Et.jpg",
+    "score": 71,
+    "genres": [
+      "Comedy",
+      "Slice of Life"
+    ],
+    "nsfw": false,
+    "status": "RELEASING",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": null,
+    "volumes": null,
+    "season": null,
+    "season_year": null,
+    "description": "A slice-of-life story about \"life-less\" brother and sister, both jobless shut-ins.",
+    "studios": []
   }
 ]
