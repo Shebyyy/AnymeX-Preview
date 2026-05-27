@@ -2850,5 +2850,89 @@
     "season_year": null,
     "description": "A slice-of-life story about \"life-less\" brother and sister, both jobless shut-ins.",
     "studios": []
+  },
+  {
+    "anilist_id": 66267,
+    "mal_id": 36267,
+    "title": "Inside Mari",
+    "author": "Arken",
+    "reason": "College dropout Isao Komori wakes up one morning to find himself in the body of High School Girl \"Mari\".\n\nThe story is well written, psychological, mystery and thriller elements of story will hook you in it. It has ecchi elements and nudity they just shows everything aside from sex(which doesn't happens in story that's why not shown).\n\nThis is written by \"Shuuzou Oshimi\" the guy who wrote The Flowers of Evil and Blood on the Tracks. So, You can guess how messed up it will be if you have read his work.",
+    "reasons": [
+      {
+        "discord_id": "854642964483538945",
+        "discord_username": "titangen",
+        "user": {
+          "discord": {
+            "id": 854642964483538945,
+            "username": "titangen",
+            "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+          },
+          "anilist": {
+            "id": 6335658,
+            "username": "GenTitan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+          },
+          "mal": {
+            "id": 19910960,
+            "username": "GenTitan",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arken",
+        "text": "College dropout Isao Komori wakes up one morning to find himself in the body of High School Girl \"Mari\".\n\nThe story is well written, psychological, mystery and thriller elements of story will hook you in it. It has ecchi elements and nudity they just shows everything aside from sex(which doesn't happens in story that's why not shown).\n\nThis is written by \"Shuuzou Oshimi\" the guy who wrote The Flowers of Evil and Blood on the Tracks. So, You can guess how messed up it will be if you have read his work.",
+        "added_at": "2026-05-27T18:32:09.047111Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-TMxr1vuImL1L.jpg"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "854642964483538945",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/nx66267-2SiL38NU4RFj.jpg",
+    "score": 75,
+    "genres": [
+      "Drama",
+      "Ecchi",
+      "Mystery",
+      "Psychological",
+      "Thriller"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": 80,
+    "volumes": 9,
+    "season": null,
+    "season_year": null,
+    "description": "College dropout Isao Komori wakes up one morning to find himself in the body of a high school girl. How did this happen and what happened to the girl whose body his is possessing? \n<BR><BR>\n(Source: Denpa)",
+    "studios": []
   }
 ]
