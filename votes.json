@@ -795,5 +795,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:20987": {
+    "media_type": "anime",
+    "anilist_id": 20987,
+    "title": "Himouto! Umaru-chan",
+    "upvotes": [
+      "al:5154107"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
