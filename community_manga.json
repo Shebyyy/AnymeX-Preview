@@ -2934,5 +2934,89 @@
     "season_year": null,
     "description": "College dropout Isao Komori wakes up one morning to find himself in the body of a high school girl. How did this happen and what happened to the girl whose body his is possessing? \n<BR><BR>\n(Source: Denpa)",
     "studios": []
+  },
+  {
+    "anilist_id": 100954,
+    "mal_id": 124845,
+    "title": "Sweet Home",
+    "author": "Cruezxsp",
+    "reason": "It perfectly combines horror, psychological tension, action, and emotional depth in a way that keeps you hooked chapter after chapter. The characters feel real, their struggles hit hard, and the atmosphere constantly keeps you uneasy. What makes it stand out is how it explores human fear and desire while delivering brutal and unpredictable moments. It’s not just scary—it’s emotional, thrilling, and impossible to stop reading once you start",
+    "reasons": [
+      {
+        "discord_id": "1000376190130999397",
+        "discord_username": "cruezxsp",
+        "user": {
+          "discord": {
+            "id": "1000376190130999397",
+            "username": "cruezxsp",
+            "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+          },
+          "anilist": {
+            "id": 778172,
+            "username": "Cruezxsp",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+          },
+          "mal": {
+            "id": 9721047,
+            "username": "Cruezxsp",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+          },
+          "simkl": {
+            "username": "Cruezxsp",
+            "id": 5154199,
+            "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+          },
+          "isAdmin": false
+        },
+        "author": "Cruezxsp",
+        "text": "It perfectly combines horror, psychological tension, action, and emotional depth in a way that keeps you hooked chapter after chapter. The characters feel real, their struggles hit hard, and the atmosphere constantly keeps you uneasy. What makes it stand out is how it explores human fear and desire while delivering brutal and unpredictable moments. It’s not just scary—it’s emotional, thrilling, and impossible to stop reading once you start",
+        "added_at": "2026-05-28T16:03:25.304394Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1000376190130999397",
+        "username": "cruezxsp",
+        "avatar": "https://cdn.discordapp.com/avatars/1000376190130999397/5746f6f16f03798124ec058c12fa4ce6.png?size=1024"
+      },
+      "anilist": {
+        "id": 778172,
+        "username": "Cruezxsp",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b778172-ahtlH5dYkoal.jpg"
+      },
+      "mal": {
+        "id": 9721047,
+        "username": "Cruezxsp",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/3bcc2aaa-f05f-458d-a3ab-73b65c5a8815_225w?s=76a215a8824a8fce6300429a3432bb20"
+      },
+      "simkl": {
+        "username": "Cruezxsp",
+        "id": 5154199,
+        "avatar": "https://simkl.in/avatars/51/5154199_100.jpg?1744399973"
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1000376190130999397",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx100954-xY0Vw2sRRo8t.png",
+    "score": 81,
+    "genres": [
+      "Drama",
+      "Horror",
+      "Psychological",
+      "Supernatural",
+      "Thriller"
+    ],
+    "nsfw": false,
+    "status": "FINISHED",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": 141,
+    "volumes": 12,
+    "season": null,
+    "season_year": null,
+    "description": "After an unexpected family tragedy, a reclusive high school student is forced to leave his home -- only to face something much scarier: a reality where monsters are trying to wipe out humanity. Now he must fight alongside a handful of reluctant heroes to try and save the world before it’s too late.<br><br>\n(Source: WEBTOON)<br><br>\n<i>Note: Includes one extra chapter.</i>",
+    "studios": []
   }
 ]
