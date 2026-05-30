@@ -807,5 +807,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:114535": {
+    "media_type": "anime",
+    "anilist_id": 114535,
+    "title": "To Your Eternity",
+    "upvotes": [
+      "al:969688"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
