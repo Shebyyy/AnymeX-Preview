@@ -818,5 +818,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:169922": {
+    "media_type": "manga",
+    "anilist_id": 169922,
+    "title": "Hope You're Happy, Lemon",
+    "upvotes": [
+      "al:6913114"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
