@@ -849,5 +849,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:202102": {
+    "media_type": "anime",
+    "anilist_id": 202102,
+    "title": "NEEDY GIRL OVERDOSE",
+    "upvotes": [
+      "al:7877707"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
