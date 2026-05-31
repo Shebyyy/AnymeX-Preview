@@ -549,6 +549,7 @@ jobs:
           BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
           BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          WATCHIUM_BASE_URL: ${{ secrets.WATCHIUM_BASE_URL }}
         run: |
           cd main-repo
           cat > .env << EOF
@@ -567,6 +568,7 @@ jobs:
           BOT_BASE_URL=$BOT_BASE_URL
           BOT_API_SECRET=$BOT_API_SECRET
           SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
+          WATCHIUM_BASE_URL=$WATCHIUM_BASE_URL
           EOF
 
       - name: Clean Flutter for Alpha Build
