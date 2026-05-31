@@ -662,11 +662,13 @@
     "media_type": "anime",
     "anilist_id": 166216,
     "title": "The Dangers in My Heart Season 2",
-    "upvotes": [],
+    "upvotes": [
+      "al:7877707"
+    ],
     "downvotes": [
       "al:7930965"
     ],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 1
   },
   "anime:153152": {
