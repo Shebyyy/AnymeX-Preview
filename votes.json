@@ -830,5 +830,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:14741": {
+    "media_type": "anime",
+    "anilist_id": 14741,
+    "title": "Love, Chunibyo & Other Delusions",
+    "upvotes": [
+      "al:7877707"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
