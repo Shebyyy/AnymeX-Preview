@@ -621,10 +621,11 @@
     "upvotes": [],
     "downvotes": [
       "mal:17850332",
-      "al:5154107"
+      "al:5154107",
+      "al:7635079"
     ],
     "total_upvotes": 0,
-    "total_downvotes": 2
+    "total_downvotes": 3
   },
   "anime:103572": {
     "media_type": "anime",
