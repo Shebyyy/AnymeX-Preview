@@ -3271,6 +3271,36 @@
         "author": "ASheby",
         "text": "Brilliant cat-and-mouse thriller with insane twists and strategy.",
         "added_at": null
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 5979061,
+            "username": "AnodinoM",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "AnodinoM",
+        "text": "Past 25th episode still goated, so overhated.",
+        "added_at": "2026-06-07T04:22:48Z"
       }
     ]
   },
