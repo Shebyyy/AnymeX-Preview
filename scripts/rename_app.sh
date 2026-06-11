@@ -306,6 +306,42 @@ else
 fi
 
 ###############################################
+# LOGGER: Update version in logger.dart
+###############################################
+log_info "Logger: Updating version in logger.dart..."
+
+DART_LOGGER_FILE="lib/utils/logger.dart"
+
+if [ -f "$DART_LOGGER_FILE" ]; then
+  VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
+  
+  # Replace the version line in the log header
+  sed "${SED_INPLACE[@]}" "s|Version: \${pkg.version} (Build \${pkg.buildNumber})|Version: ${VERSION_WITHOUT_V}|g" "$DART_LOGGER_FILE"
+  
+  log_success "Updated logger version to $VERSION_WITHOUT_V"
+else
+  log_warn "Logger file not found at $DART_LOGGER_FILE. Skipping."
+fi
+
+###############################################
+# BACKUP: Update version in backup_restore_service.dart
+###############################################
+log_info "Backup: Updating version in backup_restore_service.dart..."
+
+DART_BACKUP_FILE="lib/controllers/services/backup_restore/backup_restore_service.dart"
+
+if [ -f "$DART_BACKUP_FILE" ]; then
+  VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
+  
+  # Replace packageInfo.version with hardcoded version
+  sed "${SED_INPLACE[@]}" "s|data\['appVersion'\] = packageInfo.version;|data['appVersion'] = \"${VERSION_WITHOUT_V}\";|g" "$DART_BACKUP_FILE"
+  
+  log_success "Updated backup version to $VERSION_WITHOUT_V"
+else
+  log_warn "Backup file not found at $DART_BACKUP_FILE. Skipping."
+fi
+
+###############################################
 # Summary
 ###############################################
 echo ""
