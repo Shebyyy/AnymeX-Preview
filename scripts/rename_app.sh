@@ -336,6 +336,9 @@ if [ -f "$DART_BACKUP_FILE" ]; then
   # Replace packageInfo.version with hardcoded version
   sed "${SED_INPLACE[@]}" "s|data\['appVersion'\] = packageInfo.version;|data['appVersion'] = \"${VERSION_WITHOUT_V}\";|g" "$DART_BACKUP_FILE"
   
+  # ← ADD THIS LINE RIGHT HERE
+  sed "${SED_INPLACE[@]}" '/final packageInfo = await PackageInfo.fromPlatform();/d' "$DART_BACKUP_FILE"
+  
   log_success "Updated backup version to $VERSION_WITHOUT_V"
 else
   log_warn "Backup file not found at $DART_BACKUP_FILE. Skipping."
