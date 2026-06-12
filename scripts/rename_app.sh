@@ -341,6 +341,9 @@ else
   log_warn "Backup file not found at $DART_BACKUP_FILE. Skipping."
 fi
 
+# Fix InstallPlugin appId for beta package
+sed "${SED_INPLACE[@]}" "s|appId: '$OLD_PKG'|appId: '$NEW_PKG'|g" "$DART_UPDATER_FILE"
+
 ###############################################
 # Summary
 ###############################################
