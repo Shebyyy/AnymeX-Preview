@@ -262,7 +262,81 @@ if [ -f "$DART_ABOUT_FILE" ]; then
 else
   log_warn "Settings about file not found at $DART_ABOUT_FILE. Skipping."
 fi
-##
+###############################################
+# UPDATE CHECKER: Update version in updater.dart
+###############################################
+log_info "Update Checker: Updating version for update checking..."
+
+DART_UPDATER_FILE="lib/utils/updater.dart"
+
+if [ -f "$DART_UPDATER_FILE" ]; then
+  # Remove 'v' prefix from DISPLAY_VERSION (e.g., "v3.0.4+1-alpha" -> "3.0.4+1-alpha")
+  VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
+
+  log_info "Alpha version string: $VERSION_WITHOUT_V"
+
+  # Hardcode _getCurrentVersion() to return the alpha version string
+  # e.g. "3.0.4+1-alpha" so the version is consistent across the app
+  sed "${SED_INPLACE[@]}" '/Future<String> _getCurrentVersion() async {/,/^  }$/c\
+  Future<String> _getCurrentVersion() async {\
+    return "'"$VERSION_WITHOUT_V"'";\
+  }' "$DART_UPDATER_FILE"
+
+  log_success "Updated _getCurrentVersion() to return $VERSION_WITHOUT_V"
+
+  # Disable update checking for alpha builds — alpha is not a release
+  # Patch _shouldUpdate() to return false immediately if current version contains "-alpha"
+  sed "${SED_INPLACE[@]}" '/bool _shouldUpdate(String currentVersion/{a\
+    // Alpha builds are not releases — skip update checking\
+    if (currentVersion.contains("-alpha")) return false;
+}' "$DART_UPDATER_FILE"
+
+  log_success "Added alpha skip-check in _shouldUpdate()"
+
+  # Fix InstallPlugin appId for alpha package
+  sed "${SED_INPLACE[@]}" "s|appId: '$OLD_PKG'|appId: '$NEW_PKG'|g" "$DART_UPDATER_FILE"
+
+  log_success "Updated InstallPlugin appId to $NEW_PKG"
+else
+  log_warn "Updater file not found at $DART_UPDATER_FILE. Skipping update checker updates."
+fi
+
+###############################################
+# LOGGER: Update version in logger.dart
+###############################################
+log_info "Logger: Updating version in logger.dart..."
+
+DART_LOGGER_FILE="lib/utils/logger.dart"
+
+if [ -f "$DART_LOGGER_FILE" ]; then
+  VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
+  
+  # Replace the version line in the log header
+  sed "${SED_INPLACE[@]}" "s|Version: \${pkg.version} (Build \${pkg.buildNumber})|Version: ${VERSION_WITHOUT_V}|g" "$DART_LOGGER_FILE"
+  
+  log_success "Updated logger version to $VERSION_WITHOUT_V"
+else
+  log_warn "Logger file not found at $DART_LOGGER_FILE. Skipping."
+fi
+
+###############################################
+# BACKUP: Update version in backup_restore_service.dart
+###############################################
+log_info "Backup: Updating version in backup_restore_service.dart..."
+
+DART_BACKUP_FILE="lib/controllers/services/backup_restore/backup_restore_service.dart"
+
+if [ -f "$DART_BACKUP_FILE" ]; then
+  VERSION_WITHOUT_V=$(echo "$DISPLAY_VERSION" | sed 's/^v//')
+  
+  # Replace packageInfo.version with hardcoded version
+  sed "${SED_INPLACE[@]}" "s|data\['appVersion'\] = packageInfo.version;|data['appVersion'] = \"${VERSION_WITHOUT_V}\";|g" "$DART_BACKUP_FILE"
+  
+  log_success "Updated backup version to $VERSION_WITHOUT_V"
+else
+  log_warn "Backup file not found at $DART_BACKUP_FILE. Skipping."
+fi
+
 ###############################################
 # Summary
 ###############################################
