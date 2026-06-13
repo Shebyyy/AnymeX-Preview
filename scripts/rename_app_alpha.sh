@@ -286,10 +286,9 @@ if [ -f "$DART_UPDATER_FILE" ]; then
 
   # Disable update checking for alpha builds — alpha is not a release
   # Patch _shouldUpdate() to return false immediately if current version contains "-alpha"
-  sed "${SED_INPLACE[@]}" '/bool _shouldUpdate(String currentVersion/{a\
+  sed "${SED_INPLACE[@]}" '/{bool isBeta = false}) {/a\
     // Alpha builds are not releases — skip update checking\
-    if (currentVersion.contains("-alpha")) return false;
-}' "$DART_UPDATER_FILE"
+    if (currentVersion.contains("-alpha")) return false;' "$DART_UPDATER_FILE"
 
   log_success "Added alpha skip-check in _shouldUpdate()"
 
