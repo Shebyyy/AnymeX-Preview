@@ -876,5 +876,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:96518": {
+    "media_type": "manga",
+    "anilist_id": 96518,
+    "title": "Bokutachi ga Yarimashita",
+    "upvotes": [
+      "al:6408626"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
