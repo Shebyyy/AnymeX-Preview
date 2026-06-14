@@ -345,6 +345,85 @@ fi
 sed "${SED_INPLACE[@]}" "s|appId: '$OLD_PKG'|appId: '$NEW_PKG'|g" "$DART_UPDATER_FILE"
 
 ###############################################
+# WINDOWS: Update main.cpp window title
+###############################################
+log_info "Windows: Updating main.cpp window title..."
+
+DART_WIN_MAIN="windows/runner/main.cpp"
+
+if [ -f "$DART_WIN_MAIN" ]; then
+  sed "${SED_INPLACE[@]}" "s|SendAppLinkToInstance(L\"AnymeX\")|SendAppLinkToInstance(L\"$NEW_APP_NAME\")|g" "$DART_WIN_MAIN"
+  sed "${SED_INPLACE[@]}" "s|window.Create(L\"AnymeX\"|window.Create(L\"$NEW_APP_NAME\"|g" "$DART_WIN_MAIN"
+  log_success "Updated main.cpp window title to $NEW_APP_NAME"
+else
+  log_warn "main.cpp not found at $DART_WIN_MAIN. Skipping."
+fi
+
+###############################################
+# PUBSPEC: Update inno_bundle name
+###############################################
+log_info "Pubspec: Updating inno_bundle name..."
+
+if [ -f "pubspec.yaml" ]; then
+  sed "${SED_INPLACE[@]}" "s|name: AnymeX$|name: $NEW_APP_NAME|g" pubspec.yaml
+  log_success "Updated inno_bundle name to $NEW_APP_NAME"
+fi
+
+###############################################
+# ANDROID: Update proguard-rules.pro
+###############################################
+log_info "Android: Updating proguard-rules.pro..."
+
+PROGUARD_FILE="android/app/proguard-rules.pro"
+
+if [ -f "$PROGUARD_FILE" ]; then
+  sed "${SED_INPLACE[@]}" "s|com.ryan.anymex.MainActivity|${NEW_PKG}.MainActivity|g" "$PROGUARD_FILE"
+  sed "${SED_INPLACE[@]}" "s|AnymeX ProGuard|${NEW_APP_NAME} ProGuard|g" "$PROGUARD_FILE"
+  log_success "Updated proguard-rules.pro"
+fi
+
+###############################################
+# DART: Update user-visible "AnymeX" strings
+###############################################
+log_info "Dart: Updating user-visible app name strings..."
+
+# Download paths
+sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
+sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
+
+# Share text
+sed "${SED_INPLACE[@]}" "s|Visual from AnymeX|Visual from $NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
+sed "${SED_INPLACE[@]}" "s|Image shared from AnymeX|Image shared from $NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
+sed "${SED_INPLACE[@]}" "s|Shared from AnymeX|Shared from $NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
+
+# Local source downloads label
+sed "${SED_INPLACE[@]}" "s|AnymeX Downloads|${NEW_APP_NAME} Downloads|g" lib/screens/local_source/local_source_view.dart
+
+# Sync disconnect text
+sed "${SED_INPLACE[@]}" "s|from AnymeX|from $NEW_APP_NAME|g" lib/controllers/sync/progress_sync_section.dart
+
+# Settings about username
+sed "${SED_INPLACE[@]}" 's|username: "AnymeX"|username: "'"${NEW_APP_NAME}"'"|g' lib/screens/settings/sub_settings/settings_about.dart
+
+log_success "Updated user-visible app name strings"
+
+###############################################
+# macOS: Update remaining package references
+###############################################
+log_info "macOS: Updating remaining package references..."
+
+if [ -f "$MACOS_INFO" ]; then
+  sed "${SED_INPLACE[@]}" "s|<string>$OLD_PKG</string>|<string>$NEW_PKG</string>|g" "$MACOS_INFO"
+  log_success "Updated macOS Info.plist bundle identifier"
+fi
+
+MACOS_PROJECT="macos/Runner.xcodeproj/project.pbxproj"
+if [ -f "$MACOS_PROJECT" ]; then
+  sed "${SED_INPLACE[@]}" "s|PRODUCT_BUNDLE_IDENTIFIER = ${OLD_PKG}.RunnerTests|PRODUCT_BUNDLE_IDENTIFIER = ${NEW_PKG}.RunnerTests|g" "$MACOS_PROJECT"
+  log_success "Updated macOS RunnerTests bundle identifier"
+fi
+
+###############################################
 # Summary
 ###############################################
 echo ""
