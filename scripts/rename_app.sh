@@ -188,6 +188,7 @@ fi
 
 if [ -f "$LINUX_CMAKE" ]; then
   sed "${SED_INPLACE[@]}" "s|set(APPLICATION_ID \"$OLD_PKG\")|set(APPLICATION_ID \"$NEW_PKG\")|g" "$LINUX_CMAKE"
+  sed "${SED_INPLACE[@]}" 's|set(BINARY_NAME "anymex")|set(BINARY_NAME "anymex_beta")|g' "$LINUX_CMAKE"
   log_success "Updated Linux CMakeLists.txt"
 fi
 
@@ -212,6 +213,7 @@ fi
 
 if [ -f "$WINDOWS_CMAKE" ]; then
   sed "${SED_INPLACE[@]}" "s|set(BINARY_NAME \"anymex\")|set(BINARY_NAME \"anymex_beta\")|g" "$WINDOWS_CMAKE"
+  sed "${SED_INPLACE[@]}" 's|project(anymex LANGUAGES CXX)|project(anymex_beta LANGUAGES CXX)|g' "$WINDOWS_CMAKE"
   log_success "Updated Windows CMakeLists.txt"
 fi
 
