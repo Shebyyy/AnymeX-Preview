@@ -887,5 +887,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:12031": {
+    "media_type": "anime",
+    "anilist_id": 12031,
+    "title": "Kingdom",
+    "upvotes": [
+      "al:7490725"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
