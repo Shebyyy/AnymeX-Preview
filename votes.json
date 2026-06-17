@@ -892,11 +892,9 @@
     "media_type": "anime",
     "anilist_id": 12031,
     "title": "Kingdom",
-    "upvotes": [
-      "al:7490725"
-    ],
+    "upvotes": [],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 0,
     "total_downvotes": 0
   }
 }
