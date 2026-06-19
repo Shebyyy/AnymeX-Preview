@@ -7137,5 +7137,71 @@
     "poster": "",
     "score": "N/A",
     "nsfw": false
+  },
+  {
+    "anilist_id": 24,
+    "mal_id": 24,
+    "title": "School Rumble",
+    "author": "Yutaro10",
+    "reason": "one of the best that i ever watched (T^T)",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6796079,
+            "username": "Yutaro10",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6796079-0fjuEAfx92t6.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Yutaro10",
+        "text": "one of the best that i ever watched (T^T)",
+        "added_at": "2026-06-19T17:12:58Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6796079,
+        "username": "Yutaro10",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6796079-0fjuEAfx92t6.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx24-FY8Y08LrROKE.png",
+    "score": 76,
+    "nsfw": false
   }
 ]
