@@ -733,7 +733,8 @@ jobs:
           if (Test-Path $pubGitDir) { Remove-Item -Recurse -Force $pubGitDir }
           flutter pub get
           dart run jni:setup
-          pwsh ../scripts/setup_libtorrent_windows.ps1 -Arch x64
+          pwsh ../beta-repo/scripts/setup_libtorrent_windows.ps1 -Arch x64
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           dart run inno_bundle:build --release 2>&1 | Select-String -Pattern "Compile aborted" -NotMatch
           $issFile = "build\windows\x64\installer\Release\inno-script.iss"
           if (-not (Test-Path $issFile)) { Write-Error "ISS file not found"; exit 1 }
