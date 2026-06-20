@@ -896,5 +896,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:105310": {
+    "media_type": "anime",
+    "anilist_id": 105310,
+    "title": "Fire Force",
+    "upvotes": [],
+    "downvotes": [
+      "al:6886349"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
