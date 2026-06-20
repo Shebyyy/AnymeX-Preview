@@ -858,7 +858,7 @@ jobs:
         if: matrix.platform == 'windows'
         with:
           name: AnymeX-Windows-installer
-          path: main-repo/build/windows/x64/installer/Release/AnymeX-x86_64-*-Installer.exe
+          path: main-repo/build/windows/x64/installer/Release/AnymeX*-Installer.exe
 
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'macos'

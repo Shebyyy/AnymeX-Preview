@@ -897,7 +897,7 @@ jobs:
           name: windows
           path: |
             main-repo/build/windows/x64/runner/Release/AnymeX-Windows.zip
-            main-repo/build/windows/x64/installer/Release/AnymeX-x86_64-*-Installer.exe
+            main-repo/build/windows/x64/installer/Release/AnymeX*-Installer.exe
       
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'macos'
