@@ -512,7 +512,7 @@ jobs:
             [ -n "$CHORES" ] && echo -e "### 🧹 Chores & Documentation\n$CHORES\n"
           } > CHANGELOG-BETA.md
 
-          CURRENT_TAG_SAFE=$(echo "${{ needs.check-tag.outputs.current_tag }}" | sed 's/[^a-zA-Z0-9.-]//g')
+          CURRENT_TAG_SAFE="${{ needs.check-tag.outputs.current_tag }}"
           echo "![Total Downloads](https://img.shields.io/github/downloads/Shebyyy/AnymeX-Preview/total?style=for-the-badge&label=TOTAL%20DOWNLOADS&labelColor=black&color=white) ![Beta Release](https://img.shields.io/github/downloads/Shebyyy/AnymeX-Preview/${CURRENT_TAG_SAFE}/total?style=for-the-badge&label=BETA%20RELEASE&labelColor=black&color=white)" >> CHANGELOG-BETA.md
         shell: /usr/bin/bash -e {0}
 
