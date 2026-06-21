@@ -905,8 +905,324 @@ jobs:
           name: macos
           path: main-repo/build/macos/Release/${{ env.APP_NAME }}.dmg
 
+      # ── Notify Discord immediately on build failure ──
+      - name: Notify Discord on build failure
+        if: failure()
+        shell: bash
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          TAG="${GITHUB_REF_NAME}"
+          RUN_ID="${GITHUB_RUN_ID}"
+          RUN_NUMBER="${GITHUB_RUN_NUMBER}"
+          REPO="${GITHUB_REPOSITORY}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+
+          case "$PLATFORM" in
+            android) PLAT_EMOJI="📱" ;;
+            ios)     PLAT_EMOJI="🍎" ;;
+            linux)   PLAT_EMOJI="🐧" ;;
+            windows) PLAT_EMOJI="🪟" ;;
+            macos)   PLAT_EMOJI="🖥️" ;;
+            *)       PLAT_EMOJI="🔨" ;;
+          esac
+
+          PLAT_UPPER=$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')
+
+          jq -n \
+            --arg title "🚀 Release Build: ${TAG}" \
+            --arg emoji "$PLAT_EMOJI" \
+            --arg plat "$PLAT_UPPER" \
+            --arg run_num "$RUN_NUMBER" \
+            --arg url "$ACTION_URL" \
+            --arg footer "Other platforms may still be running" \
+            --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
+              "embeds": [{
+                "title": $title,
+                "description": ("❌ **" + $emoji + " " + $plat + " build failed**\n\n⚙️ Build #" + $run_num + " | Release\n\n[🔗 View Run & Logs](" + $url + ")"),
+                "color": 15158332,
+                "footer": { "text": $footer },
+                "timestamp": $ts
+              }]
+            }' > /tmp/discord_payload.json
+
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d @/tmp/discord_payload.json
+          echo "Discord failure notification sent for $PLATFORM"
+
+      # ── Notify Discord on build success ──
+      - name: Notify Discord on build success
+        if: success()
+        shell: bash
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          TAG="${GITHUB_REF_NAME}"
+          RUN_ID="${GITHUB_RUN_ID}"
+          RUN_NUMBER="${GITHUB_RUN_NUMBER}"
+          REPO="${GITHUB_REPOSITORY}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+
+          case "$PLATFORM" in
+            android) PLAT_EMOJI="📱" ;;
+            ios)     PLAT_EMOJI="🍎" ;;
+            linux)   PLAT_EMOJI="🐧" ;;
+            windows) PLAT_EMOJI="🪟" ;;
+            macos)   PLAT_EMOJI="🖥️" ;;
+            *)       PLAT_EMOJI="🔨" ;;
+          esac
+
+          PLAT_UPPER=$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')
+
+          jq -n \
+            --arg title "🚀 Release Build: ${TAG}" \
+            --arg emoji "$PLAT_EMOJI" \
+            --arg plat "$PLAT_UPPER" \
+            --arg run_num "$RUN_NUMBER" \
+            --arg url "$ACTION_URL" \
+            --arg footer "Other platforms may still be running" \
+            --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
+              "embeds": [{
+                "title": $title,
+                "description": ("✅ **" + $emoji + " " + $plat + " build completed successfully**\n\n⚙️ Build #" + $run_num + " | Release\n\n[🔗 View Run](" + $url + ")"),
+                "color": 3066993,
+                "footer": { "text": $footer },
+                "timestamp": $ts
+              }]
+            }' > /tmp/discord_payload.json
+
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d @/tmp/discord_payload.json
+          echo "Discord success notification sent for $PLATFORM"
+
+  # ─────────────────────────────────────────────
+  # Collect per-platform build results
+  # ─────────────────────────────────────────────
+  collect-results:
+    needs: [build-all-platforms]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    outputs:
+      results_json: ${{ steps.collect.outputs.results_json }}
+    steps:
+      - name: Collect build job results
+        id: collect
+        run: |
+          REQUESTED="android linux windows macos ios"
+
+          # Query the jobs API for actual job conclusions
+          JOBS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=100")
+
+          echo "$JOBS" > jobs.json
+          echo "Total jobs found: $(jq '.jobs | length' jobs.json)"
+
+          RESULTS="{}"
+          for PLATFORM in $REQUESTED; do
+            CONCLUSION=$(jq -r --arg p "$PLATFORM" '
+              .jobs[]
+              | select(.name | test("build-all-platforms.*" + $p; "i"))
+              | .conclusion
+            ' jobs.json | head -n1)
+
+            case "$CONCLUSION" in
+              success)   STATUS="success" ;;
+              failure|timed_out|cancelled) STATUS="failed" ;;
+              skipped)   STATUS="skipped" ;;
+              "")        STATUS="failed" ;;
+              *)         STATUS="failed" ;;
+            esac
+
+            echo "  $PLATFORM → conclusion=$CONCLUSION → status=$STATUS"
+            RESULTS=$(echo "$RESULTS" | jq -c --arg p "$PLATFORM" --arg s "$STATUS" '. + {($p): $s}')
+          done
+
+          echo "Build results: $RESULTS"
+          echo "results_json=$RESULTS" >> $GITHUB_OUTPUT
+
+  # ─────────────────────────────────────────────
+  # Final Discord summary after all builds
+  # ─────────────────────────────────────────────
+  notify-summary:
+    needs: [build-all-platforms, collect-results]
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+    steps:
+      - name: Fetch Artifact Info
+        id: fetch-artifacts
+        run: |
+          echo "Fetching artifacts for run ${{ github.run_id }}..."
+
+          ARTIFACTS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+
+          echo "$ARTIFACTS" > artifacts.json
+
+          get_artifact() {
+            local NAME="$1"
+            local ID=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .id' artifacts.json)
+            local SIZE=$(jq -r --arg name "$NAME" '.artifacts[] | select(.name == $name) | .size_in_bytes' artifacts.json)
+            if [ -n "$ID" ] && [ "$ID" != "null" ]; then
+              SIZE_HR=$(awk -v size="$SIZE" 'BEGIN{
+                split("B KB MB GB", unit);
+                for (i=1; size>=1024 && i<4; i++) size/=1024;
+                printf "%.1f %s", size, unit[i]
+              }')
+              echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ID|$SIZE_HR"
+            else
+              echo ""
+            fi
+          }
+
+          echo "APK_ARM64=$(get_artifact "android-all")" >> $GITHUB_ENV
+          echo "IOS=$(get_artifact "ios")" >> $GITHUB_ENV
+          echo "LINUX=$(get_artifact "linux")" >> $GITHUB_ENV
+          echo "WINDOWS=$(get_artifact "windows")" >> $GITHUB_ENV
+          echo "MACOS=$(get_artifact "macos")" >> $GITHUB_ENV
+
+      - name: Send Discord Summary Notification
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          RUN_NUMBER="${GITHUB_RUN_NUMBER}"
+          RUN_ID="${GITHUB_RUN_ID}"
+          REPO="${GITHUB_REPOSITORY}"
+          ACTION_URL="https://github.com/${REPO}/actions/runs/${RUN_ID}"
+
+          # Load per-platform results
+          RESULTS='${{ needs.collect-results.outputs.results_json }}'
+
+          get_status() {
+            echo "$RESULTS" | jq -r --arg p "$1" '.[$p] // "skipped"'
+          }
+
+          # Determine overall status
+          ALL_SUCCESS=true
+          ANY_FAILED=false
+
+          for P in android linux windows macos ios; do
+            S=$(get_status "$P")
+            [ "$S" != "success" ] && ALL_SUCCESS=false
+            [ "$S" = "failed"  ] && ANY_FAILED=true
+          done
+
+          if [ "$ALL_SUCCESS" = true ]; then
+            OVERALL_EMOJI="✅"
+            OVERALL_LABEL="All builds passed"
+            COLOR=3066993   # green
+          elif [ "$ANY_FAILED" = true ]; then
+            SOME_PASSED=false
+            for P in android linux windows macos ios; do
+              [ "$(get_status "$P")" = "success" ] && SOME_PASSED=true
+            done
+            if [ "$SOME_PASSED" = true ]; then
+              OVERALL_EMOJI="⚠️"
+              OVERALL_LABEL="Some builds failed"
+              COLOR=16776960  # yellow
+            else
+              OVERALL_EMOJI="❌"
+              OVERALL_LABEL="All builds failed"
+              COLOR=15158332  # red
+            fi
+          else
+            OVERALL_EMOJI="❌"
+            OVERALL_LABEL="Build failed"
+            COLOR=15158332
+          fi
+
+          # Build status summary lines
+          STATUS_LINES=""
+          platform_status_line() {
+            local PLATFORM="$1"
+            local EMOJI_ICON="$2"
+            local S=$(get_status "$PLATFORM")
+            case "$S" in
+              success) STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ✅\n" ;;
+              failed)  STATUS_LINES+="${EMOJI_ICON} **$(echo "$PLATFORM" | tr '[:lower:]' '[:upper:]')** ❌ Failed\n" ;;
+            esac
+          }
+
+          platform_status_line android "📱"
+          platform_status_line ios     "🍎"
+          platform_status_line linux   "🐧"
+          platform_status_line windows "🪟"
+          platform_status_line macos   "🖥️"
+
+          STATUS_VALUE="$(echo -e "$STATUS_LINES" | sed '/^$/d')"
+
+          # Build artifact field content
+          make_line() {
+            local LABEL="$1"
+            local VALUE="$2"
+            if [ -n "$VALUE" ]; then
+              local URL=$(echo "$VALUE" | cut -d'|' -f1)
+              local SIZE=$(echo "$VALUE" | cut -d'|' -f2)
+              echo "**${LABEL}** | [Download](${URL}) | ${SIZE}"
+            fi
+          }
+
+          FIELDS="[]"
+          add_field() {
+            local NAME="$1"
+            local VALUE="$(echo -e "$2" | sed '/^$/d')"
+            if [ -n "$VALUE" ]; then
+              FIELDS=$(echo "$FIELDS" | jq \
+                --arg name "$NAME" \
+                --arg value "$VALUE" \
+                '. + [{"name": $name, "value": $value, "inline": false}]')
+            fi
+          }
+
+          # Artifact fields
+          [ -n "$APK_ARM64" ] && add_field "📱 Android" "$(make_line "All APKs" "$APK_ARM64")"
+          [ -n "$LINUX" ]     && add_field "🐧 Linux" "$(make_line "Linux" "$LINUX")"
+          [ -n "$WINDOWS" ]   && add_field "🪟 Windows" "$(make_line "Windows" "$WINDOWS")"
+          [ -n "$IOS" ]       && add_field "🍎 iOS" "$(make_line "iOS" "$IOS")"
+          [ -n "$MACOS" ]     && add_field "🖥️ macOS" "$(make_line "macOS" "$MACOS")"
+
+          # Build status field
+          if [ -n "$STATUS_VALUE" ]; then
+            FIELDS=$(echo "$FIELDS" | jq \
+              --arg value "$STATUS_VALUE" \
+              '. + [{"name": "🏗️ Build Status", "value": $value, "inline": false}]')
+          fi
+
+          DESCRIPTION=$(printf '%s %s\n\n⚙️ Build #%s | Release\n🏷️ Tag: %s\n\n[🔗 View Run](%s)' \
+            "$OVERALL_EMOJI" "$OVERALL_LABEL" \
+            "$RUN_NUMBER" "$TAG" \
+            "$ACTION_URL")
+
+          PAYLOAD=$(printf '%s' "$FIELDS" | jq \
+            --arg tag "$TAG" \
+            --rawfile description <(printf '%s' "$DESCRIPTION") \
+            --argjson color "$COLOR" \
+            --arg footer "Release build • $ACTION_URL" \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+            '{
+              "embeds": [{
+                "title": ("🚀 Release Build: " + $tag),
+                "description": $description,
+                "color": $color,
+                "fields": .,
+                "footer": { "text": $footer },
+                "timestamp": $timestamp
+              }]
+            }')
+
+          echo "Sending Discord summary notification..."
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_BUILDS }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
+          echo "✅ Discord summary notification sent"
+
   release:
-    needs: build-all-platforms
+    needs: [build-all-platforms, notify-summary]
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
