@@ -902,11 +902,13 @@
     "media_type": "anime",
     "anilist_id": 105310,
     "title": "Fire Force",
-    "upvotes": [],
+    "upvotes": [
+      "al:7657898"
+    ],
     "downvotes": [
       "al:6886349"
     ],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 1
   },
   "anime:2034": {
