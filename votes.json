@@ -925,5 +925,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:185519": {
+    "media_type": "anime",
+    "anilist_id": 185519,
+    "title": "See You Tomorrow at the Food Court",
+    "upvotes": [
+      "al:7657898"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
