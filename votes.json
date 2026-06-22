@@ -907,5 +907,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:2034": {
+    "media_type": "anime",
+    "anilist_id": 2034,
+    "title": "Lovely Complex",
+    "upvotes": [
+      "al:7657898"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
