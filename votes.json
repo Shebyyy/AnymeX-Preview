@@ -944,11 +944,9 @@
     "media_type": "movie",
     "anilist_id": 1436130,
     "title": "Taxi Driver",
-    "upvotes": [
-      "simkl:8419805"
-    ],
+    "upvotes": [],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 0,
     "total_downvotes": 0
   }
 }
