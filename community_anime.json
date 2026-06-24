@@ -3988,6 +3988,36 @@
         "author": "JamesKJ",
         "text": "👌                             👌",
         "added_at": "2026-04-29T16:03:07Z"
+      },
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 7716112,
+            "username": "Chiubex",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Chiubex",
+        "text": "Crazy Journey, I'll always bring something of it with me",
+        "added_at": "2026-06-24T22:50:01Z"
       }
     ],
     "user": {
