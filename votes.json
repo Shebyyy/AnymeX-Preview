@@ -955,5 +955,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:11061": {
+    "media_type": "anime",
+    "anilist_id": 11061,
+    "title": "Hunter x Hunter (2011)",
+    "upvotes": [
+      "al:7692062"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
