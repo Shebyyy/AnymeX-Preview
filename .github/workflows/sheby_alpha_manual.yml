@@ -619,7 +619,7 @@ jobs:
           # Wipe pub git cache so flutter fetches a clean copy
           rm -rf "${PUB_CACHE:-$HOME/.pub-cache}/git"
           flutter pub get
-          flutter build ios --release --no-codesign
+          flutter build ios --release --no-codesign --verbose
           mkdir -p build/ios/iphoneos/Payload
           ln -s ../Runner.app build/ios/iphoneos/Payload/Runner.app
           if [ -n "$P12_BASE64" ] && [ -n "$PROVISIONING_PROFILE_BASE64" ] && [ -n "$P12_PASSWORD" ]; then
