@@ -289,7 +289,7 @@
       "isAdmin": false
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx201773-ecGmhCRhfu05.jpg",
-    "score": 76,
+    "score": 79,
     "nsfw": false,
     "reasons": [
       {
@@ -599,7 +599,7 @@
       "anilist": {
         "id": 7475531,
         "username": "BakaBoss",
-        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-QMa3Iyzmqj7A.jpg"
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-B6bD68KMW47r.png"
       },
       "mal": {
         "id": null,
@@ -629,7 +629,7 @@
           "anilist": {
             "id": 7475531,
             "username": "BakaBoss",
-            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-QMa3Iyzmqj7A.jpg"
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-B6bD68KMW47r.png"
           },
           "mal": {
             "id": null,
@@ -1082,7 +1082,7 @@
       "isAdmin": false
     },
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx154159-gppMB0osgXMa.jpg",
-    "score": 78,
+    "score": 79,
     "genres": [
       "Drama",
       "Fantasy",
@@ -1149,7 +1149,7 @@
       "anilist": {
         "id": 7475531,
         "username": "BakaBoss",
-        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-QMa3Iyzmqj7A.jpg"
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-B6bD68KMW47r.png"
       },
       "mal": {
         "id": null,
@@ -1198,7 +1198,7 @@
           "anilist": {
             "id": 7475531,
             "username": "BakaBoss",
-            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-QMa3Iyzmqj7A.jpg"
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7475531-B6bD68KMW47r.png"
           },
           "mal": {
             "id": null,
@@ -2099,7 +2099,7 @@
     },
     "added_by_discord_id": null,
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx184347-lDVGEttgQHbY.jpg",
-    "score": 75,
+    "score": 76,
     "nsfw": false
   },
   {
@@ -2297,7 +2297,7 @@
     },
     "added_by_discord_id": null,
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx197334-dqgA7whQOULx.jpg",
-    "score": "N/A",
+    "score": null,
     "nsfw": false
   },
   {
@@ -2562,7 +2562,7 @@
     },
     "added_by_discord_id": null,
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx177706-3r8dnAr8Prjq.jpg",
-    "score": 84,
+    "score": 85,
     "nsfw": false
   },
   {
@@ -2999,7 +2999,7 @@
     },
     "added_by_discord_id": "1000376190130999397",
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx100954-xY0Vw2sRRo8t.png",
-    "score": 81,
+    "score": 82,
     "genres": [
       "Drama",
       "Horror",
