@@ -973,5 +973,16 @@
     "downvotes": [],
     "total_upvotes": 2,
     "total_downvotes": 0
+  },
+  "anime:163133": {
+    "media_type": "anime",
+    "anilist_id": 163133,
+    "title": "Senpai is an Otokonoko",
+    "upvotes": [],
+    "downvotes": [
+      "al:6741550"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
