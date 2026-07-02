@@ -7233,5 +7233,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx24-FY8Y08LrROKE.png",
     "score": 76,
     "nsfw": false
+  },
+  {
+    "anilist_id": null,
+    "mal_id": null,
+    "title": "Unknown",
+    "author": "LittleDevilSatan",
+    "reason": "I urge whoever is reading this recommendation to at minimum read this till chapter 60 it is the sweetest most wholesome shit ive read in a while it is amazing",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6398583,
+            "username": "LittleDevilSatan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "LittleDevilSatan",
+        "text": "I urge whoever is reading this recommendation to at minimum read this till chapter 60 it is the sweetest most wholesome shit ive read in a while it is amazing",
+        "added_at": "2026-07-02T08:28:48Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6398583,
+        "username": "LittleDevilSatan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "",
+    "score": "N/A",
+    "nsfw": false
   }
 ]
