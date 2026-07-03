@@ -7299,5 +7299,71 @@
     "poster": "",
     "score": "N/A",
     "nsfw": false
+  },
+  {
+    "anilist_id": null,
+    "mal_id": null,
+    "title": "Unknown",
+    "author": "SousukeAizen123",
+    "reason": "This is so so similar to To Love-Ru, I Guarantee you will be entertainer by it if you love that legendary series",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 6434666,
+            "username": "SousukeAizen123",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "SousukeAizen123",
+        "text": "This is so so similar to To Love-Ru, I Guarantee you will be entertainer by it if you love that legendary series",
+        "added_at": "2026-07-03T17:52:34Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 6434666,
+        "username": "SousukeAizen123",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "",
+    "score": "N/A",
+    "nsfw": false
   }
 ]
