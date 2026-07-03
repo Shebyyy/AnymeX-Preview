@@ -6,9 +6,11 @@
     "upvotes": [
       "al:5724017"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7168625"
+    ],
     "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:20727": {
     "media_type": "anime",
