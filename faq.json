@@ -1,82 +1,108 @@
-[
-  {
-    "id": 1,
-    "title": "Episodes or chapters not showing up or showing incorrectly?",
-    "description": "AnymeX uses external sources, and title mismatches with any service may cause issues, showing incorrect or no results.\n> Use the **Wrong Title** option below the source name. Search for the correct title (e.g., English title) to load content."
-  },
-  {
-    "id": 2,
-    "title": "How to stream/read on AnymeX?",
-    "description": "To stream or read, add anime, manga, & novel repos.\nFor repositories, visit:\n\n[Mangayomi](https://wotaku.wiki/ext/mangayomi) (Android, iOS, Desktop)\n[Mihon](https://wotaku.wiki/ext/mihon) (Android, Desktop)\n[Sora](https://wotaku.wiki/ext/ios#sora) (Android, iOS, Desktop)\n[Cloudstream](https://wotaku.wiki/ext/misc#cloudstream) (Android)\n\n> **Manual Installation:** Copy the repo URL → In AnymeX, go to **Profile → Settings → Extensions** → Download plugin & click on Done (if not downloaded) → Paste URL → Confirm\n\nMake sure to select the correct Extension System and Type.\n\n**Note:** Ensure AnymeX is installed with proper permissions.\n**Disclaimer:** We do not encourage piracy. Support official sources when possible."
-  },
-  {
-    "id": 3,
-    "title": "How to install AnymeX IPA on iOS?",
-    "description": "**Jailbreak Method:**\n```\nInstall AppSync Unified or TrollStore\nDownload AnymeX IPA\nInstall via Filza or TrollStore\n```\n**LiveContainer Method (No Jailbreak):**\n```\nInstall LiveContainer\nLong press app → Settings → Signer → ZSign\nImport AnymeX IPA in LiveContainer\n```\n**Note:** LiveContainer enables sideloading without jailbreak."
-  },
-  {
-    "id": 4,
-    "title": "How to switch between AniList, MyAnimeList, Simkl, or Extension?",
-    "description": "To change the tracking service:\n```\nClick Profile → Change Service\nSelect AniList, MyAnimeList, Simkl, or Extension\n```\n**Note:** Extension service requires 4+ extensions installed to unlock."
-  },
-  {
-    "id": 5,
-    "title": "How can I watch local videos with AnymeX?",
-    "description": "To play local videos:\n```\nGo to Profile → Local Media\nClick the Local button and grant directory access\n```"
-  },
-  {
-    "id": 6,
-    "title": "Why is an extension marked as obsolete?",
-    "description": "This happens if a repo is missing or the extension was removed."
-  },
-  {
-    "id": 7,
-    "title": "How can I contribute to AnymeX?",
-    "description": "Check [GitHub Issues](https://github.com/RyanYuuki/AnymeX/issues) for `good first issue` tags.\n\n* **Non-coding:** Report bugs or suggest features in the linked Discord channels or GitHub.\n* **More info:** [DeepWiki](https://deepwiki.com/RyanYuuki/AnymeX)"
-  },
-  {
-    "id": 8,
-    "title": "How to install AnymeX on Linux?",
-    "description": "**Install:**\n`bash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) install`\n**Update:**\n`bash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) update`\n**Uninstall:**\n`bash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) uninstall`"
-  },
-  {
-    "id": 9,
-    "title": "What's Hardsub or Softsub?",
-    "description": "**Hardsub:** Subtitles are burned into the video (uneditable).\n**Softsub:** Subtitles are separate; can be toggled or edited in AnymeX."
-  },
-  {
-    "id": 10,
-    "title": "Source not loading?",
-    "description": "> Many sources are **geo-blocked** or **ISP-blocked**. Try a **VPN** or switch networks.\n**Note:** AnymeX does not maintain sources; report issues to the specific source repo."
-  },
-  {
-    "id": 11,
-    "title": "Xiaomi Devices (MIUI/HyperOS) Fixes",
-    "description": "**1. Battery:** Set to No Restrictions ([dontkillmyapp.com](https://dontkillmyapp.com/xiaomi)).\n**2. Optimization:** Turn **OFF** 'MIUI/System Optimization' in Developer Options.\n**3. HyperOS:** Enable **'Access List of Installed Apps'** in App Permissions."
-  },
-  {
-    "id": 12,
-    "title": "How to Sync Progress across all devices?",
-    "description": "AnymeX uses **GitHub Gist** for cloud syncing.\n\n**Setup:**\n> **Profile → Settings → Accounts → Progress sync** → **Connect** GitHub → **Initialise**.\n\n**Features:**\n* Auto Sync while watching/reading.\n* Auto Cleanup of completed media.\n* Manual Import/Export via the **Manage** button."
-  },
-  {
-    "id": 13,
-    "title": "How to Share Logs?",
-    "description": "**Profile → Settings → Logs**\n\n**Steps:**\n> **1.** Enable **Write log to a file**\n> **2.** Reproduce the issue - trigger the exact bug or error you want to report\n> **3.** Share via **Share Logs** in the same page, or send the file directly from your file manager\n\n> **⚠️ Note:** Make sure to **reproduce the error first** before sharing logs. A log with no error in it won't help diagnose the issue."
-  },
-  {
-    "id": 14,
-    "title": "How to Submit a Custom Theme?",
-    "description": "Themes are submitted via the **[Creator Dashboard](https://anymex-themes.vercel.app/creator/dashboard)**. Submissions are **automated** — your theme appears here instantly after upload.\n\n**Steps:**\n> **1.** [Login](https://anymex-themes.vercel.app/creator/login) or [Register](https://anymex-themes.vercel.app/creator/register)\n> **2.** Select **Upload Theme** → Fill in Name, Description, JSON, Category & Preview Image\n> **3.** Click **Upload** — done!\n\n**Requirements:**\n* Valid theme JSON with a unique `id`\n* High-quality preview screenshot\n* Unique name (letters, numbers, underscores only)\n\n📚 [Documentation](https://anymex-themes.vercel.app/docs)"
-  },
-  {
-    "id": 15,
-    "title": "How to Apply Custom Player Themes?",
-    "description": "All custom player themes can be found at **[Anymex Themes](https://anymex-themes.vercel.app/)**.\n\n**Apply a Theme:**\n> Find a theme → Click **Apply** → AnymeX opens automatically and adds it to your collection.\n\n**Switch Themes:**\n> **Profile → Settings → Player → Player Theme** → Select any theme from your collection.\n\n> 💡 You can keep multiple themes and switch between them anytime without re-downloading!"
-  },
-  {
-    "id": 16,
-    "title": "What is Community Recommendations?",
-    "description": "**Community Recommendations** is a section where the community submits hidden gems across **Anime, Manga, Movies & Shows** — anyone can contribute and vote on entries!\n\n**Enable it:**\n> **Profile → Settings → Common → Community Recommendations** → Toggle **Show Community Recommendations**\n\n> 🔞 **Hide NSFW Recommendations** is available in the same section — enabled by default.\n\n**Link your accounts:**\n> • `/setup` → link **AniList** and/or **MAL**\n> • `/link_simkl` → link **Simkl** via PIN auth\n\n**Add your picks:**\n> • `/add_anime` or `/add_manga` → search, select & give a reason\n> • `/add_show` or `/add_movie` → same flow, powered by Simkl\n\n**Vote:**\n> • **Long press** any item in the section to vote on it directly.\n> • Tap **See All** to browse all submitted entries and vote."
-  }
-]
+{
+  "version": 1,
+  "lastUpdated": "2025-03-04",
+  "faq": [
+    {
+      "id": 1,
+      "question": "Episodes or chapters not showing up or showing incorrectly?",
+      "answer": "AnymeX uses external sources, and title mismatches with any service may cause issues, showing incorrect or no results.\n\n> Use the **Wrong Title** option below the source name. Search for the correct title (e.g., English title) to load content.",
+      "category": "general"
+    },
+    {
+      "id": 2,
+      "question": "How to stream/read on AnymeX?",
+      "answer": "Follow the step-by-step guide: [AnymeX Extension Guides](https://anymex-extensions.vercel.app/guides)\n\nQuick links:\n• [All Repos](https://anymex-extensions.vercel.app/repos)\n• [All Extensions](https://anymex-extensions.vercel.app/extensions)\n\n**No plugin needed:** Mangayomi, LNReader, Sora (all platforms)\n**Plugin needed:** Aniyomi, CloudStream (Android & Desktop only, not iOS)\n\n⚠️ Select the correct Extension System and Type.\n\n**Disclaimer:** We do not encourage piracy. Support official sources when possible.",
+      "category": "general"
+    },
+    {
+      "id": 3,
+      "question": "How to install AnymeX IPA on iOS?",
+      "answer": "**Jailbreak Method:**\n```\nInstall AppSync Unified or TrollStore\nDownload AnymeX IPA\nInstall via Filza or TrollStore\n```\n**LiveContainer Method (No Jailbreak):**\n```\nInstall LiveContainer\nLong press app → Settings → Signer → ZSign\nImport AnymeX IPA in LiveContainer\n```\n**Note:** LiveContainer enables sideloading without jailbreak.",
+      "category": "installation"
+    },
+    {
+      "id": 4,
+      "question": "How to switch between AniList, MyAnimeList, Simkl, or Extension?",
+      "answer": "To change the tracking service:\n```\nClick Profile → Change Service\nSelect AniList, MyAnimeList, Simkl, or Extension\n```\n**Note:** Extension service requires 4+ extensions installed to unlock.",
+      "category": "general"
+    },
+    {
+      "id": 5,
+      "question": "How can I watch local videos with AnymeX?",
+      "answer": "To play local videos:\n```\nGo to Profile → Local Media\nClick the Local button and grant directory access\n```",
+      "category": "general"
+    },
+    {
+      "id": 6,
+      "question": "Why is an extension marked as obsolete?",
+      "answer": "This happens if a repo is missing or the extension was removed.",
+      "category": "extensions"
+    },
+    {
+      "id": 7,
+      "question": "How can I contribute to AnymeX?",
+      "answer": "Check [GitHub Issues](https://github.com/RyanYuuki/AnymeX/issues) for `good first issue` tags.\n\n* **Non-coding:** Report bugs or suggest features in the linked Discord channels or GitHub.\n* **More info:** [DeepWiki](https://deepwiki.com/RyanYuuki/AnymeX)",
+      "category": "general"
+    },
+    {
+      "id": 8,
+      "question": "How to install AnymeX on Linux?",
+      "answer": "**Install:**\n```bash\nbash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) install\n```\n**Update:**\n```bash\nbash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) update\n```\n**Uninstall:**\n```bash\nbash <(curl -s https://raw.githubusercontent.com/Shebyyy/linux-installer/refs/heads/main/anymex.sh) uninstall\n```",
+      "category": "installation"
+    },
+    {
+      "id": 9,
+      "question": "What's Hardsub or Softsub?",
+      "answer": "**__Hardsub__:** Subtitles are burned into the video (uneditable).\n\n**__Softsub__:** Subtitles are separate; can be toggled or edited in AnymeX.",
+      "category": "general"
+    },
+    {
+      "id": 10,
+      "question": "Source not loading?",
+      "answer": "> Many sources are **geo-blocked** or **ISP-blocked**. Try a **VPN** or switch networks.\n\n**Note:** AnymeX does not maintain sources; report issues to the specific source repo.",
+      "category": "troubleshooting"
+    },
+    {
+      "id": 11,
+      "question": "Xiaomi Devices (MIUI/HyperOS) Fixes",
+      "answer": "**1. Battery:** Set to No Restrictions ([dontkillmyapp.com](https://dontkillmyapp.com/xiaomi)).\n\n**2. Optimization:** Turn **OFF** 'MIUI/System Optimization' in Developer Options.\n\n**3. HyperOS:** Enable **'Access List of Installed Apps'** in App Permissions.",
+      "category": "troubleshooting"
+    },
+    {
+      "id": 12,
+      "question": "How to Sync Progress across all devices?",
+      "answer": "AnymeX uses **GitHub Gist** for cloud syncing.\n\n**Setup:**\n> **Profile → Settings → Accounts → Progress sync** → **Connect** GitHub → **Initialise**.\n\n**Features:**\n* Auto Sync while watching/reading.\n* Auto Cleanup of completed media.\n* Manual Import/Export via the **Manage** button.",
+      "category": "general"
+    },
+    {
+      "id": 13,
+      "question": "How to Share Logs?",
+      "answer": "**Profile → Settings → Logs**\n\n**Steps:**\n> **1.** Enable **Write log to a file**\n> **2.** Reproduce the issue — trigger the exact bug or error you want to report\n> **3.** Share via **Share Logs** in the same page, or send the file directly from your file manager\n\n> **⚠️ Note:** Make sure to **reproduce the error first** before sharing logs. A log with no error in it won't help diagnose the issue.",
+      "category": "troubleshooting"
+    },
+    {
+      "id": 14,
+      "question": "How to Submit a Custom Theme?",
+      "answer": "Themes are submitted via the **[Creator Dashboard](https://anymex-themes.vercel.app/creator/dashboard)**. Submissions are **automated** — your theme appears here instantly after upload.\n\n**Steps:**\n> **1.** [Login](https://anymex-themes.vercel.app/creator/login) or [Register](https://anymex-themes.vercel.app/creator/register) — add your **Discord User ID** during registration or edit it later in your **[Profile](https://anymex-themes.vercel.app/profile)** to receive the **Creator role** automatically on your first upload\n> **2.** Select **Upload Theme** → Fill in Name, Description, JSON, Category & Preview Image\n> **3.** Click **Upload** — done! Your **Creator role** will be assigned automatically if not already\n\n**Requirements:**\n* Valid theme JSON with a unique `id`\n* Preview screenshot — apply your theme first, take a screenshot, then upload it\n* Unique name (letters, numbers, underscores only)\n\n📚 [Documentation](https://anymex-themes.vercel.app/docs)",
+      "category": "general"
+    },
+    {
+      "id": 15,
+      "question": "What is Community Recommendations?",
+      "answer": "**Community Recommendations** is a section where the community submits hidden gems across **Anime, Manga, Movies & Shows** — anyone can contribute and vote on entries!\n\n**Enable it:**\n> **Profile → Settings → Common → Community Recommendations** → Toggle **Show Community Recommendations**\n\n> 🔞 **Hide NSFW Recommendations** is available in the same section — enabled by default.\n\n**Link your accounts:**\n> • `/setup` → link **AniList** and/or **MAL**\n> • `/link_simkl` → link **Simkl** via PIN auth\n\n**Add your picks:**\n> • `/add_anime` or `/add_manga` → search, select & give a reason\n> • `/add_show` or `/add_movie` → same flow, powered by Simkl\n\n**Vote:**\n> • **Long press** any item in the section to vote on it directly.\n> • Tap **See All** to browse all submitted entries and vote.",
+      "category": "general"
+    },
+    {
+      "id": 16,
+      "question": "How to Apply Custom Player Themes?",
+      "answer": "All custom player themes can be found at **[anymex-themes.vercel.app](https://anymex-themes.vercel.app/)**.\n\n**Apply a Theme:**\n> Find a theme → Click **Apply** → AnymeX opens automatically and adds it to your collection.\n\n**Switch Themes:**\n> **Profile → Settings → Player → Player Theme** → Select any theme from your collection.\n\n> 💡 You can keep multiple themes and switch between them anytime without re-downloading!",
+      "category": "general"
+    },
+    {
+      "id": 17,
+      "question": "How to Change Card Styles?",
+      "answer": "AnymeX offers multiple card styles for browsing, history, and carousels.\n\n**Navigate to:**\n> **Profile → Settings → UI → Common**\n\n**Available styles:**\n> • **Card Style** — changes how media cards appear while browsing\n> • **History Card Style** — changes cards in your history\n> • **Carousel Style** — changes the big carousel on the home page\n\nEach option has a built-in **selector with a live preview** so you can see the style before applying it.",
+      "category": "general"
+    }
+  ]
+}
