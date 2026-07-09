@@ -992,5 +992,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:126546": {
+    "media_type": "anime",
+    "anilist_id": 126546,
+    "title": "Seirei Gensouki: Spirit Chronicles",
+    "upvotes": [
+      "al:7528351"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
