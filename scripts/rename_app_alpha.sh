@@ -354,13 +354,23 @@ else
 fi
 
 ###############################################
-# PUBSPEC: Update inno_bundle name
+# PUBSPEC: Update inno_bundle (GUID, name, version)
 ###############################################
-log_info "Pubspec: Updating inno_bundle name..."
+log_info "Pubspec: Updating inno_bundle configuration..."
 
 if [ -f "pubspec.yaml" ]; then
+  # Change the GUID so Windows treats alpha as a separate app (not an upgrade to stable)
+  sed "${SED_INPLACE[@]}" "s|id: 8fbd47cb-d6e1-5343-a9f6-61661647c94c|id: e5f6a7b8-c9d0-1234-efgh-alph0000002|g" pubspec.yaml
+  log_success "Updated inno_bundle GUID (alpha)"
+
+  # Change the installer name so it installs to a separate folder (e.g. "AnymeX α")
   sed "${SED_INPLACE[@]}" "s|name: AnymeX$|name: $NEW_APP_NAME|g" pubspec.yaml
   log_success "Updated inno_bundle name to $NEW_APP_NAME"
+
+  # Update the inno_bundle version to match the actual build version
+  INNO_SEMVER=$(echo "$NEW_VERSION" | cut -d'+' -f1)
+  sed "${SED_INPLACE[@]}" "s|^    version: .*|    version: $INNO_SEMVER|g" pubspec.yaml
+  log_success "Updated inno_bundle version to $INNO_SEMVER"
 fi
 
 ###############################################
