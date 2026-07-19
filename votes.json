@@ -1036,5 +1036,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:170019": {
+    "media_type": "anime",
+    "anilist_id": 170019,
+    "title": "The Angel Next Door Spoils Me Rotten2",
+    "upvotes": [
+      "al:5965508"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
