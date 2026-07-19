@@ -1025,5 +1025,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:129898": {
+    "media_type": "anime",
+    "anilist_id": 129898,
+    "title": "The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat",
+    "upvotes": [
+      "al:5965508"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
