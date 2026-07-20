@@ -3084,5 +3084,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx160454-mWkT98KbFrse.jpg",
     "score": 78,
     "nsfw": false
+  },
+  {
+    "anilist_id": 154836,
+    "mal_id": 161442,
+    "title": "Mallyeonyongsa",
+    "author": "boywonder24",
+    "reason": "nerf the Goddess side bro it gets to a point I feel like I'm watching an execution of my favourite characters at this point",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 8134017,
+            "username": "boywonder24",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "boywonder24",
+        "text": "nerf the Goddess side bro it gets to a point I feel like I'm watching an execution of my favourite characters at this point",
+        "added_at": "2026-07-20T00:00:09Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 8134017,
+        "username": "boywonder24",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx154836-Zol608LrEpiA.jpg",
+    "score": 73,
+    "nsfw": false
   }
 ]
