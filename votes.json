@@ -1050,5 +1050,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:3702": {
+    "media_type": "anime",
+    "anilist_id": 3702,
+    "title": "Detroit Metal City",
+    "upvotes": [],
+    "downvotes": [
+      "al:7168625"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
