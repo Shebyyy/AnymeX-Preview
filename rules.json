@@ -1,0 +1,65 @@
+{
+ "content": null,
+ "embeds": [
+  {
+   "author": {
+    "name": "AnymeX | Rules",
+    "icon_url": "https://file.garden/aet9eqe9Ula7v6gD/AnymeX%20logo.png"
+   },
+   "description": [
+    "### 1. You have to follow both the global ⁠<#1496730757375332473> and channel-specific rules",
+    "Ignorance of the rules is not an excuse; we expect you to have read them.",
+    "",
+    "### 2. You must not ask for support in any non-support channels ",
+    "Support channels include ⁠<#1496732120511414332>. Make sure to also read ⁠the <#1496735924250480650> before seeking support.",
+    "",
+    "### 3. You must use the English or Hindi language",
+    "Some exceptions may be granted to non-conversational use and specific support cases.",
+    "",
+    "### 4. No sharing of 3rd-party repository links or APKs\nThird-party repository and apps are not affiliated with us in any way, are not supported here, and their security cannot be guaranteed. This also applies to DMing Staff.",
+    "### 5. Follow the [community guidelines](<https://discord.com/guidelines>) set by Discord",
+    "We didn't make these rules but we will enforce them, we don't make exceptions for anyone.",
+    "",
+    "### 6. Spoilable content needs to be marked with context",
+    "Not everyone's definition is the same, you can read ours by using the `!spoilers` tag.",
+    "",
+    "### 7. Do not advertise unprompted",
+    "This includes posting server invites, advertisements, etc. without a staff member's permission. This also includes DMing fellow members.",
+    "",
+    "### 8. No impersonation",
+    "Do not pretend to be someone else, especially members with roles.",
+    "",
+    "### 9.  Use common sense, and don't behave poorly",
+    "This includes but is not limited to, spamming, user mistreatment, DM/pinging unnecessarily, not listening to staff, disguising links, using pejoratives, and more.",
+    "",
+    "### 10. No politics",
+    "\"There is a time and place for everything, but not here.\" - Professor Oak."
+   ],
+   "color": "#01cbe6",
+   "fields": null
+  },
+  {
+   "color": "#01cbe6",
+   "description": [
+    "**Does something suddenly not work?**",
+    "• Read ⁠<#1496580929651474472> and ⁠<#1496732120511414332>.",
+    "",
+    "**Nothing in the above channels about your issue?**",
+    "• Ask in ⁠<#1496732120511414332>.",
+    "",
+    "**If you notice someone breaking the rules, please report it!**",
+    "• Use `!report` followed by a message. Tag the offender, provide a reason and potentially a link to the post, or a timestamp.",
+    "`(Reports get deleted instantly in the channel)`",
+    "",
+    "Example: `!report @Mention is breaking Rule 6! [link_to_post]`",
+    "• If it needs urgent and immediate attention (spammer, e.g.), ping Staff and do a `!report`"
+   ],
+   "author": {
+    "name": "AnymeX | Support",
+    "icon_url": "https://file.garden/aet9eqe9Ula7v6gD/AnymeX%20logo.png"
+   },
+   "fields": null
+  }
+ ],
+ "components": null
+}
