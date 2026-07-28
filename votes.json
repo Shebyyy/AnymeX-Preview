@@ -1064,5 +1064,16 @@
     "downvotes": [],
     "total_upvotes": 0,
     "total_downvotes": 0
+  },
+  "anime:24": {
+    "media_type": "anime",
+    "anilist_id": 24,
+    "title": "School Rumble",
+    "upvotes": [
+      "al:5724017"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
