@@ -3150,5 +3150,86 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx154836-Zol608LrEpiA.jpg",
     "score": 73,
     "nsfw": false
+  },
+  {
+    "anilist_id": 30104,
+    "mal_id": 104,
+    "title": "Yotsuba&!",
+    "author": "Arken",
+    "reason": "Sometimes there is a series where every character is your Favourite Character and that's what Yotsuba& does to you.\n\nThis manga gives you feel good vibe where the every little interactions between the character make you enjoy it every time.\n\nIt is from the author of Azumanga Daioh.",
+    "reasons": [
+      {
+        "discord_id": "854642964483538945",
+        "discord_username": "titangen",
+        "user": {
+          "discord": {
+            "id": 854642964483538945,
+            "username": "titangen",
+            "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+          },
+          "anilist": {
+            "id": 6335658,
+            "username": "GenTitan",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-h4eKGutRC9yO.png"
+          },
+          "mal": {
+            "id": 19910960,
+            "username": "GenTitan",
+            "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Arken",
+        "text": "Sometimes there is a series where every character is your Favourite Character and that's what Yotsuba& does to you.\n\nThis manga gives you feel good vibe where the every little interactions between the character make you enjoy it every time.\n\nIt is from the author of Azumanga Daioh.",
+        "added_at": "2026-07-29T05:53:32.848582Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": 854642964483538945,
+        "username": "titangen",
+        "avatar": "https://cdn.discordapp.com/avatars/854642964483538945/0a013eacee8836b00a3ea442e4cb3e03.png?size=1024"
+      },
+      "anilist": {
+        "id": 6335658,
+        "username": "GenTitan",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6335658-h4eKGutRC9yO.png"
+      },
+      "mal": {
+        "id": 19910960,
+        "username": "GenTitan",
+        "avatar": "https://cdn.myanimelist.net/s/common/userimages/ad0f13e6-622b-4e87-aae2-7fbf39c9ab79_225w?s=c38950db07da6caf51637de5209e3f23"
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "854642964483538945",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx30104-sUVzNlTWZ5cu.jpg",
+    "score": 88,
+    "genres": [
+      "Comedy",
+      "Slice of Life"
+    ],
+    "nsfw": false,
+    "status": "RELEASING",
+    "format": "MANGA",
+    "episodes": null,
+    "duration": null,
+    "chapters": null,
+    "volumes": null,
+    "season": null,
+    "season_year": null,
+    "description": "Hello! This is Koiwai Yotsuba, Yotsuba Koiwai...um, YOTSUBA! Yotsuba moved with Daddy to a new house from our old house waaaaaaay over there! And moving's fun 'cos people wave! (Ohhhh!!) And Yotsuba met these nice people next door and made friends to play with (one of 'em acted like one of those bad strangers Daddy told Yotsuba not to go with, but it was okay in the end). I hope we get to play a lot. And eat ice cream! And-and-and...oh yeah! You should come play with Yotsuba too!<br><br>\n(Source",
+    "studios": []
   }
 ]
