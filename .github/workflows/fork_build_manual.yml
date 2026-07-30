@@ -50,7 +50,7 @@ on:
         default: ""
 
 env:
-  FLUTTER_VERSION: "3.41.6"
+  FLUTTER_VERSION: "3.41.9"
   ZSIGN_VERSION: "0.7"
 
 jobs:
@@ -486,6 +486,7 @@ jobs:
           BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
           BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
           WATCHIUM_BASE_URL: ${{ secrets.WATCHIUM_BASE_URL }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           cd main-repo
           cat > .env << EOF
@@ -504,6 +505,7 @@ jobs:
           BOT_BASE_URL=$BOT_BASE_URL
           BOT_API_SECRET=$BOT_API_SECRET
           WATCHIUM_BASE_URL=$WATCHIUM_BASE_URL
+          TMDB_API_KEY=$TMDB_API_KEY
           EOF
 
       - name: Clean Flutter for Alpha Build
