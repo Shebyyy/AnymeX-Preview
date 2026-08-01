@@ -1055,9 +1055,11 @@
     "upvotes": [
       "al:5965508"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
     "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:3702": {
     "media_type": "anime",
