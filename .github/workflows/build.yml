@@ -617,7 +617,8 @@ jobs:
           COMMENTS_BASE_URL:  ${{ secrets.COMMENTS_BASE_URL }}
           BOT_BASE_URL: ${{ secrets.BOT_BASE_URL }}
           BOT_API_SECRET: ${{ secrets.BOT_API_SECRET }}
-          WATCHIUM_BASE_URL: ${{ secrets.WATCHIUM_BASE_URL }}
+          WATCHIUM_SERVER_URL: ${{ secrets.WATCHIUM_SERVER_URL }}
+          WATCHIUM_API_TOKEN: ${{ secrets.WATCHIUM_API_TOKEN }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           cd main-repo
@@ -636,7 +637,8 @@ jobs:
           COMMENTS_BASE_URL=$COMMENTS_BASE_URL
           BOT_BASE_URL=$BOT_BASE_URL
           BOT_API_SECRET=$BOT_API_SECRET
-          WATCHIUM_BASE_URL=$WATCHIUM_BASE_URL
+          WATCHIUM_SERVER_URL=$WATCHIUM_SERVER_URL
+          WATCHIUM_API_TOKEN=$WATCHIUM_API_TOKEN
           TMDB_API_KEY=$TMDB_API_KEY
           EOF
           
