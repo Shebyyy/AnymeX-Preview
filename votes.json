@@ -1081,5 +1081,16 @@
     "downvotes": [],
     "total_upvotes": 2,
     "total_downvotes": 0
+  },
+  "manga:30936": {
+    "media_type": "manga",
+    "anilist_id": 30936,
+    "title": "Homunculus",
+    "upvotes": [
+      "al:8176092"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
