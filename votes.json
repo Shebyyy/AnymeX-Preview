@@ -1046,9 +1046,11 @@
     "media_type": "anime",
     "anilist_id": 108268,
     "title": "Ascendance of a Bookworm",
-    "upvotes": [],
+    "upvotes": [
+      "mal:15175303"
+    ],
     "downvotes": [],
-    "total_upvotes": 0,
+    "total_upvotes": 1,
     "total_downvotes": 0
   },
   "anime:129898": {
