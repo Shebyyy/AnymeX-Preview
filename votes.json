@@ -177,9 +177,11 @@
       "al:7692062",
       "al:6959508"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7949348"
+    ],
     "total_upvotes": 4,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:177104": {
     "media_type": "anime",
