@@ -1105,5 +1105,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:190143": {
+    "media_type": "anime",
+    "anilist_id": 190143,
+    "title": "Agents of the Four Seasons: Dance of Spring",
+    "upvotes": [
+      "al:7186153"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
