@@ -1121,5 +1121,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "manga:30104": {
+    "media_type": "manga",
+    "anilist_id": 30104,
+    "title": "Yotsuba&!",
+    "upvotes": [
+      "al:7955288"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
