@@ -7,9 +7,9 @@
     "reason": "Often overlooked as just another teen movie, but it delivers a very real and relatable coming-of-age story with strong performances and honest emotions that hit deeper than expected.",
     "user": {
       "discord": {
-        "id": 612532963938271232,
-        "username": "asheby",
-        "avatar": "https://cdn.discordapp.com/avatars/612532963938271232/cf5d3f43c29516523531f21b09d4a743.png?size=1024"
+        "id": "1400504783097561098",
+        "username": "asheby_2",
+        "avatar": "https://cdn.discordapp.com/avatars/1400504783097561098/5d005022c96ccd80f7c18a39cf3387c9.png?size=1024"
       },
       "anilist": {
         "id": 5724017,
@@ -17,14 +17,14 @@
         "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5724017-Ap0MixlTBYOj.png"
       },
       "mal": {
-        "id": 13598844,
-        "username": "ASheby",
-        "avatar": "https://cdn.myanimelist.net/s/common/userimages/422709bd-93d8-40d2-9acb-8940bac74a7f_225w?s=5d55de5a71803444cfee69204f47e5de"
+        "id": null,
+        "username": null,
+        "avatar": null
       },
       "simkl": {
-        "username": "ASheby",
-        "id": 5081635,
-        "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
+        "username": null,
+        "id": null,
+        "avatar": null
       },
       "isAdmin": true
     },
@@ -39,9 +39,9 @@
         "discord_username": "asheby",
         "user": {
           "discord": {
-            "id": 612532963938271232,
-            "username": "asheby",
-            "avatar": "https://cdn.discordapp.com/avatars/612532963938271232/cf5d3f43c29516523531f21b09d4a743.png?size=1024"
+            "id": "1400504783097561098",
+            "username": "asheby_2",
+            "avatar": "https://cdn.discordapp.com/avatars/1400504783097561098/5d005022c96ccd80f7c18a39cf3387c9.png?size=1024"
           },
           "anilist": {
             "id": 5724017,
@@ -49,14 +49,14 @@
             "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b5724017-Ap0MixlTBYOj.png"
           },
           "mal": {
-            "id": 13598844,
-            "username": "ASheby",
-            "avatar": "https://cdn.myanimelist.net/s/common/userimages/422709bd-93d8-40d2-9acb-8940bac74a7f_225w?s=5d55de5a71803444cfee69204f47e5de"
+            "id": null,
+            "username": null,
+            "avatar": null
           },
           "simkl": {
-            "username": "ASheby",
-            "id": 5081635,
-            "avatar": "https://simkl.in/avatars/50/5081635_100.jpg?1736608782"
+            "username": null,
+            "id": null,
+            "avatar": null
           },
           "isAdmin": true
         },
@@ -199,7 +199,7 @@
     },
     "added_by_discord_id": "1000376190130999397",
     "poster": "https://simkl.in/posters/13/135901752252e31c57_m.jpg",
-    "score": 7.8,
+    "score": 7.9,
     "genres": "Action, Adventure, Science Fiction, War",
     "simkl_url": "https://simkl.com/movies/231538",
     "nsfw": false
