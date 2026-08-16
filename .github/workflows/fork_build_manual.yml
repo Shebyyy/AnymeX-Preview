@@ -131,7 +131,7 @@ jobs:
           for PLATFORM in $(echo "$PLATFORMS" | jq -r '.[]'); do
             case "$PLATFORM" in
               android) OS="ubuntu-latest" ;;
-              linux)   OS="ubuntu-22.04" ;;
+              linux)   OS="ubuntu-latest" ;;
               windows) OS="windows-latest" ;;
               macos)   OS="macos-latest" ;;
               ios)     OS="macos-latest" ;;
