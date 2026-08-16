@@ -393,22 +393,23 @@ fi
 log_info "Dart: Updating user-visible app name strings..."
 
 # Download paths
-sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
-sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
+[ -f lib/widgets/anime/visuals/visuals_popup.dart ] && sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
+[ -f lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart ] && sed "${SED_INPLACE[@]}" "s|Download/AnymeX|Download/$NEW_APP_NAME|g" lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart
+[ -f lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart ] && sed "${SED_INPLACE[@]}" "s|Pictures/AnymeX|Pictures/$NEW_APP_NAME|g" lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart
 
 # Share text
-sed "${SED_INPLACE[@]}" "s|Visual from AnymeX|Visual from $NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
-sed "${SED_INPLACE[@]}" "s|Image shared from AnymeX|Image shared from $NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
-sed "${SED_INPLACE[@]}" "s|Shared from AnymeX|Shared from $NEW_APP_NAME|g" lib/widgets/custom_widgets/fullscreen_image_viewer.dart
+[ -f lib/widgets/anime/visuals/visuals_popup.dart ] && sed "${SED_INPLACE[@]}" "s|Visual from AnymeX|Visual from $NEW_APP_NAME|g" lib/widgets/anime/visuals/visuals_popup.dart
+[ -f lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart ] && sed "${SED_INPLACE[@]}" "s|Image shared from AnymeX|Image shared from $NEW_APP_NAME|g" lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart
+[ -f lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart ] && sed "${SED_INPLACE[@]}" "s|Shared from AnymeX|Shared from $NEW_APP_NAME|g" lib/widgets/anymex_widgets/anymex_fullscreen_image_viewer.dart
 
 # Local source downloads label
-sed "${SED_INPLACE[@]}" "s|AnymeX Downloads|${NEW_APP_NAME} Downloads|g" lib/screens/local_source/local_source_view.dart
+[ -f lib/screens/local_source/local_source_view.dart ] && sed "${SED_INPLACE[@]}" "s|AnymeX Downloads|${NEW_APP_NAME} Downloads|g" lib/screens/local_source/local_source_view.dart
 
 # Sync disconnect text
-sed "${SED_INPLACE[@]}" "s|from AnymeX|from $NEW_APP_NAME|g" lib/controllers/sync/progress_sync_section.dart
+[ -f lib/controllers/sync/progress_sync_section.dart ] && sed "${SED_INPLACE[@]}" "s|from AnymeX|from $NEW_APP_NAME|g" lib/controllers/sync/progress_sync_section.dart
 
 # Settings about username
-sed "${SED_INPLACE[@]}" 's|username: "AnymeX"|username: "'"${NEW_APP_NAME}"'"|g' lib/screens/settings/sub_settings/settings_about.dart
+[ -f lib/screens/settings/sub_settings/settings_about.dart ] && sed "${SED_INPLACE[@]}" 's|username: "AnymeX"|username: "'"${NEW_APP_NAME}"'"|g' lib/screens/settings/sub_settings/settings_about.dart
 
 log_success "Updated user-visible app name strings"
 
