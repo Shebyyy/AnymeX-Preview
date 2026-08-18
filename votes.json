@@ -1135,5 +1135,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "movie:65770": {
+    "media_type": "movie",
+    "anilist_id": 65770,
+    "title": "Memories of Murder",
+    "upvotes": [
+      "simkl:8488369"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
