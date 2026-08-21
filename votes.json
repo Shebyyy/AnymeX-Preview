@@ -1148,5 +1148,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:329": {
+    "media_type": "anime",
+    "anilist_id": 329,
+    "title": "Planetes",
+    "upvotes": [
+      "al:6257216"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
