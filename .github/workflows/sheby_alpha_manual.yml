@@ -744,10 +744,12 @@ jobs:
           if (-not (Test-Path $issFile)) { Write-Error "ISS file not found"; exit 1 }
 
           if ("${{ github.event.inputs.build_type }}" -eq "alpha") {
+            # Note: rename_app_alpha.sh already sets inno_bundle name in pubspec.yaml,
+            # so the .iss already has the correct display name.
+            # We only need to fix the exe filename reference.
             $content = Get-Content $issFile -Raw
-            $content = $content -replace 'AnymeX\.exe', 'anymex_alpha.exe'
-            $content = $content -replace '"AnymeX"', '"AnymeX α"'
-            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX α'
+            $content = $content -replace 'AnymeX α\\.exe', 'anymex_alpha.exe'
+            $content = $content -replace 'AnymeX\\.exe', 'anymex_alpha.exe'
             Set-Content $issFile -Value $content -NoNewline
           }
 

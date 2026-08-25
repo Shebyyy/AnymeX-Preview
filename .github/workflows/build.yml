@@ -798,15 +798,16 @@ jobs:
           }
           
           # Fix Inno Setup script for beta builds
+          # Note: rename_app.sh already sets inno_bundle name in pubspec.yaml,
+          # so the .iss already has the correct display name (AnymeX β).
+          # We only need to fix the exe filename reference since inno_bundle uses
+          # the display name for the exe but CMake outputs anymex_beta.exe.
           if ("${{ github.ref_name }}" -like "*-beta") {
             Write-Host "Fixing installer for beta build..."
             $content = Get-Content $issFile -Raw
-            # Fix the executable name the shortcut points to
+            # Fix the executable name (inno_bundle may use display name for exe)
+            $content = $content -replace 'AnymeX β\\.exe', 'anymex_beta.exe'
             $content = $content -replace 'AnymeX\.exe', 'anymex_beta.exe'
-            # Fix the name of the shortcut itself
-            $content = $content -replace '"AnymeX"', '"AnymeX β"'
-            # Fix the default app name in the registry
-            $content = $content -replace 'AppName=AnymeX', 'AppName=AnymeX β'
             Set-Content $issFile -Value $content -NoNewline
             Write-Host "Updated Inno Setup script for beta build"
           }
