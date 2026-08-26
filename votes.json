@@ -1100,13 +1100,12 @@
     "anilist_id": 24,
     "title": "School Rumble",
     "upvotes": [
-      "al:5724017"
-    ],
-    "downvotes": [
+      "al:5724017",
       "al:7590839"
     ],
-    "total_upvotes": 1,
-    "total_downvotes": 1
+    "downvotes": [],
+    "total_upvotes": 2,
+    "total_downvotes": 0
   },
   "manga:30936": {
     "media_type": "manga",
@@ -1159,14 +1158,27 @@
     "upvotes": [
       "al:6257216"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
     "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:153554": {
     "media_type": "anime",
     "anilist_id": 153554,
     "title": "Can a Boy-Girl Friendship Survive?",
+    "upvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
+  },
+  "anime:21823": {
+    "media_type": "anime",
+    "anilist_id": 21823,
+    "title": "ACCA: 13-Territory Inspection Dept.",
     "upvotes": [],
     "downvotes": [
       "al:7590839"
