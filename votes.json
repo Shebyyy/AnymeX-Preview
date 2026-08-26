@@ -1158,9 +1158,11 @@
     "upvotes": [
       "al:6257216"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
     "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:153554": {
     "media_type": "anime",
