@@ -1071,9 +1071,11 @@
       "al:5965508",
       "al:7057232"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
     "total_upvotes": 2,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:170019": {
     "media_type": "anime",
