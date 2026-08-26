@@ -1100,12 +1100,13 @@
     "anilist_id": 24,
     "title": "School Rumble",
     "upvotes": [
-      "al:5724017",
+      "al:5724017"
+    ],
+    "downvotes": [
       "al:7590839"
     ],
-    "downvotes": [],
-    "total_upvotes": 2,
-    "total_downvotes": 0
+    "total_upvotes": 1,
+    "total_downvotes": 1
   },
   "manga:30936": {
     "media_type": "manga",
@@ -1158,11 +1159,9 @@
     "upvotes": [
       "al:6257216"
     ],
-    "downvotes": [
-      "al:7590839"
-    ],
+    "downvotes": [],
     "total_upvotes": 1,
-    "total_downvotes": 1
+    "total_downvotes": 0
   },
   "anime:153554": {
     "media_type": "anime",
