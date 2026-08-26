@@ -1022,9 +1022,11 @@
       "mal:22236860",
       "al:7949348"
     ],
-    "downvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
     "total_upvotes": 4,
-    "total_downvotes": 0
+    "total_downvotes": 1
   },
   "anime:163133": {
     "media_type": "anime",
