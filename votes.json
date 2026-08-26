@@ -1161,5 +1161,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:153554": {
+    "media_type": "anime",
+    "anilist_id": 153554,
+    "title": "Can a Boy-Girl Friendship Survive?",
+    "upvotes": [],
+    "downvotes": [
+      "al:7590839"
+    ],
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
