@@ -738,8 +738,7 @@ jobs:
             # so the .iss already has the correct display name.
             # We only need to fix the exe filename reference.
             $content = Get-Content $issFile -Raw
-            $content = $content -replace 'AnymeX α\\.exe', 'anymex_alpha.exe'
-            $content = $content -replace 'AnymeX\\.exe', 'anymex_alpha.exe'
+            $content = $content -replace 'AnymeX[^a-zA-Z0-9]*?\\.exe', 'anymex_alpha.exe'
             Set-Content $issFile -Value $content -NoNewline
           }
 
