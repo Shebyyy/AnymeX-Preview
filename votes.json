@@ -137,10 +137,11 @@
     "anilist_id": 1535,
     "title": "Death Note",
     "upvotes": [
-      "al:5154107"
+      "al:5154107",
+      "al:8165017"
     ],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 2,
     "total_downvotes": 0
   },
   "anime:158539": {
@@ -628,11 +629,10 @@
     "upvotes": [
       "mal:21772037",
       "al:7648518",
-      "al:7657898",
-      "al:8165017"
+      "al:7657898"
     ],
     "downvotes": [],
-    "total_upvotes": 4,
+    "total_upvotes": 3,
     "total_downvotes": 0
   },
   "anime:20789": {
