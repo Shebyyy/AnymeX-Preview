@@ -1197,5 +1197,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "anime:197754": {
+    "media_type": "anime",
+    "anilist_id": 197754,
+    "title": "LIAR GAME",
+    "upvotes": [
+      "al:7920613"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
