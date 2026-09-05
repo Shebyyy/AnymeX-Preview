@@ -7757,5 +7757,88 @@
     "poster": "",
     "score": "N/A",
     "nsfw": false
+  },
+  {
+    "anilist_id": 197754,
+    "mal_id": 62331,
+    "title": "LIAR GAME",
+    "author": "Orewa zangetsu da",
+    "reason": "The plot is very peak here and the show overall is looking to be great and it is little boring at start but get very intense and peak in the later part but you need to have good iq to keep up with the things shown in here as the games here are very complicated but overall anime is very good.",
+    "reasons": [
+      {
+        "discord_id": "1252210234873872386",
+        "discord_username": "devil_dark_edits",
+        "user": {
+          "discord": {
+            "id": "1252210234873872386",
+            "username": "devil_dark_edits",
+            "avatar": "https://cdn.discordapp.com/avatars/1252210234873872386/8e25ab826bae72c360c009e1f69a3173.png?size=1024"
+          },
+          "anilist": {
+            "id": 7920613,
+            "username": "OrewaBirabrata",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7920613-2NNKWvcBm6MK.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "username": null,
+            "id": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "Orewa zangetsu da",
+        "text": "The plot is very peak here and the show overall is looking to be great and it is little boring at start but get very intense and peak in the later part but you need to have good iq to keep up with the things shown in here as the games here are very complicated but overall anime is very good.",
+        "added_at": "2026-09-05T10:25:32.420217Z",
+        "edited_at": null
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": "1252210234873872386",
+        "username": "devil_dark_edits",
+        "avatar": "https://cdn.discordapp.com/avatars/1252210234873872386/8e25ab826bae72c360c009e1f69a3173.png?size=1024"
+      },
+      "anilist": {
+        "id": 7920613,
+        "username": "OrewaBirabrata",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b7920613-2NNKWvcBm6MK.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "username": null,
+        "id": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": "1252210234873872386",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx197754-Q5KqcUhIdypp.png",
+    "score": 62,
+    "genres": [
+      "Drama",
+      "Psychological"
+    ],
+    "nsfw": false,
+    "status": "RELEASING",
+    "format": "TV",
+    "episodes": 26,
+    "duration": 24,
+    "chapters": null,
+    "volumes": null,
+    "season": "SPRING",
+    "season_year": 2026,
+    "description": "Wishing she would live up to the ideal, Kanzaki Nao's father named her thusly for “honesty”. Nao has more than lived up to her father's wishes--even exceeding them and earning the label of \"a foolishly honest girl\". This makes Nao the least qualified candidate for the high stakes 'Liar Game', where winning requires deceiving the opponent out of their money and losing means receiving massive debt. However, that doesn't stop a box containing a hundred million yen in cash and a card informing her o",
+    "studios": [
+      "MADHOUSE"
+    ]
   }
 ]
