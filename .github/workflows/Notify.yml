@@ -368,85 +368,140 @@ jobs:
               "parse_mode": "Markdown"
             }'
 
-      - name: Send message to Discord
+      # ==========================================
+      # OLD DISCORD STEPS (COMMENTED OUT)
+      # ==========================================
+      # - name: Send message to Discord
+      #   env:
+      #     DISCORD_WEBHOOK_URL: ${{ env.DISCORD_WEBHOOK_URL }}
+      #   run: |
+      #     FORMATTED_NOTES_CLEAN=$(echo "$FORMATTED_NOTES" | sed -E 's/\): [^:]+:/) :/g')
+      #     
+      #     # Add beta warning to Discord message if it exists
+      #     if [ -f beta_warning.txt ]; then
+      #       BETA_WARNING=$(cat beta_warning.txt | sed 's/^> //')
+      #       FORMATTED_NOTES_CLEAN="**⚠️ BETA WARNING**
+      #       $BETA_WARNING
+      #       
+      #       $FORMATTED_NOTES_CLEAN"
+      #     fi
+      #     
+      #     # Mention the role based on the release name
+      #     if [[ "${{ env.LATEST_TAG }}" == *alpha* ]]; then
+      #       role_mention=""  # Role ID for alpha channel
+      #     elif [[ "${{ env.LATEST_TAG }}" == *beta* ]]; then
+      #       role_mention="<@&1497202483485741185>"  # Role ID for beta channel
+      #     else
+      #       role_mention="<@&1497202483485741184>"  # Default role ID
+      #     fi
+      #   
+      #     default_color="#1ac4c5"
+      #     hex_to_decimal() { printf '%d' "0x${1#"#"}"; }
+      #     embed_color=$(hex_to_decimal "$default_color")
+      # 
+      #     # Ensure VERSION is not empty
+      #     VERSION=${VERSION:-"${{env.LATEST_TAG}}"}
+      # 
+      #     discord_data=$(jq -nc \
+      #                   --arg role_mention "$role_mention" \
+      #                   --arg field_value "$FORMATTED_NOTES_CLEAN
+      # 
+      #       [❓Don't know which version to download? Click here!](https://github.com/RyanYuuki/AnymeX/blob/main/INSTALLATION.md)  
+      #       
+      #       [📌 Full changelog](https://github.com/${{ github.repository }}/releases/tag/${{ env.LATEST_TAG }})" \
+      #                   --arg footer_text "Version $VERSION" \
+      #                   --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+      #                   --argjson embed_color "$embed_color" \
+      #                   '{
+      #                     "content": $role_mention,
+      #                     "embeds": [
+      #                       {
+      #                         "title": "🚀 New Release: ${{env.LATEST_TAG}}",
+      #                         "color": $embed_color,
+      #                         "description": $field_value,
+      #                         "footer": {
+      #                           "text": $footer_text
+      #                         },
+      #                         "timestamp": $timestamp
+      #                       }
+      #                     ]
+      #                   }')
+      # 
+      #     echo "Debug: Final Discord payload is: $discord_data"
+      # 
+      #     # Send the message to Discord using the webhook
+      #     curl -H "Content-Type: application/json" \
+      #         -X POST \
+      #         -d "$discord_data" \
+      #         "$DISCORD_WEBHOOK_URL"
+      # 
+      # - name: Send Assets to Discord
+      #   run: |
+      #     MESSAGE="${{ env.LATEST_TAG }} Released
+      #       🔹 ${{ env.apk_arm64_message }} | **APK (arm64)**
+      #       🔹 ${{ env.apk_armeabi_message }} | **APK (armeabi-v7a)**
+      #       🔹 ${{ env.apk_universal_message }} | **APK (universal)**
+      #       🔹 ${{ env.apk_x86_64_message }} | **APK (x86 & x64)**
+      #       🔹 ${{ env.windows_message }} | **Windows Zip**
+      #       🔹 ${{ env.setup_message }} | **Windows EXE**
+      #       🔹 ${{ env.linuximg_message }} | **Linux appimage**
+      #       🔹 ${{ env.linuxrmp_message }} | **Linux rmp**
+      #       🔹 ${{ env.linux_message }} | **Linux**
+      #       🔹 ${{ env.ios_message }} | **iOS**
+      #       🔹 ${{ env.macos_message }} | **macOS**"
+      #     PAYLOAD=$(jq -n --arg content "$MESSAGE" '{ content: $content }')
+      #     curl -X POST "${{ env.DISCORD_WEBHOOK_URL }}" \
+      #       -H "Content-Type: application/json" \
+      #       -d "$PAYLOAD"
+      # ==========================================
+
+      - name: Send simple announcement to Discord
         env:
           DISCORD_WEBHOOK_URL: ${{ env.DISCORD_WEBHOOK_URL }}
         run: |
-          FORMATTED_NOTES_CLEAN=$(echo "$FORMATTED_NOTES" | sed -E 's/\): [^:]+:/) :/g')
-          
-          # Add beta warning to Discord message if it exists
-          if [ -f beta_warning.txt ]; then
-            BETA_WARNING=$(cat beta_warning.txt | sed 's/^> //')
-            FORMATTED_NOTES_CLEAN="**⚠️ BETA WARNING**
-            $BETA_WARNING
-            
-            $FORMATTED_NOTES_CLEAN"
-          fi
-          
-          # Mention the role based on the release name
           if [[ "${{ env.LATEST_TAG }}" == *alpha* ]]; then
-            role_mention=""  # Role ID for alpha channel
+            role_mention=""
+            release_title="New Alpha Release: ${{ env.LATEST_TAG }}"
+            release_desc="Alpha update is out, grab it from <#1542832151492563048>"
           elif [[ "${{ env.LATEST_TAG }}" == *beta* ]]; then
-            role_mention="<@&1497202483485741185>"  # Role ID for beta channel
+            role_mention="<@&1539489014791413851>"
+            release_title="New Beta Release: ${{ env.LATEST_TAG }}"
+            release_desc="Beta update is out, grab it from <#1542832151492563048>"
           else
-            role_mention="<@&1497202483485741184>"  # Default role ID
+            role_mention="<@&1497202483485741184>"
+            release_title="New Release: ${{ env.LATEST_TAG }}"
+            release_desc="Update is out, grab it from <#1542832151492563048>"
           fi
-        
-          default_color="#1ac4c5"
-          hex_to_decimal() { printf '%d' "0x${1#"#"}"; }
-          embed_color=$(hex_to_decimal "$default_color")
 
-          # Ensure VERSION is not empty
-          VERSION=${VERSION:-"${{env.LATEST_TAG}}"}
-      
+          embed_color=1754309
+
           discord_data=$(jq -nc \
                         --arg role_mention "$role_mention" \
-                        --arg field_value "$FORMATTED_NOTES_CLEAN
-
-            [❓Don't know which version to download? Click here!](https://github.com/RyanYuuki/AnymeX/blob/main/INSTALLATION.md)  
-            
-            [📌 Full changelog](https://github.com/${{ github.repository }}/releases/tag/${{ env.LATEST_TAG }})" \
-                        --arg footer_text "Version $VERSION" \
+                        --arg title "$release_title" \
+                        --arg desc "$release_desc" \
                         --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
                         --argjson embed_color "$embed_color" \
                         '{
+                          "username": "Ryan >_<",
+                          "avatar_url": "https://cdn.discordapp.com/avatars/535831876766793738/64d0a7798e3ccad244bd5a5d734164de.png",
                           "content": $role_mention,
                           "embeds": [
                             {
-                              "title": "🚀 New Release: ${{env.LATEST_TAG}}",
-                              "color": $embed_color,
-                              "description": $field_value,
-                              "footer": {
-                                "text": $footer_text
+                              "author": {
+                                "name": "Ryan >_<",
+                                "icon_url": "https://cdn.discordapp.com/avatars/535831876766793738/64d0a7798e3ccad244bd5a5d734164de.png"
                               },
+                              "title": $title,
+                              "description": $desc,
+                              "color": $embed_color,
                               "timestamp": $timestamp
                             }
                           ]
                         }')
 
-          echo "Debug: Final Discord payload is: $discord_data"
+          echo "Debug: Discord payload is: $discord_data"
 
-          # Send the message to Discord using the webhook
           curl -H "Content-Type: application/json" \
               -X POST \
               -d "$discord_data" \
               "$DISCORD_WEBHOOK_URL"
-
-      - name: Send Assets to Discord
-        run: |
-          MESSAGE="${{ env.LATEST_TAG }} Released
-            🔹 ${{ env.apk_arm64_message }} | **APK (arm64)**
-            🔹 ${{ env.apk_armeabi_message }} | **APK (armeabi-v7a)**
-            🔹 ${{ env.apk_universal_message }} | **APK (universal)**
-            🔹 ${{ env.apk_x86_64_message }} | **APK (x86 & x64)**
-            🔹 ${{ env.windows_message }} | **Windows Zip**
-            🔹 ${{ env.setup_message }} | **Windows EXE**
-            🔹 ${{ env.linuximg_message }} | **Linux appimage**
-            🔹 ${{ env.linuxrmp_message }} | **Linux rmp**
-            🔹 ${{ env.linux_message }} | **Linux**
-            🔹 ${{ env.ios_message }} | **iOS**
-            🔹 ${{ env.macos_message }} | **macOS**"
-          PAYLOAD=$(jq -n --arg content "$MESSAGE" '{ content: $content }')
-          curl -X POST "${{ env.DISCORD_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d "$PAYLOAD"
