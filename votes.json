@@ -1232,5 +1232,16 @@
     ],
     "total_upvotes": 0,
     "total_downvotes": 1
+  },
+  "show:737685": {
+    "media_type": "show",
+    "anilist_id": 737685,
+    "title": "Dark",
+    "upvotes": [
+      "simkl:8172957"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
