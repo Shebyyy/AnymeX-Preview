@@ -1233,15 +1233,15 @@
     "total_upvotes": 0,
     "total_downvotes": 1
   },
-  "show:737685": {
+  "show:11495": {
     "media_type": "show",
-    "anilist_id": 737685,
-    "title": "Dark",
-    "upvotes": [
+    "anilist_id": 11495,
+    "title": "Teen Wolf",
+    "upvotes": [],
+    "downvotes": [
       "simkl:8172957"
     ],
-    "downvotes": [],
-    "total_upvotes": 1,
-    "total_downvotes": 0
+    "total_upvotes": 0,
+    "total_downvotes": 1
   }
 }
