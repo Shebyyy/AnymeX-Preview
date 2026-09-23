@@ -8434,5 +8434,71 @@
     "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx202955-9ESiLpN9AynZ.jpg",
     "score": 84,
     "nsfw": false
+  },
+  {
+    "anilist_id": null,
+    "mal_id": null,
+    "title": "Unknown",
+    "author": "oRintaroTsumugi",
+    "reason": "just a peak anime adaptation and a peak author and peak romance and amazing side character nothing more just pure peak",
+    "reasons": [
+      {
+        "discord_id": null,
+        "discord_username": null,
+        "user": {
+          "discord": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "anilist": {
+            "id": 8135065,
+            "username": "oRintaroTsumugi",
+            "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b8135065-AHsCSo8FdSUg.jpg"
+          },
+          "mal": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "simkl": {
+            "id": null,
+            "username": null,
+            "avatar": null
+          },
+          "isAdmin": false
+        },
+        "author": "oRintaroTsumugi",
+        "text": "just a peak anime adaptation and a peak author and peak romance and amazing side character nothing more just pure peak",
+        "added_at": "2026-09-23T18:01:20Z"
+      }
+    ],
+    "user": {
+      "discord": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "anilist": {
+        "id": 8135065,
+        "username": "oRintaroTsumugi",
+        "avatar": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b8135065-AHsCSo8FdSUg.jpg"
+      },
+      "mal": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "simkl": {
+        "id": null,
+        "username": null,
+        "avatar": null
+      },
+      "isAdmin": false
+    },
+    "added_by_discord_id": null,
+    "poster": "",
+    "score": "N/A",
+    "nsfw": false
   }
 ]
