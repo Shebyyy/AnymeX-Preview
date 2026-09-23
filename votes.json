@@ -1335,5 +1335,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:202955": {
+    "media_type": "anime",
+    "anilist_id": 202955,
+    "title": "Love Through A Prism",
+    "upvotes": [
+      "al:7278577"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
