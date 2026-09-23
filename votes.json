@@ -557,11 +557,10 @@
       "al:7692062",
       "al:7081184",
       "al:8142627",
-      "al:6975452",
-      "al:6386831"
+      "al:6975452"
     ],
     "downvotes": [],
-    "total_upvotes": 10,
+    "total_upvotes": 9,
     "total_downvotes": 0
   },
   "anime:108489": {
@@ -616,10 +615,11 @@
     "anilist_id": 124080,
     "title": "Horimiya",
     "upvotes": [
-      "al:5154107"
+      "al:5154107",
+      "al:6386831"
     ],
     "downvotes": [],
-    "total_upvotes": 1,
+    "total_upvotes": 2,
     "total_downvotes": 0
   },
   "anime:182300": {
