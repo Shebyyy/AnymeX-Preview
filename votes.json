@@ -1362,5 +1362,16 @@
     "downvotes": [],
     "total_upvotes": 1,
     "total_downvotes": 0
+  },
+  "anime:137667": {
+    "media_type": "anime",
+    "anilist_id": 137667,
+    "title": "Lord of Mysteries",
+    "upvotes": [
+      "al:7278577"
+    ],
+    "downvotes": [],
+    "total_upvotes": 1,
+    "total_downvotes": 0
   }
 }
