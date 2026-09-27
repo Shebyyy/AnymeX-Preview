@@ -3,13 +3,13 @@
   "embeds": [
     {
       "title": "1. Follow Global & Channel Rules",
-      "description": "You have to follow both the global rules and channel-specific rules.\n\nIgnorance of the rules is not an excuse; we expect you to have read them.",
+      "description": "You have to follow both the global <#1539489015433134155> and channel-specific rules.\n\nIgnorance of the rules is not an excuse; we expect you to have read them.",
       "color": 6967734,
       "fields": null
     },
     {
       "title": "2. No Support in Non-Support Channels",
-      "description": "You must not ask for support in any non-support channels.\n\nSupport channels include #support. Make sure to also read the FAQ before seeking support.",
+      "description": "You must not ask for support in any non-support channels.\n\nSupport channels include <#1539489015751909399>. Make sure to also read the <#1539489015433134157> before seeking support.",
       "color": 6967734,
       "fields": null
     },

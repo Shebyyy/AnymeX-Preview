@@ -17,7 +17,7 @@
   },
   {
    "title": "2. How to stream/read on AnymeX?",
-   "description": "Follow the step-by-step guide: [AnymeX Extension Guides](https://anymex-guide.vercel.app/guides)\n\nQuick links:\n• [All Repos](https://anymex-extensions.vercel.app/repos) — browse and add repos\n• [All Extensions](https://anymex-extensions.vercel.app/extensions) — find specific extensions\n\n**No plugin needed:** Mangayomi, LNReader, Sora (all platforms)\n**Plugin needed:** Aniyomi, CloudStream (Android & Desktop only, not iOS)\n\n⚠️ Select the correct Extension System and Type.\n\n**Disclaimer:** We do not encourage piracy. Support official sources when possible.",
+   "description": "Follow the step-by-step guide: [AnymeX Guides](https://anymex-guide.vercel.app/guides)\n\n**No plugin needed:** Mangayomi, LNReader, Sora (all platforms)\n**Plugin needed:** Aniyomi, CloudStream (Android & Desktop only, not iOS)\n\n⚠️ Select the correct Extension System and Type.\n\n**Disclaimer:** We do not encourage piracy. Support official sources when possible.",
    "color": 6967734,
    "fields": null
   },
@@ -104,13 +104,13 @@
   },
   {
    "title": "15. What is Community Recommendations?",
-   "description": "**Community Recommendations** is a section where the community submits hidden gems across **Anime, Manga, Movies & Shows** — anyone can contribute and vote on entries!\n\n**Enable it:**\n> **Profile → Settings → Common → Community Recommendations** → Toggle **Show Community Recommendations**\n\n> 🔞 **Hide NSFW Recommendations** is available in the same section — enabled by default.\n\n**Link your accounts:**\n> • `/setup` → link **AniList** and/or **MAL**\n> • `/link_simkl` → link **Simkl** via PIN auth\n\n**Add your picks:**\n> • `/add_anime` or `/add_manga` → search, select & give a reason\n> • `/add_show` or `/add_movie` → same flow, powered by Simkl\n\n**Vote:**\n> • **Long press** any item in the section to vote on it directly.\n> • Tap **See All** to browse all submitted entries and vote.\n\n`author_name` in `/setup` is optional — used as your display name.\n\n**Use commands here →** <#1496731662464061521>",
+   "description": "**Community Recommendations** is a section where the community submits hidden gems across **Anime, Manga, Movies & Shows** — anyone can contribute and vote on entries!\n\n**Enable it:**\n> **Profile → Settings → Common → Community Recommendations** → Toggle **Show Community Recommendations**\n\n> 🔞 **Hide NSFW Recommendations** is available in the same section — enabled by default.\n\n**Link your accounts:**\n> • `/setup` → link **AniList** and/or **MAL**\n> • `/link_simkl` → link **Simkl** via PIN auth\n\n**Add your picks:**\n> • `/add_anime` or `/add_manga` → search, select & give a reason\n> • `/add_show` or `/add_movie` → same flow, powered by Simkl\n\n**Vote:**\n> • **Long press** any item in the section to vote on it directly.\n> • Tap **See All** to browse all submitted entries and vote.\n\n`author_name` in `/setup` is optional — used as your display name.\n\n**Use commands here →** <#1539489015751909404>",
    "color": 6967734,
    "fields": null
   },
   {
    "title": "16. How to Apply Custom Player Themes?",
-   "description": "All custom player themes can be found in <#1497202485146681482> or at **[anymex-themes.vercel.app](https://anymex-themes.vercel.app/)**.\n\n**Apply a Theme:**\n> Find a theme → Click **Apply** → AnymeX opens automatically and adds it to your collection.\n\n**Switch Themes:**\n> **Profile → Settings → Player → Player Theme** → Select any theme from your collection.\n\n> 💡 You can keep multiple themes and switch between them anytime without re-downloading!",
+   "description": "All custom player themes can be found in <#1539489015433134159> or at **[anymex-themes.vercel.app](https://anymex-themes.vercel.app/)**.\n\n**Apply a Theme:**\n> Find a theme → Click **Apply** → AnymeX opens automatically and adds it to your collection.\n\n**Switch Themes:**\n> **Profile → Settings → Player → Player Theme** → Select any theme from your collection.\n\n> 💡 You can keep multiple themes and switch between them anytime without re-downloading!",
    "color": 6967734,
    "fields": null
   },
