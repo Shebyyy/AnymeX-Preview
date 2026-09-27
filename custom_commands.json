@@ -14,9 +14,9 @@
     "ignored_channels": [],
     "content": "",
     "embed": {
-      "title": "test",
+      "title": "Anymex doesn't maintain extensions",
       "url": "",
-      "description": "test",
+      "description": "If an extension works in its **native app** but not in **AnymeX**, you can create an issue here: [Create an Extension Issue](https://anymex-desk.asheby.workers.dev/new?kind=extension)\n\nIf it does not work in its native app either, please contact the **extension/repository owner**.",
       "color": "#5865F2",
       "author": {
         "name": "",
@@ -29,8 +29,8 @@
       },
       "fields": []
     },
-    "updated_at": 1790487619,
-    "created_by": "asheby",
+    "updated_at": 1790524742,
+    "created_by": "itsmechinmoy",
     "created_at": 1790487619,
     "usage_count": 0
   }
