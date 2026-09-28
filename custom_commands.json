@@ -111,5 +111,43 @@
     "created_by": "asheby",
     "created_at": 1790616229,
     "usage_count": 0
+  },
+  {
+    "id": "cmd_desk_1790616342",
+    "name": "desk",
+    "aliases": [
+      "anymexdesk",
+      "ad"
+    ],
+    "description": "",
+    "enabled": true,
+    "prefix_required": true,
+    "delete_trigger": true,
+    "reply_mode": true,
+    "mention_user": true,
+    "staff_only": false,
+    "allowed_channels": [],
+    "ignored_channels": [],
+    "content": "",
+    "embed": {
+      "title": "Have a suggestion or bug to report?",
+      "url": "",
+      "description": "Use **AnymeX Desk** to submit and track it.\n\n[Open AnymeX Desk](<https://anymex-desk.asheby.workers.dev>)",
+      "color": "#5865F2",
+      "author": {
+        "name": "",
+        "icon_url": ""
+      },
+      "thumbnail_url": "",
+      "image_url": "",
+      "footer": {
+        "text": ""
+      },
+      "fields": []
+    },
+    "updated_at": 1790616342,
+    "created_by": "asheby",
+    "created_at": 1790616342,
+    "usage_count": 0
   }
 ]
