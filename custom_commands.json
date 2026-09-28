@@ -72,5 +72,44 @@
     "created_by": "asheby",
     "created_at": 1790524838,
     "usage_count": 1
+  },
+  {
+    "id": "cmd_bugs_1790616229",
+    "name": "bugs",
+    "aliases": [
+      "bug",
+      "report",
+      "issue"
+    ],
+    "description": "",
+    "enabled": true,
+    "prefix_required": true,
+    "delete_trigger": true,
+    "reply_mode": true,
+    "mention_user": true,
+    "staff_only": false,
+    "allowed_channels": [],
+    "ignored_channels": [],
+    "content": "",
+    "embed": {
+      "title": "Found a bug?",
+      "url": "",
+      "description": "Please report it on **AnymeX Desk** so it can be properly tracked.\n\n[Report a bug](<https://anymex-desk.asheby.workers.dev/new?kind=bug>)",
+      "color": "#5865F2",
+      "author": {
+        "name": "",
+        "icon_url": ""
+      },
+      "thumbnail_url": "",
+      "image_url": "",
+      "footer": {
+        "text": ""
+      },
+      "fields": []
+    },
+    "updated_at": 1790616229,
+    "created_by": "asheby",
+    "created_at": 1790616229,
+    "usage_count": 0
   }
 ]
