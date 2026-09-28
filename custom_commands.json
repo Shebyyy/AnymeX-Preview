@@ -38,7 +38,7 @@
     "id": "cmd_test_1790524838",
     "name": "suggestions",
     "aliases": [
-      "suggestions",
+      "suggestion",
       "sug",
       "request"
     ],
@@ -68,10 +68,10 @@
       },
       "fields": []
     },
-    "updated_at": 1790616156,
+    "updated_at": 1790616713,
     "created_by": "asheby",
     "created_at": 1790524838,
-    "usage_count": 1
+    "usage_count": 2
   },
   {
     "id": "cmd_bugs_1790616229",
@@ -110,7 +110,7 @@
     "updated_at": 1790616229,
     "created_by": "asheby",
     "created_at": 1790616229,
-    "usage_count": 0
+    "usage_count": 1
   },
   {
     "id": "cmd_desk_1790616342",
@@ -148,6 +148,6 @@
     "updated_at": 1790616342,
     "created_by": "asheby",
     "created_at": 1790616342,
-    "usage_count": 0
+    "usage_count": 1
   }
 ]
