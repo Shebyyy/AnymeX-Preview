@@ -32,12 +32,16 @@
     "updated_at": 1790524742,
     "created_by": "itsmechinmoy",
     "created_at": 1790487619,
-    "usage_count": 1
+    "usage_count": 3
   },
   {
     "id": "cmd_test_1790524838",
-    "name": "test",
-    "aliases": [],
+    "name": "suggestions",
+    "aliases": [
+      "suggestions",
+      "sug",
+      "request"
+    ],
     "description": "",
     "enabled": true,
     "prefix_required": true,
@@ -49,9 +53,9 @@
     "ignored_channels": [],
     "content": "",
     "embed": {
-      "title": "test",
+      "title": "Have a feature idea?",
       "url": "",
-      "description": "test",
+      "description": "Submit it on **AnymeX Desk** so it can be voted on, discussed, and tracked.\n\n[Suggest a feature](<https://anymex-desk.asheby.workers.dev/new?kind=suggestion>)",
       "color": "#5865F2",
       "author": {
         "name": "",
@@ -64,9 +68,9 @@
       },
       "fields": []
     },
-    "updated_at": 1790524838,
-    "created_by": "itsmechinmoy",
+    "updated_at": 1790616156,
+    "created_by": "asheby",
     "created_at": 1790524838,
-    "usage_count": 0
+    "usage_count": 1
   }
 ]
