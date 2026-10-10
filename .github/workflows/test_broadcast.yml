@@ -7,44 +7,44 @@ jobs:
   test_broadcast:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Repository Tags by Date and Time
+      - name: Fetch Latest Tag
         id: fetch_tags
         run: |
-          curl -s "https://api.github.com/repos/${{ github.repository }}/tags" -o tags.json
-          TAGS=$(jq -r '.[].name' tags.json)
-          declare -a TAGS_WITH_DATES=()
-          for TAG in $TAGS; do
-            TAG_DETAILS=$(curl -s "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG")
-            OBJECT_URL=$(echo "$TAG_DETAILS" | jq -r '.object.url // empty')
-            if [ -n "$OBJECT_URL" ]; then
-              OBJECT_DETAILS=$(curl -s "$OBJECT_URL")
-              DATE=$(echo "$OBJECT_DETAILS" | jq -r '.tagger.date // .committer.date // empty')
-              if [ -n "$DATE" ]; then
-                TAGS_WITH_DATES+=("$DATE $TAG")
-              fi
-            fi
-          done
           LATEST_TAG=""
-          LATEST_DATE=""
-          for TAG_DATE in "${TAGS_WITH_DATES[@]}"; do
-            TAG_DATE_TIME=$(echo "$TAG_DATE" | awk '{print $1}')
-            TAG_NAME=$(echo "$TAG_DATE" | awk '{print $2}')
-            if [[ -z "$LATEST_DATE" || "$TAG_DATE_TIME" > "$LATEST_DATE" ]]; then
-              LATEST_DATE="$TAG_DATE_TIME"
-              LATEST_TAG="$TAG_NAME"
+
+          # Try releases/latest first (fastest and uses authentication)
+          LATEST_TAG=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name // empty')
+
+          if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" = "null" ]; then
+            # Fallback to tags API with authentication
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/tags" -o tags.json
+
+            if jq -e 'if type=="array" then true else false end' tags.json > /dev/null 2>&1; then
+              LATEST_TAG=$(jq -r '.[0].name // empty' tags.json)
             fi
-          done
-          echo "LATEST_TAG: $LATEST_TAG"
+          fi
+
+          echo "Determined LATEST_TAG: $LATEST_TAG"
+          if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" = "null" ]; then
+            echo "Could not find latest tag. Using v3.1.8-beta as fallback."
+            LATEST_TAG="v3.1.8-beta"
+          fi
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Get Latest Release Notes
         id: get_release_notes
         run: |
           RELEASE_DATA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ env.LATEST_TAG }}")
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ env.LATEST_TAG }}")
 
-          RELEASE_NOTES=$(echo "$RELEASE_DATA" | jq -r '.body')
-          echo "Release Notes: $RELEASE_NOTES"
+          RELEASE_NOTES=$(echo "$RELEASE_DATA" | jq -r '.body // empty')
+          if [ -z "$RELEASE_NOTES" ] || [ "$RELEASE_NOTES" = "null" ]; then
+            RELEASE_NOTES="AnymeX update ${{ env.LATEST_TAG }} is now live!"
+          fi
+          echo "Release Notes:"
+          echo "$RELEASE_NOTES"
           echo "$RELEASE_NOTES" > release_notes.txt
 
       - name: Format Release Notes
