@@ -7,7 +7,7 @@ jobs:
   test_broadcast:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Repository Tags
+      - name: Fetch Repository Tags by Date and Time
         id: fetch_tags
         run: |
           curl -s "https://api.github.com/repos/${{ github.repository }}/tags" -o tags.json
@@ -40,10 +40,50 @@ jobs:
       - name: Get Latest Release Notes
         id: get_release_notes
         run: |
-          RELEASE_DATA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"             "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ env.LATEST_TAG }}")
-          RELEASE_NOTES=$(echo "$RELEASE_DATA" | jq -r '.body // "Test release notes"')
+          RELEASE_DATA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ env.LATEST_TAG }}")
+
+          RELEASE_NOTES=$(echo "$RELEASE_DATA" | jq -r '.body')
+          echo "Release Notes: $RELEASE_NOTES"
           echo "$RELEASE_NOTES" > release_notes.txt
+
+      - name: Format Release Notes
+        id: format_notes
+        run: |
           sed 's/||//g' release_notes.txt > clean_release_notes.txt
+          echo "" > formatted_notes.txt
+
+          extract_section() {
+            local title="$1"
+            local emoji="$2"
+
+            local start=$(grep -n "^### $emoji $title" clean_release_notes.txt | cut -d: -f1)
+            if [ -z "$start" ]; then return; fi
+
+            local next=$(tail -n +$((start + 1)) clean_release_notes.txt | grep -n '^### ' | head -n1 | cut -d: -f1)
+            if [ -z "$next" ]; then
+              content=$(tail -n +$((start + 1)) clean_release_notes.txt | grep '^-' | head -n 5)
+            else
+              end=$((start + next - 1))
+              content=$(sed -n "$((start + 1)),$((end - 1))p" clean_release_notes.txt | grep '^-' | head -n 5)
+            fi
+
+            if [ -n "$content" ]; then
+              echo "### $emoji $title" >> formatted_notes.txt
+              echo "$content" >> formatted_notes.txt
+              echo "" >> formatted_notes.txt
+            fi
+          }
+
+          extract_section "Features" "🌟"
+          extract_section "Bug Fixes & Improvements" "🔧"
+          extract_section "Refactors" "🔧"
+          extract_section "Style Changes" "🎨"
+          extract_section "Performance Improvements" "🚀"
+          extract_section "Chores & Documentation" "🧹"
+
+          echo "Preview of formatted notes:"
+          cat formatted_notes.txt
 
       - name: Broadcast announcement to AnymeX App
         env:
@@ -72,7 +112,9 @@ jobs:
             SHORT_DESC="AnymeX ${TAG} is now live! Check out what's new and update now."
           fi
 
-          if [ -s clean_release_notes.txt ]; then
+          if [ -s formatted_notes.txt ]; then
+            BODY=$(cat formatted_notes.txt)
+          elif [ -s clean_release_notes.txt ]; then
             BODY=$(cat clean_release_notes.txt)
           else
             BODY="A new update **${TAG}** has been released!"
@@ -80,7 +122,14 @@ jobs:
 
           FULL_CONTENT="${BODY}"$'\n\n'"[View Full GitHub Release](${RELEASE_URL})"
 
-          PAYLOAD=$(jq -nc             --arg app_id "anymex"             --arg title "$TITLE"             --arg short_desc "$SHORT_DESC"             --arg content "$FULL_CONTENT"             --arg category "$CATEGORY"             --arg announcement_key "$ANNOUNCEMENT_API_KEY"             '{
+          PAYLOAD=$(jq -nc \
+            --arg app_id "anymex" \
+            --arg title "$TITLE" \
+            --arg short_desc "$SHORT_DESC" \
+            --arg content "$FULL_CONTENT" \
+            --arg category "$CATEGORY" \
+            --arg announcement_key "$ANNOUNCEMENT_API_KEY" \
+            '{
               "app_id": $app_id,
               "title": $title,
               "short_description": $short_desc,
@@ -93,7 +142,12 @@ jobs:
             }')
 
           echo "Broadcasting announcement to AnymeX app ($TITLE)..."
-          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}"             -H "Content-Type: application/json"             -H "x-announcement-key: $ANNOUNCEMENT_API_KEY"             -X POST             -d "$PAYLOAD"             "$ANNOUNCEMENT_API_URL")
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
+            -H "Content-Type: application/json" \
+            -H "x-announcement-key: $ANNOUNCEMENT_API_KEY" \
+            -X POST \
+            -d "$PAYLOAD" \
+            "$ANNOUNCEMENT_API_URL")
 
           echo "Response HTTP status: $HTTP_STATUS"
           cat response.json
