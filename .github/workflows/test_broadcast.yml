@@ -1,0 +1,107 @@
+name: Test App Announcement Broadcast
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test_broadcast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Repository Tags
+        id: fetch_tags
+        run: |
+          curl -s "https://api.github.com/repos/${{ github.repository }}/tags" -o tags.json
+          TAGS=$(jq -r '.[].name' tags.json)
+          declare -a TAGS_WITH_DATES=()
+          for TAG in $TAGS; do
+            TAG_DETAILS=$(curl -s "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG")
+            OBJECT_URL=$(echo "$TAG_DETAILS" | jq -r '.object.url // empty')
+            if [ -n "$OBJECT_URL" ]; then
+              OBJECT_DETAILS=$(curl -s "$OBJECT_URL")
+              DATE=$(echo "$OBJECT_DETAILS" | jq -r '.tagger.date // .committer.date // empty')
+              if [ -n "$DATE" ]; then
+                TAGS_WITH_DATES+=("$DATE $TAG")
+              fi
+            fi
+          done
+          LATEST_TAG=""
+          LATEST_DATE=""
+          for TAG_DATE in "${TAGS_WITH_DATES[@]}"; do
+            TAG_DATE_TIME=$(echo "$TAG_DATE" | awk '{print $1}')
+            TAG_NAME=$(echo "$TAG_DATE" | awk '{print $2}')
+            if [[ -z "$LATEST_DATE" || "$TAG_DATE_TIME" > "$LATEST_DATE" ]]; then
+              LATEST_DATE="$TAG_DATE_TIME"
+              LATEST_TAG="$TAG_NAME"
+            fi
+          done
+          echo "LATEST_TAG: $LATEST_TAG"
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+
+      - name: Get Latest Release Notes
+        id: get_release_notes
+        run: |
+          RELEASE_DATA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"             "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ env.LATEST_TAG }}")
+          RELEASE_NOTES=$(echo "$RELEASE_DATA" | jq -r '.body // "Test release notes"')
+          echo "$RELEASE_NOTES" > release_notes.txt
+          sed 's/||//g' release_notes.txt > clean_release_notes.txt
+
+      - name: Broadcast announcement to AnymeX App
+        env:
+          ANNOUNCEMENT_API_URL: ${{ secrets.ANNOUNCEMENT_API_URL || 'http://anymex.duckdns.org:8000/functions/v1/announcements' }}
+          ANNOUNCEMENT_API_KEY: ${{ secrets.ANNOUNCEMENT_API_KEY }}
+        run: |
+          if [ -z "$ANNOUNCEMENT_API_KEY" ]; then
+            echo "ANNOUNCEMENT_API_KEY secret is not configured in repository secrets."
+            exit 1
+          fi
+
+          TAG="${{ env.LATEST_TAG }}"
+          RELEASE_URL="https://github.com/${{ github.repository }}/releases/tag/${TAG}"
+
+          if [[ "$TAG" == *"alpha"* ]]; then
+            CATEGORY="update"
+            TITLE="AnymeX Alpha ${TAG} Released"
+            SHORT_DESC="AnymeX Alpha ${TAG} is now available! Check out what's new."
+          elif [[ "$TAG" == *"beta"* ]]; then
+            CATEGORY="update"
+            TITLE="AnymeX Beta ${TAG} Released"
+            SHORT_DESC="AnymeX Beta ${TAG} is now available! Check out what's new."
+          else
+            CATEGORY="update"
+            TITLE="AnymeX ${TAG} Released"
+            SHORT_DESC="AnymeX ${TAG} is now live! Check out what's new and update now."
+          fi
+
+          if [ -s clean_release_notes.txt ]; then
+            BODY=$(cat clean_release_notes.txt)
+          else
+            BODY="A new update **${TAG}** has been released!"
+          fi
+
+          FULL_CONTENT="${BODY}"$'\n\n'"[View Full GitHub Release](${RELEASE_URL})"
+
+          PAYLOAD=$(jq -nc             --arg app_id "anymex"             --arg title "$TITLE"             --arg short_desc "$SHORT_DESC"             --arg content "$FULL_CONTENT"             --arg category "$CATEGORY"             --arg announcement_key "$ANNOUNCEMENT_API_KEY"             '{
+              "app_id": $app_id,
+              "title": $title,
+              "short_description": $short_desc,
+              "full_content": $content,
+              "category": $category,
+              "pinned": true,
+              "priority": 1,
+              "publish": true,
+              "announcement_key": $announcement_key
+            }')
+
+          echo "Broadcasting announcement to AnymeX app ($TITLE)..."
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}"             -H "Content-Type: application/json"             -H "x-announcement-key: $ANNOUNCEMENT_API_KEY"             -X POST             -d "$PAYLOAD"             "$ANNOUNCEMENT_API_URL")
+
+          echo "Response HTTP status: $HTTP_STATUS"
+          cat response.json
+          echo ""
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "Successfully broadcasted announcement to AnymeX app!"
+          else
+            echo "Failed to broadcast announcement (HTTP $HTTP_STATUS)."
+            exit 1
+          fi
