@@ -163,7 +163,7 @@
     "staff_only": false,
     "allowed_channels": [],
     "ignored_channels": [],
-    "content": "",
+    "content": "{user}",
     "embed": {
       "title": "Check this out",
       "url": "",
@@ -180,9 +180,9 @@
       },
       "fields": []
     },
-    "updated_at": 1793037474,
+    "updated_at": 1793037553,
     "created_by": "asheby",
     "created_at": 1793037279,
-    "usage_count": 3
+    "usage_count": 5
   }
 ]
