@@ -163,11 +163,11 @@
     "staff_only": false,
     "allowed_channels": [],
     "ignored_channels": [],
-    "content": "Check this out <https://omni.asheby.workers.dev>",
+    "content": "",
     "embed": {
-      "title": "",
+      "title": "Check this out",
       "url": "",
-      "description": "",
+      "description": "<https://omni.asheby.workers.dev>",
       "color": "#5865F2",
       "author": {
         "name": "",
@@ -180,7 +180,7 @@
       },
       "fields": []
     },
-    "updated_at": 1793037381,
+    "updated_at": 1793037474,
     "created_by": "asheby",
     "created_at": 1793037279,
     "usage_count": 3
