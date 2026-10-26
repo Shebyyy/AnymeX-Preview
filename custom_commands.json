@@ -149,5 +149,40 @@
     "created_by": "asheby",
     "created_at": 1790616342,
     "usage_count": 1
+  },
+  {
+    "id": "cmd_repo_1793037279",
+    "name": "repo",
+    "aliases": [],
+    "description": "",
+    "enabled": true,
+    "prefix_required": true,
+    "delete_trigger": true,
+    "reply_mode": true,
+    "mention_user": true,
+    "staff_only": false,
+    "allowed_channels": [],
+    "ignored_channels": [],
+    "content": "Check this out",
+    "embed": {
+      "title": "",
+      "url": "",
+      "description": "<https://omni.asheby.workers.dev>",
+      "color": "#5865F2",
+      "author": {
+        "name": "",
+        "icon_url": ""
+      },
+      "thumbnail_url": "",
+      "image_url": "",
+      "footer": {
+        "text": ""
+      },
+      "fields": []
+    },
+    "updated_at": 1793037279,
+    "created_by": "asheby",
+    "created_at": 1793037279,
+    "usage_count": 0
   }
 ]
