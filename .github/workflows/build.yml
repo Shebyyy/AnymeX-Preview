@@ -227,29 +227,17 @@ jobs:
         if: matrix.platform == 'android' && contains(github.ref_name, '-beta')
         shell: bash
         run: |
-          cd main-repo
           echo "🔵 Beta build detected - Disabling Google Services"
-          
-          # Remove google-services plugin from app/build.gradle
-          if [ -f "android/app/build.gradle" ]; then
-            echo "Modifying android/app/build.gradle..."
-            sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
-            echo "✅ Removed google-services plugin from app/build.gradle"
-          fi
-          
-          # Remove google-services classpath from build.gradle
-          if [ -f "android/build.gradle" ]; then
-            echo "Modifying android/build.gradle..."
-            sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
-            echo "✅ Removed google-services classpath from build.gradle"
-          fi
-          
-          # Verify changes
-          echo ""
-          echo "Verification - checking for remaining google-services references:"
-          grep -n "google-services" android/app/build.gradle android/build.gradle || echo "✅ No google-services references found"
-          echo ""
-          echo "Google Services successfully disabled for beta build"
+          cd main-repo/android
+          for f in app/build.gradle app/build.gradle.kts build.gradle build.gradle.kts settings.gradle settings.gradle.kts; do
+            if [ -f "$f" ]; then
+              sed -i -E '/google-services|com\.google\.gms/d' "$f"
+              echo "✅ Patched $f"
+            fi
+          done
+          rm -f app/google-services.json
+          echo "Remaining google-services references:"
+          grep -rn "google-services" app/build.gradle* build.gradle* settings.gradle* 2>/dev/null || echo "✅ None"
 
       - name: Verify beta configuration (All Platforms)
         if: contains(github.ref_name, '-beta')

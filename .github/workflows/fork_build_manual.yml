@@ -50,7 +50,7 @@ on:
         default: ""
 
 env:
-  FLUTTER_VERSION: "3.41.9"
+  FLUTTER_VERSION: "3.47.9"
   ZSIGN_VERSION: "0.7"
 
 jobs:
@@ -311,10 +311,17 @@ jobs:
         if: matrix.platform == 'android' && env.IS_ALPHA_BUILD == 'true'
         shell: bash
         run: |
-          cd main-repo
           echo "🔵 Disabling Google Services for alpha"
-          sed -i '/com\.google\.gms\.google-services/d' android/app/build.gradle
-          sed -i '/com\.google\.gms:google-services:/d' android/build.gradle
+          cd main-repo/android
+          for f in app/build.gradle app/build.gradle.kts build.gradle build.gradle.kts settings.gradle settings.gradle.kts; do
+            if [ -f "$f" ]; then
+              sed -i -E '/google-services|com\.google\.gms/d' "$f"
+              echo "✅ Patched $f"
+            fi
+          done
+          rm -f app/google-services.json
+          echo "Remaining google-services references:"
+          grep -rn "google-services" app/build.gradle* build.gradle* settings.gradle* 2>/dev/null || echo "✅ None"
           echo "✅ Google Services disabled"
 
       # ── Verify alpha config ────────────────────
@@ -345,7 +352,7 @@ jobs:
 
           # Android
           echo ""; echo "📱 ANDROID"
-          check "Package name in build.gradle"   grep -q "com.ryan.anymexalpha" android/app/build.gradle
+          check "Package name in build.gradle"   grep -q "com.ryan.anymexalpha" android/app/build.gradle*
           check "Package in AndroidManifest.xml" grep -q 'package="com.ryan.anymexalpha"' android/app/src/main/AndroidManifest.xml
           check "App name in AndroidManifest.xml" grep -q 'android:label="AnymeX Alpha"' android/app/src/main/AndroidManifest.xml
           check "Kotlin package dir exists" test -d "android/app/src/main/kotlin/com/ryan/anymexalpha"
