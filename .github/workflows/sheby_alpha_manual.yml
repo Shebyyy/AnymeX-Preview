@@ -50,7 +50,7 @@ on:
         default: "main"
 
 env:
-  FLUTTER_VERSION: "3.47.9"
+  FLUTTER_VERSION: "3.50.0"
   ZSIGN_VERSION: "0.7"
 
 jobs:
